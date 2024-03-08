@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+<ion-content [fullscreen]="true" class="homeContainer">
+  <div id="header">
+    <strong>Trascrizione fonetica</strong>
+  </div>
+  <div id="divRegistra">
+    <button class="btn" (click)="registra()">{{ statoRec }}</button>
+    &nbsp;
+    @if (!micON) {
+      <span class="material-symbols-outlined" id="micOFF" >
+        mic_off
+        </span>
+    }
+    @if (micON) {
+      <span class="material-symbols-outlined" id="micON">
+        mic
+        </span>
+    }
+    
+  </div>
+  
+
+</ion-content>
