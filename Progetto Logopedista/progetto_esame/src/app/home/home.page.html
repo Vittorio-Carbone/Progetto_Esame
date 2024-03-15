@@ -20,6 +20,16 @@
     }
     
   </div>
-  
+  <div id="divScrittura">
+    <div>
+      Inserire la frase da trascrivere:
+    </div>
+    <div>
+      <input type="text" [(ngModel)]="trascrizione" > &nbsp; <button id="btnInvia" (click)="trascrivi()">Trascrivi</button>
+    </div>
+  </div>
+  <div id="divTrascrizione">
+    <label type="text" id="lbltrascrizione" >{{trascritto}}</label>
+  </div>
 
 </ion-content>

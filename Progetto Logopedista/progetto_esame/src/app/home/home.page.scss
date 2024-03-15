@@ -66,3 +66,36 @@ strong{
 #micON{
   color: green;
 }
+
+input{
+  background-color: #f2f2f2;
+  color: #000;
+}
+
+
+#divScrittura{
+  color: black;
+  font-size: 20pt;
+  text-align: center;
+  margin-top: 40px;
+}
+#btnInvia{
+  background-color: whitesmoke;
+  border-radius: 10%;
+  color: #000;
+  padding:15px;
+  font-size: 20pt;
+  border: 1px solid #000;
+
+}
+
+#btnInvia:hover{
+  opacity: 0.7;
+}
+
+#divTrascrizione{
+  color: black;
+  font-size: 20pt;
+  text-align: center;
+  margin-top: 40px;
+}
