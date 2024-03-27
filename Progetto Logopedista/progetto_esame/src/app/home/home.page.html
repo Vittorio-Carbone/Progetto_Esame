@@ -3,9 +3,9 @@
 
 <ion-content [fullscreen]="true" class="homeContainer">
   <div id="header">
-    <strong>Trascrizione fonetica</strong>
+    <strong style="color: white; text-shadow: 1px 1px 1px black;">Trascrizione fonetica</strong>
   </div>
-  <div id="divRegistra">
+  <div id="divRegistra" style="display: none;">
     <button class="btn" (click)="registra()">{{ statoRec }}</button>
     &nbsp;
     @if (!micON) {
@@ -21,7 +21,7 @@
     
   </div>
   <div id="divScrittura">
-    <div>
+    <div style="margin-bottom: 20px;">
       Inserire la frase da trascrivere:
     </div>
     <div>

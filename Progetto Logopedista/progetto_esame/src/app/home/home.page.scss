@@ -1,15 +1,19 @@
-.homeContainer{
+.homeContainer {
   color: black;
 }
-#header{
-  margin: 25px 0;
+
+#header {
+  padding: 25px 0;
   text-align: center;
   font-size: 30pt;
+  background-color: #30bbca;
 }
-strong{
+
+strong {
   color: black;
 }
-.btn{
+
+.btn {
   width: 18%;
   height: 50px;
   font-size: 20pt;
@@ -21,37 +25,44 @@ strong{
   padding-top: 15px;
   padding-bottom: 40px;
 }
-.btn:hover{
+
+.btn:hover {
   animation: animButtonHover;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
+
 @keyframes animButtonHover {
-  0%{
+  0% {
     background-color: #f2f2f2;
-  transform: scale(1.0);
+    transform: scale(1.0);
   }
-  100%{
+
+  100% {
     background-color: #bdbdbd;
     transform: scale(1.02);
   }
 }
-.btn:not(:hover){
+
+.btn:not(:hover) {
   animation: animButtonNotHover;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
+
 @keyframes animButtonNotHover {
-  100%{
+  100% {
     background-color: #f2f2f2;
-  transform: scale(1.0);
+    transform: scale(1.0);
   }
-  0%{
+
+  0% {
     background-color: #bdbdbd;
     transform: scale(1.02);
   }
 }
-#divRegistra{
+
+#divRegistra {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -60,40 +71,49 @@ strong{
 .material-symbols-outlined {
   font-size: 35pt;
 }
-#micOFF{
+
+#micOFF {
   color: red;
 }
-#micON{
+
+#micON {
   color: green;
 }
 
-input{
+input {
   background-color: #f2f2f2;
   color: #000;
 }
 
 
-#divScrittura{
+#divScrittura {
   color: black;
   font-size: 20pt;
   text-align: center;
   margin-top: 40px;
 }
-#btnInvia{
-  background-color: whitesmoke;
-  border-radius: 10%;
-  color: #000;
-  padding:15px;
-  font-size: 20pt;
-  border: 1px solid #000;
+
+#btnInvia {
+  background-color: #30bbca;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: 0.5px 0.5px 0.5px black;
+  transition: all 0.3s ease;
 
 }
 
-#btnInvia:hover{
+#btnInvia:hover {
   opacity: 0.7;
 }
 
-#divTrascrizione{
+#divTrascrizione {
   color: black;
   font-size: 20pt;
   text-align: center;
