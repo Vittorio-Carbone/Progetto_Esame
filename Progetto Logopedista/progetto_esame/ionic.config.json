@@ -1,7 +1,0 @@
-{
-  "name": "progetto_esame",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}
