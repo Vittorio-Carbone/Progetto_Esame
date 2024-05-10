@@ -69,11 +69,8 @@ function salvaTrascrizione() {
     users[idUser]['pazienti'][_id]['reg'].forEach((item, index) => {
         item.id = index;
     });
-    fs.writeFileSync(filePath, JSON.stringify(users));
-    // fs.writeFile(filePath, JSON.stringify(users), (err) => {
-    //     console.log(err);
-    //     console.log("Salvato correttamente")
-    // });
+    // fs.writeFileSync(filePath, JSON.stringify(users));
+    ipcRenderer.send('salvaJson', users);
     caricaTabella(users[idUser]['pazienti'][_id]);
 }
 

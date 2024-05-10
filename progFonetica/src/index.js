@@ -2,6 +2,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
+const { data } = require('jquery');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -34,30 +35,9 @@ const createWindow = () => {
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
-
-
-
 };
 
 
-
-
-// ipcMain.on('requestJson', (event) => {
-//   fs.readFile(filePath, 'utf8', (err, data) => {
-//     if (err) {
-//       console.error('An error occurred:', err);
-//       return;
-//     }
-
-//     try {
-//       const jsonData = JSON.parse(data);
-//       // Send the JSON data back to the renderer process
-//       event.reply('sendJson', jsonData);
-//     } catch (err) {
-//       console.error('An error occurred when parsing the JSON:', err);
-//     }
-//   });
-// });
 
 
 
@@ -77,6 +57,19 @@ app.whenReady().then(() => {
   });
 });
 
+
+
+
+ipcMain.on("salvaJson",(_event,data)=>{
+  console.log("Salva JSON");
+  // let sData=JSON.stringify(data);
+  // fs.writeFile(filePath,sData,(err)=>{
+  //   if(err){
+  //     console.log(err);
+  //   }
+  // });
+  // console.log("JSON Salvato");
+});
 
 
 // Quit when all windows are closed, except on macOS. There, it's common
