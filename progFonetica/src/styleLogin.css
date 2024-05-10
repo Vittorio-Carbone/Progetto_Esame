@@ -1,0 +1,323 @@
+body {
+    font-family: Roboto;
+    margin: auto;
+    max-width: 100%;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#title {
+    text-align: center;
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    margin-bottom: 5vh;
+    color: rgb(255, 253, 253);
+    font-size: 2.5em;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px black;
+}
+
+#loginHome {
+    width: 100%;
+    height: 100vh;
+    background-image: url("img/background2.png");
+    background-size: 100% 100%;
+}
+
+#divIntermedio {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100% !important;
+}
+
+#divLogin{
+    text-align: center;
+    width: 300px;
+    height: auto;
+    border-radius: 1vw;
+    box-shadow: 0 0 4px black;
+    background-color: transparent;
+    margin-top: 5vw;
+}
+
+#divRegistrazione{
+    text-align: center;
+    width: 300px;
+    height: auto;
+    border-radius: 1vw;
+    box-shadow: 0 0 4px black;
+    background-color: transparent;
+    margin-top: 5vw;   
+}
+
+#pAccedi{
+    text-align: center;
+    font-size: 3rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 1px 1px 1px black;
+}
+
+#pRegistrati{
+    text-align: center;
+    font-size: 1em;
+    color: rgb(0,0,0);
+    text-shadow: 1px 1px 1px black;
+
+}
+
+#giaAccount{
+    text-align: center;
+    font-size: 1em;
+    color: rgb(0,0,0);
+    text-shadow: 1px 1px 1px black;
+
+}
+
+#txtUsername{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+#txtUsername:focus{
+    outline: none;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+#txtUsername:not(:focus){
+    transform: scale(1);
+    transition: 0.3s ease;
+}
+
+#txtPassword:focus{
+    outline: none;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+#txtPassword:not(:focus){
+    transform: scale(1);
+    transition: 0.3s ease;
+}
+
+#txtNome{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    margin-bottom: 5vh;
+}
+
+#txtNome:focus{
+    outline: none;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+#txtNome:not(:focus){
+    transform: scale(1);
+    transition: 0.3s ease;
+}
+
+#txtCognome{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+    margin-bottom: 5vh;
+
+}
+
+#txtCognome:focus{
+    outline: none;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+#txtCognome:not(:focus){
+    transform: scale(1);
+    transition: 0.3s ease;
+}
+
+#txtUsernameRegistrato{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+#txtUsernameRegistrato:focus{
+    outline: none;
+    transform: scale(1.01);
+    transition: 0.3s ease;
+}
+
+#txtUsernameRegistrato:not(:focus){
+    transform: scale(1);
+    transition: 0.3s ease;
+}
+
+
+#txtPassword, #txtPasswordRegistrato{
+    margin-top: 10%;
+    margin-bottom: 9%;
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 15px;
+}
+
+hr{
+    width: 90%;
+    opacity: 0.7;
+    margin: 2vh 5%;
+    border: 1px solid rgb(255, 253, 253);
+}
+
+#btnAccedi{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    color: rgb(143, 133, 133);
+    font-weight: bold;  
+    background-color: #fbeee0;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    box-shadow: #07e7e7 4px 4px 0 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+}
+
+#btnRegistrati{
+    width: 80%;
+    height: 5vh;
+    border: none;
+    font-size: 1.5em;
+    background-color: transparent;
+    color: rgb(143, 133, 133);
+    font-weight: bold;  
+    background-color: #fbeee0;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    box-shadow: #07e7e7 4px 4px 0 0;
+    color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+
+
+}
+
+#btnAccedi:hover {
+    color: #000000;
+    background-color: #07e7e7;
+  }
+
+  #btnRegistyrati:hover {
+    color: #000000;
+    background-color: #07e7e7;
+  }
+
+#btnAccedi:not(:hover){
+    background-color: rgb(255, 253, 253);
+    color: rgb(0, 0, 0);
+    transition: 0.5s ease;
+
+}
+
+#btnRegistrati:not(:hover){
+    background-color: rgb(255, 253, 253);
+    color: rgb(0, 0, 0);
+    transition: 0.5s ease;
+
+}
+
+#registrati{
+    text-decoration: none;
+    color: rgb(22, 75, 75);
+}
+
+#accedi{
+    text-decoration: none;
+    color: rgb(22, 75, 75);
+}
+
+#userIcon{
+    width: 5vw;
+    height: 5vh;
+    padding: 0%;
+}
+
+.txtErrore{
+    color: red;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px black;
+    width: auto;
+    height: 1vh;
+    padding-bottom: 7vh;
+}
+#logged{
+    display: none;
+}
+
+
+
+#logOut{
+    width: 80% !important; 
+    text-align: right; 
+    margin-bottom: 30px;
+    font-size: 20pt;
+}
+#logOut:hover>i{
+    transition: all 0.4s;
+    color: red;
+    scale: 1.1;
+}
+#logOut:not(:hover)>i{
+    transition: all 0.4s;
+}

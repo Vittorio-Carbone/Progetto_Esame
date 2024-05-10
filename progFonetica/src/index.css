@@ -1,0 +1,429 @@
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  margin: auto;
+  max-width: 100%;  
+}
+#title{
+  background-color: #30bbca;
+  top: 0;
+  color: white;
+  text-align: center;
+  width:100% ;
+  font-size: 25pt;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-shadow: 0.8px 0.8px 0.8px black;
+}
+#home{
+  text-align: center;
+  font-size: 20pt;
+}
+
+
+
+.inputTxt {
+  width: 15rem !important;
+  height: 5rem;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.inputTxt:focus {
+  border-color: #007bff; 
+}
+
+
+/* ==============================================================  UTENTI  =============================================================== */
+#utenti{
+  padding-top: 20px;
+  margin: 0px auto;
+  max-width: 70%;
+  display: flex;
+  flex-wrap: wrap; /* Aggiunto */
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+  text-align: center;
+  font-size: 20pt;
+  height: auto;
+  max-height: 700px;
+  overflow-y:auto;
+}
+.paziente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  width: 200px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.paziente:hover{
+  border-color: #007bff;
+  scale: 1.035;
+
+}
+.nomePaz{
+  width: 100%;
+  font-size: 20pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.dataPaz{
+  width: 100%;
+  font-size: 12pt;
+  color: #6e6e6e;
+  margin-bottom: 10px;
+}
+.diagnosiPaz{
+  width: 100%;
+  font-size: 13pt;
+  color: #6e6e6e;
+  margin-bottom: 10px;
+}
+.aggiungiPaz{
+  width: 50px;
+  margin: 0px auto;
+  background-color: #30bbca;
+  color: white !important;
+  font-size: 30pt !important;
+  border: none;
+  padding: 15px 25px;
+  height: 70%;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.aggiungiPaz:hover{
+  opacity: 0.8;
+  scale: 1.05;
+}
+.divAgg{
+  padding: 10px;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-bottom: 25px;
+  text-align: center;
+  width: 200px;
+}
+.black {
+  color: black !important;
+}
+
+.gray {
+  color: #7b7a7a !important;
+}
+
+input[type=checkbox] {
+  position: relative;
+  cursor: pointer;
+  margin-left: -4px;
+  margin-top: -1px;
+  padding: 5px 0px;
+}
+input[type=checkbox]:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  border: 2px solid #555555;
+  border-radius: 3px;
+  background-color: white;
+}
+input[type=checkbox]:checked:after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid green;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 2px;
+  left: 6px;
+}
+
+
+/* ============================================================== FORM PAZIENTI  =============================================================== */
+#formPaz{
+  margin: 0px auto;
+  max-width: 300px;
+  display: flex;
+  flex-wrap: wrap; /* Aggiunto */
+  justify-content: center;
+  align-items: center;
+  margin-top: 140px;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-bottom: 40px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.inputPaz {
+  width: 100%;
+  padding: 10px 10px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 12pt;
+  transition: 0.3s;
+  color: #7b7a7a;
+}
+.inputPaz:hover {
+  border-color: #4A90E2;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.inputPaz:focus {
+  border-color: #4A90E2 !important;
+  outline: none;
+}
+.btnSalva{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #30bbca;
+  color: white;
+  border: 2px solid #30bbca;
+  padding: 15px 25px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-shadow: 0.5px 0.5px 0.5px black;
+  transition: all 0.6s ease;
+}
+.btnSalva:hover {
+  text-shadow: none;
+  scale: 1.01;
+  color: #30bbca;
+  background-color: white;
+  border: 2px solid #30bbca;
+}
+
+.noInfo{
+  width: 100%;
+  margin-bottom: 15px;
+  font-size: 15pt;
+  color: red;
+}
+.closeButton{
+  height: 40px;
+  text-align: right;
+  color: black;
+  border: none;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s ease;
+  margin-left: 100%;
+}
+.closeButton:hover{
+  opacity: 0.7;
+  color: red;
+  animation: rotateAnimation 0.2s linear;
+}
+@keyframes rotateAnimation {
+  0%{
+      transform: rotate(0deg); /* Rotazione iniziale (0 gradi) */
+  }
+  100% {
+      transform: rotate(180deg); /* Rotazione finale (360 gradi) */
+  }
+}
+
+
+
+
+
+
+/* ==============================================================  TABLE  =============================================================== */
+#utente{
+  margin-top: 110px;
+}
+#closePazTab{
+  color: black;
+  font-size: 25pt;
+  max-width: 400px;
+  text-align: right;
+  margin: 0px auto !important;
+  animation: none;
+  margin-top: 25px;
+}
+.fa-xmark:hover{
+  color: red;
+  scale: 1.1;
+}
+
+table{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0px auto;
+  max-width: 900px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  text-align: left;
+  font-size: 16pt;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+th td{
+  padding-left: 15px !important;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+thead>tr{
+  text-align: center;
+  text-shadow: 0.8px 0.8px 0.8px black;
+  background-color: rgb(64, 64, 255);
+  color: white;
+  font-size: 17pt;
+  font-weight: 300;
+}
+th{
+  padding: 20px 12px;
+}
+td{
+  padding: 15px 8px;
+  border:1px solid #ccc;
+}
+tbody>tr{
+  text-align: center;
+  transition: all 0.4s;
+}
+
+.colored{
+  background-color: #edf8ff !important;
+}
+tbody>tr:hover{
+  background-color: #edf8ff !important;
+}
+.fa-pen-to-square{
+  color: black;
+  font-size: 16pt;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.fa-pen-to-square:hover{
+  color: gray;
+}
+.fa-trash{
+  color: black;
+  font-size: 16pt;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+
+}
+.fa-trash:hover{
+  color: red;
+}
+
+
+
+
+
+
+
+
+/* =========================================== POPUP CONFERMA ============================= */
+.popup-hidden {
+  display: none;
+}
+
+.popup-visible {
+  display: block;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 1000;
+}
+
+#popup button {
+  background-color: #4CAF50; /* colore di sfondo verde */
+  border: none;
+  color: white; /* colore del testo bianco */
+  padding: 15px 32px; /* spaziatura intorno al testo */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s; /* durata dell'effetto di transizione */
+  border-radius: 10px;
+}
+
+#cancel {
+  background-color: white !important; 
+  color: black !important; /* colore del testo nero */
+  border: 1px solid #ccc !important; /* bordo grigio */
+}
+#cancel:hover {
+  background-color: #949494;
+  scale: 1.05;
+}
+
+#confirm {
+  background-color: #008CBA !important; /* colore di sfondo blu */
+}
+
+#confirm:hover {
+  background-color: #007B9A !important; /* cambia colore di sfondo quando il mouse è sopra */
+  scale: 1.05;
+}
+
+#overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* nero semi-trasparente */
+  z-index: 999; /* assicurati che sia sotto il popup */
+}
+
+.overlay-hidden {
+  display: none;
+}
+
+.overlay-visible {
+  display: block;
+}

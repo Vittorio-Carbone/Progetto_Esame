@@ -1,0 +1,59 @@
+{
+  "name": "progfonetica",
+  "productName": "progfonetica",
+  "version": "1.0.0",
+  "description": "My Electron application description",
+  "main": "src/index.js",
+  "build": {
+    "appId": "com.trascrizionefonetica.app",
+    "productName": "TrascrizioneFonetica",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "node_modules/**/*",
+      "file.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  },
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^7.3.1",
+    "@electron-forge/maker-deb": "^7.3.1",
+    "@electron-forge/maker-rpm": "^7.3.1",
+    "@electron-forge/maker-squirrel": "^7.3.1",
+    "@electron-forge/maker-zip": "^7.3.1",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.3.1",
+    "@electron-forge/plugin-fuses": "^7.3.1",
+    "@electron/fuses": "^1.8.0",
+    "electron": "^29.1.6",
+    "electron-builder": "^24.13.3"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Vittorio-Carbone",
+    "email": "113420748+Vittorio-Carbone@users.noreply.github.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "assemblyai": "^4.4.1",
+    "deepspeech": "^0.9.3",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-store": "^9.0.0",
+    "fs": "^0.0.1-security",
+    "jquery": "^3.7.1",
+    "mic": "^2.1.2"
+  }
+}

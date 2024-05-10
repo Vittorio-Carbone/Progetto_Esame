@@ -1,0 +1,98 @@
+
+$(document).ready(function () {
+    let btnRegistra = $("#btnRegistra");
+    let tracciaAudio = $("#tracciaAudio").hide();
+    let audioChunks = []; // Memorizza i chunk audio registrati
+    let audioURL;
+    let recognition;
+    $("#stopButton").prop("disabled", true);
+    $("#btnRegistra").on("click", function () {
+        if ($("#btnRegistra").text() === "Registra") {
+            $("#btnRegistra").text("Ferma registrazione");
+            startRecording();
+        }
+        else {
+            $("#btnRegistra").text("Registra");
+            stopRecording();
+
+        }
+    });
+
+    function startRecording() {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+            .then(stream => {
+                mediaRecorder = new MediaRecorder(stream);
+
+                // Aggiungiamo un evento quando il chunk audio è disponibile
+                mediaRecorder.ondataavailable = function (event) {
+                    audioChunks.push(event.data);
+                };
+
+                mediaRecorder.start();
+                $("#btnRegistra").text("Ferma Registrazione");
+            })
+            .catch(error => {
+                console.error("Errore nell'accesso al microfono:", error);
+            });
+    }
+
+    function stopRecording() {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+            mediaRecorder.stop();
+            $("#btnRegistra").text("Registra");
+
+            // Quando la registrazione è terminata, creiamo un blob audio
+            mediaRecorder.onstop = function () {
+                const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+                audioURL = URL.createObjectURL(audioBlob);
+                tracciaAudio.prop("src", audioURL);
+                tracciaAudio.show();
+                console.log("Blob audio:", audioBlob);
+                console.log("URL audio:", audioURL);
+                audioChunks = []; // Resetta l'array dei chunk audio
+            };
+        }
+    }
+
+
+
+
+
+    function setupSpeechRecognition() {
+        recognition = new webkitSpeechRecognition();
+        recognition.lang = "it-IT";
+        recognition.continuous = true;
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        
+    
+        recognition.onresult = function (event) {
+            let transcript = event.results[0][0].transcript;
+            console.log(transcript);
+            $("#inputTrascrivere").val(transcript);
+            $("#startButton").prop("disabled", false);
+            $("#stopButton").prop("disabled", true);
+        };
+    
+        recognition.onerror = function (event) {
+            console.error('Errore nel riconoscimento vocale:', event.error);
+        };
+    
+        recognition.start();
+    }
+
+    $("#startButton").on("click", function () {
+        setupSpeechRecognition();
+        $("#startButton").prop("disabled", true);
+        $("#stopButton").prop("disabled", false);
+
+    });
+
+    $("#stopButton").on("click", function () {
+        setTimeout(() => {
+            recognition.stop();
+            $("#startButton").prop("disabled", false);
+            $("#stopButton").prop("disabled", true);
+        }, 1000);
+    });
+});

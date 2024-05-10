@@ -1,0 +1,110 @@
+{
+    "utenti": [
+        {
+            "id": 1,
+            "name": "John",
+            "cognome": "Doe",
+            "pazienti": [
+                {
+                    "id": 1,
+                    "nome": "Mario",
+                    "cognome": "Rossi",
+                    "dataNascita": "01/01/1990",
+                    "diagnosi": "Influenza",
+                    "reg": [
+                        {
+                            "id": 1,
+                            "testo": "ciao",
+                            "trascritto": "ʧao",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 2,
+                            "testo": "luca",
+                            "trascritto": "luka",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 3,
+                            "testo": "cane",
+                            "trascritto": "kane",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 4,
+                            "testo": "gatto",
+                            "trascritto": "gat:o",
+                            "data": "20/04/2024"
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "nome": "Luca",
+                    "cognome": "Bianchi",
+                    "dataNascita": "01/01/1990",
+                    "diagnosi": "Raffreddore",
+                    "reg": [
+                        {
+                            "id": 1,
+                            "testo": "ciao",
+                            "trascritto": "ʧao",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 2,
+                            "testo": "luca",
+                            "trascritto": "luka",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 3,
+                            "testo": "cane",
+                            "trascritto": "kane",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 4,
+                            "testo": "gatto",
+                            "trascritto": "gat:o",
+                            "data": "20/04/2024"
+                        }
+                    ]
+                },
+                {
+                    "id": 3,
+                    "nome": "Giovanni",
+                    "cognome": "Verdi",
+                    "dataNascita": "01/01/1990",
+                    "diagnosi": "Mal di testa",
+                    "reg": [
+                        {
+                            "id": 1,
+                            "testo": "ciao",
+                            "trascritto": "ʧao",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 2,
+                            "testo": "luca",
+                            "trascritto": "luka",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 3,
+                            "testo": "cane",
+                            "trascritto": "kane",
+                            "data": "20/04/2024"
+                        },
+                        {
+                            "id": 4,
+                            "testo": "gatto",
+                            "trascritto": "gat:o",
+                            "data": "20/04/2024"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

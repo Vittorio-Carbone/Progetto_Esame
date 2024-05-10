@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Trascrizione Fonetica</title>
+  <link rel="stylesheet" href="index.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="trascrizione.js"></script>
+  <script src="registrazione.js"></script>
+  <script src="utenti.js"></script>
+  <script src="libreria.js"></script>
+  <link rel="stylesheet" href="styleLogin.css" />
+  <script src="login.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body class="poppins-regular">
+  <div id="loginHome">
+    <div id="divIntermedio">
+      <div id="divLogin">
+        <hr>
+        <p id="pAccedi">Login</p>
+        <form action="">
+          <input type="text" id="txtUsername" name="username" placeholder="Username" value="loris" required>
+          <input type="password" id="txtPassword" name="password" placeholder="Password" value="password" required> 
+
+        </form>
+        <div id="txtErrore"></div>
+        <input type="submit" id="btnAccedi" value="Accedi">
+        <p id="pRegistrati">Non hai un account? <a id="registrati">Registrati</a></p>
+        <hr>
+      </div>
+      <div id="divRegistrazione">
+        <hr>
+        <p id="pAccedi" style="font-size: 2rem;">Registrazione</p>
+        <form action="">
+          <input type="text" id="txtNome" name="nome" placeholder="Nome" required>
+          <input type="text" id="txtCognome" name="cognome" placeholder="Cognome" required>
+          <input type="text" id="txtUsernameRegistrato" name="username" placeholder="Username" required>
+          <input type="password" id="txtPasswordRegistrato" name="password" placeholder="Password" required>
+
+        </form>
+        <div class="txtErrore"></div>
+        <input type="submit" id="btnRegistrati" value="Registrati">
+        <p id="giaAccount">Hai già un account? <a id="accedi">Accedi</a></p>
+        <hr>
+      </div>
+    </div>
+  </div>
+  <div id="logged" >
+    <div id="title">
+      Trascrizione fonetica
+    </div>
+    <div id="overlay" class="overlay-hidden">
+      <div id="popup" class="popup-hidden">
+        <p>Sei sicuro di voler eliminare?</p>
+        <button id="cancel">Annulla</button>
+        <button id="confirm">Conferma</button>
+      </div>
+    </div>
+    <div id="formPaz">
+      <div class="closeButton" id="closePaz">&times;</div>
+      <input type="text" class="inputPaz" id="inputNomePaz" placeholder="Nome">
+      <input type="text" class="inputPaz" id="inputCognomePaz" placeholder="Cognome">
+      <input type="date" class="inputPaz" id="inputDataPaz" style="font-weight: bold;">
+      <input type="text" class="inputPaz" id="inputDiagnosiPaz" placeholder="Diagnosi">
+      <div class="noInfo" id="infoPaz">
+        <b>Attenzione</b>: inserire tutti i campi!
+      </div><br><br>
+      <button id="btnSalvaPaz" class="btnSalva">Salva</button>
+    </div>
+    <div id="utenti">
+      <div id="logOut"><i id="logOutClick" class="fa-solid fa-right-from-bracket"></i></div>
+      <div class="divAgg">
+        <div class="aggiungiPaz" id="btnAggiungiPaz">
+          <i class="fa-solid fa-circle-plus"></i>
+        </div>
+      </div>
+      <!-- <div class="paziente" id="paziente1">
+        <div class="nomePaz">Luca rossi</div>
+        <div class="dataPaz">12/12/2000</div>
+        <div class="diagnosiPaz">Influenza</div>
+      </div> -->
+    </div>
+    <div id="utente">
+      <div class="closeButton" id="closePazTab"><i class="fa-solid fa-xmark" id="xDivUtente"></i></div>
+      <div id="home">
+        <button id="btnRegistra">Registra</button>
+        <div id="#audio">
+          <audio id="tracciaAudio" src="" controls></audio>
+        </div>
+        <button id="startButton">Avvia registrazione</button><br>
+        <button id="stopButton">Ferma registrazione</button><br><br>
+        <textarea type="text" class="inputTxt" id="inputTrascrivere"></textarea><br><br>
+        <button id="btnInvia" class="btnSalva">Trascrivi</button> <br><br>
+        <textarea type="text" class="inputTxt" id="outputTrascritto"></textarea>
+        <br><br>
+        <button class="btnSalva" id="btnSalvaTrascrizione">Salva trascrizione</button>
+      </div>
+      <input type="text" id="idPaziente" style="display: none;">
+      <table id="tableTrascrizioni">
+        <thead id="theadPaz">
+          <tr>
+            <th></th>
+            <th></th>
+            <th>Frase originale</th>
+            <th>Frase trascritta</th>
+            <th>Data</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="tobdyPaz">
+          <!-- <tr>
+            <td class="colored">id</td>
+            <td>Frase originale</td>
+            <td class="colored">Frase trascritta</td>
+            <td>Data</td>
+            <td class="colored"><i class="fa-solid fa-pen-to-square"></i></td>
+            <td class="colored"><i class="fa-solid fa-trash"></i></td>
+          </tr> -->
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
