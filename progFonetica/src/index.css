@@ -275,11 +275,13 @@ input[type=checkbox]:checked:after {
 #closePazTab{
   color: black;
   font-size: 25pt;
-  max-width: 400px;
-  text-align: right;
+  max-width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin: 0px auto !important;
   animation: none;
-  margin-top: 25px;
+  margin-top: 50px;
 }
 .fa-xmark:hover{
   color: red;
@@ -350,6 +352,13 @@ tbody>tr:hover{
 }
 .fa-trash:hover{
   color: red;
+}
+
+.fa-solid{
+  transition: all 0.3s;
+}
+.fa-solid:hover{
+  scale: 1.02;
 }
 
 
@@ -426,4 +435,69 @@ tbody>tr:hover{
 
 .overlay-visible {
   display: block;
+}
+
+
+/* =================================================== SCHEDA USER ========================================= */
+
+#schedaUtente{
+  width: 70%;
+  margin: 0px auto;
+  margin-top: 140px;
+}
+
+#schedaNome{
+  font-size: 35pt;
+  margin-bottom: 20px;
+}
+.divScheda{
+  font-size: 15pt;
+  margin-bottom: 10px;
+  padding: 20px;
+  color: #555555;
+}
+
+#eliminaPaziente{
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s ease;
+  border: 2px solid red;
+}
+
+#eliminaPaziente:hover{
+  scale: 1.02;
+  background-color: white;
+  color: red;
+}
+
+#btnEsciScheda{
+  background-color: #30bbca;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s ease;
+  border: 2px solid #30bbca;
+}
+
+.spanUtente{
+  border: 20px;
+  border-bottom: 2px solid #30bbca82;
+}
+
+.spanUtente > h3{
+  width: auto;
 }

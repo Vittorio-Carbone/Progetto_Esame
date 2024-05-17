@@ -3,6 +3,7 @@ $(document).ready(function () {
     let divUtenti = $("#utenti");
     let divAddPaz = $("#formPaz").hide();
     let divUtente = $("#utente").hide();
+    let divSchedaUtente = $("#schedaUtente").hide();
 
     $(".noInfo").hide();
     
@@ -41,6 +42,17 @@ $(document).ready(function () {
         setTimeout(function () {
             divUtente.slideDown(600);
         }, 600);
+    });
+
+
+    $("#iconUser").click(function () {
+        divUtente.slideToggle(600);
+        divSchedaUtente.slideToggle(600);
+    });
+
+    $("#btnEsciScheda").click(function () {
+        divUtente.slideToggle(600);
+        divSchedaUtente.slideToggle(600);
     });
     
     

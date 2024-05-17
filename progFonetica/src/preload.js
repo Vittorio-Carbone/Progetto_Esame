@@ -8,7 +8,6 @@ let vettoreStampa2 = [];
 let vettoreStampaData = [];
 let idUser;
 document.addEventListener('DOMContentLoaded', () => {
-
     users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     users = users;
     // for (let paziente of users["pazienti"]) {
@@ -47,6 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         while (pazienti[0]) {
             pazienti[0].parentNode.removeChild(pazienti[0]);
         }
+    });
+
+    document.getElementById("iconUser").addEventListener('click', () => {
+        caricaSchedaUser();
     });
 });
 
@@ -315,3 +318,14 @@ function registrati() {
     }
 }
 
+
+
+function caricaSchedaUser(){
+    
+    let _id=document.getElementById('idPaziente').value;
+    console.log(users[idUser]['pazienti'][_id]);
+    let paziente=users[idUser]['pazienti'][_id];
+    document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
+    document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
+    document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
+}
