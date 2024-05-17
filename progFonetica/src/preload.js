@@ -146,7 +146,8 @@ function caricaTabella(paziente) {
                 });
                 console.log(users)
                 caricaTabella(paziente);
-                fs.writeFileSync(filePath, JSON.stringify(users));
+                // fs.writeFileSync(filePath, JSON.stringify(users));
+                ipcRenderer.send('salvaJson', users);
                 hidePopup();
             });
         });
@@ -178,7 +179,7 @@ function salvaPaziente() {
         infoPaz.style.display = 'none';
 
         let paziente = {
-            "id": users[idUser]['pazienti'].length,
+            "id": 0,
             "nome": inputNomePaz,
             "cognome": inputCognomePaz,
             "dataNascita": inputDataPaz.split('-').reverse().join('/'),
@@ -191,7 +192,8 @@ function salvaPaziente() {
         users[idUser]['pazienti'].forEach((item, index) => {
             item.id = index;
         });
-        fs.writeFileSync(filePath, JSON.stringify(users));
+        // fs.writeFileSync(filePath, JSON.stringify(users));
+        ipcRenderer.send('salvaJson', users);
 
         caricaUtenti(paziente);
 
@@ -302,7 +304,8 @@ function registrati() {
             users.forEach((item, index) => {
                 item.id = index;
             });
-            fs.writeFileSync(filePath, JSON.stringify(users));
+            // fs.writeFileSync(filePath, JSON.stringify(users));
+            ipcRenderer.send('salvaJson', users);
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
         }

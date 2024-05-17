@@ -23,6 +23,17 @@ const createWindow = () => {
     },
   });
 
+
+  ipcMain.on("salvaJson",(_event,data)=>{
+    let sData=JSON.stringify(data);
+    fs.writeFile(filePath,sData,(err)=>{
+      if(err){
+        console.log(err);
+      }
+    });
+    console.log("JSON Salvato");
+  });
+  
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
     // mainWindow.webContents.closeDevTools();
@@ -50,26 +61,12 @@ app.whenReady().then(() => {
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
-    }
-  });
+   app.on('activate', function () {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+  })
 });
 
 
-
-
-ipcMain.on("salvaJson",(_event,data)=>{
-  console.log("Salva JSON");
-  // let sData=JSON.stringify(data);
-  // fs.writeFile(filePath,sData,(err)=>{
-  //   if(err){
-  //     console.log(err);
-  //   }
-  // });
-  // console.log("JSON Salvato");
-});
 
 
 // Quit when all windows are closed, except on macOS. There, it's common
