@@ -51,6 +51,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("iconUser").addEventListener('click', () => {
         caricaSchedaUser();
     });
+
+
+
+    document.getElementById('confermaOptDel').addEventListener('click', () => {
+        eliminaPaziente();
+    });
 });
 
 
@@ -328,4 +334,23 @@ function caricaSchedaUser(){
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
+}
+
+
+function eliminaPaziente() {
+    let _id = document.getElementById('idPaziente').value;
+    users[idUser]["pazienti"] = users[idUser]["pazienti"].filter((item) => item.id !== parseInt(_id));
+    users[idUser]["pazienti"].forEach((item, index) => {
+        item.id = index;
+    });
+    //rimuovi tutti gli elementi con class pazienti 
+    let pazienti = document.getElementsByClassName('paziente');
+    while(pazienti[0]) {
+        pazienti[0].parentNode.removeChild(pazienti[0]);
+    }
+    for (let paziente of users[idUser]["pazienti"]) {
+        caricaUtenti(paziente);
+    }
+    ipcRenderer.send('salvaJson', users);
+    console.log("scritto");
 }

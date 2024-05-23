@@ -49,13 +49,41 @@ $(document).ready(function () {
                 tracciaAudio.show();
                 console.log("Blob audio:", audioBlob);
                 console.log("URL audio:", audioURL);
-                audioChunks = []; // Resetta l'array dei chunk audio
+                audioChunks = [];
+                sendAudioToTranscriptionAPI(audioBlob);
             };
         }
     }
 
 
+    async function sendAudioToTranscriptionAPI(audioBlob) {
+        const apiKey = 'sk-proj-Jj5LVSSsDKN4ThYRAEHET3BlbkFJhuzAoVX1MnzxnpgxszVL';
+        const url = 'https://api.openai.com/v1/audio/transcriptions';
 
+        const formData = new FormData();
+        formData.append('file', audioBlob, 'audio.wav');
+        formData.append('model', 'whisper-1');  // Specifica il modello da utilizzare, ad esempio Whisper
+
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`
+                },
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error(`Errore di rete: ${response.status}`);
+            }
+
+            const data = await response.json();
+            console.log('Trascrizione:', data);
+            $("#inputTrascrivere").val(data.text);
+        } catch (error) {
+            console.error('Errore durante la trascrizione:', error);
+        }
+    }
 
 
     function setupSpeechRecognition() {
@@ -64,8 +92,8 @@ $(document).ready(function () {
         recognition.continuous = true;
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
-        
-    
+
+
         recognition.onresult = function (event) {
             let transcript = event.results[0][0].transcript;
             console.log(transcript);
@@ -73,11 +101,11 @@ $(document).ready(function () {
             $("#startButton").prop("disabled", false);
             $("#stopButton").prop("disabled", true);
         };
-    
+
         recognition.onerror = function (event) {
             console.error('Errore nel riconoscimento vocale:', event.error);
         };
-    
+
         recognition.start();
     }
 

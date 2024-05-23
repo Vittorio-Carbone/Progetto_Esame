@@ -13,7 +13,7 @@
     "files": [
       "src/**/*",
       "node_modules/**/*",
-      "file.json"
+      "utenti.json"
     ],
     "mac": {
       "target": "dmg"
@@ -38,14 +38,11 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.3.1",
     "@electron-forge/plugin-fuses": "^7.3.1",
     "@electron/fuses": "^1.8.0",
-    "electron": "^29.1.6",
+    "electron": "^29.4.0",
     "electron-builder": "^24.13.3"
   },
   "keywords": [],
-  "author": {
-    "name": "Vittorio-Carbone",
-    "email": "113420748+Vittorio-Carbone@users.noreply.github.com"
-  },
+  "author": "Vittorio-Carbone <113420748+Vittorio-Carbone@users.noreply.github.com>",
   "license": "MIT",
   "dependencies": {
     "assemblyai": "^4.4.1",

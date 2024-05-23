@@ -54,6 +54,20 @@ $(document).ready(function () {
         divUtente.slideToggle(600);
         divSchedaUtente.slideToggle(600);
     });
+
+    $("#eliminaPaziente").click(function () {
+        $("#popUpDel").fadeIn(600);
+    });
+
+    $("#annullaOptDel").click(function () {
+        $("#popUpDel").fadeOut(600);
+    });
+
+    $("#confermaOptDel").click(function () {
+        $("#popUpDel").fadeOut(600);
+        divSchedaUtente.slideToggle(600);
+        divUtenti.slideToggle(600);
+    });
     
     
 });

@@ -4,6 +4,9 @@ const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
 const { data } = require('jquery');
 
+// TO CREATE DIST USE electron-builder build --windows
+
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
@@ -23,16 +26,6 @@ const createWindow = () => {
     },
   });
 
-
-  ipcMain.on("salvaJson",(_event,data)=>{
-    let sData=JSON.stringify(data);
-    fs.writeFile(filePath,sData,(err)=>{
-      if(err){
-        console.log(err);
-      }
-    });
-    console.log("JSON Salvato");
-  });
   
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
@@ -51,11 +44,6 @@ const createWindow = () => {
 
 
 
-
-
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow();
 
@@ -80,3 +68,17 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+
+ipcMain.on("salvaJson", (event, data) => {
+  let sData = JSON.stringify(data);
+  let file = path.join(__dirname, 'utenti.json');
+
+  fs.writeFile(file, sData, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("JSON Salvato");
+    }
+  });
+});
