@@ -62,7 +62,8 @@ $(document).ready(function () {
 
         const formData = new FormData();
         formData.append('file', audioBlob, 'audio.wav');
-        formData.append('model', 'whisper-1');  // Specifica il modello da utilizzare, ad esempio Whisper
+        formData.append('model', 'whisper-1');  
+        formData.append('language', 'it');  
 
         try {
             const response = await fetch(url, {
