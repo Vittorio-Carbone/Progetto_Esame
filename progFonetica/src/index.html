@@ -69,7 +69,7 @@
       <input type="date" class="inputPaz" id="inputDataPaz" style="font-weight: bold;">
       <input type="text" class="inputPaz" id="inputDiagnosiPaz" placeholder="Diagnosi">
       <div class="noInfo" id="infoPaz">
-        <b>Attenzione</b>: inserire tutti i campi!
+        <b>Salutario</b>: inserire tutti i campi!
       </div><br><br>
       <button id="btnSalvaPaz" class="btnSalva">Salva</button>
     </div>
@@ -158,122 +158,288 @@
         <div class="mese" id="11">Novembre</div>
         <div class="mese" id="12">Dicembre</div>
       </div>
-      <div id="meseTrasc"></div>
-      <div id="trascrizioniMesi"></div>
-      <div style="display: flex; gap: 4rem;" id="containerForm">
-        <div class="form-container">
-          <div class="component-header">
-            Componenti
+      <div id="containerForm">
+        <div id="meseTrasc"></div>
+        <div id="trascrizioniMesi"></div>
+        <div style="display: flex; gap: 4rem;">
+          <div class="form-container">
+            <div class="component-header">
+              Componenti
+            </div>
+            <form>
+              <div class="form-row">
+                <label>Morfolgia libera argomento</label>
+                <input type="radio" name="morfolgia_libera" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_libera" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_libera" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Argomento</label>
+                <input type="radio" name="argomento" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="argomento" value="attenzione"> <span class="attenzione">Salutario</span>
+                <input type="radio" name="argomento" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia legata argomento</label>
+                <input type="radio" name="morfolgia_legata" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_legata" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_legata" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Predicato</label>
+                <input type="radio" name="predicato" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="predicato" value="attenzione"> <span class="attenzione">Salutario</span>
+                <input type="radio" name="predicato" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia legata predicato</label>
+                <input type="radio" name="morfolgia_legata_predicato" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_legata_predicato" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_legata_predicato" value="critico"> <span
+                  class="critico">Assente</span>
+              </div>
+            </form>
           </div>
-          <form>
-            <div class="form-row">
-              <label>Morfolgia libera argomento</label>
-              <input type="radio" name="morfolgia_libera" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_libera" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_libera" value="critico"> <span class="critico">Critico</span>
+
+
+
+
+
+          <div class="form-container">
+            <div class="component-header">
+              Componenti
             </div>
-            <div class="form-row">
-              <label>Argomento</label>
-              <input type="radio" name="argomento" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="argomento" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="argomento" value="critico"> <span class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Morfolgia legata argomento</label>
-              <input type="radio" name="morfolgia_legata" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_legata" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_legata" value="critico"> <span class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Predicato</label>
-              <input type="radio" name="predicato" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="predicato" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="predicato" value="critico"> <span class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Morfolgia legata predicato</label>
-              <input type="radio" name="morfolgia_legata_predicato" value="corretto"> <span
-                class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_legata_predicato" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_legata_predicato" value="critico"> <span
-                class="critico">Critico</span>
-            </div>
-          </form>
+            <form>
+              <div class="form-row">
+                <label>Morfolgia libera primo argomento</label>
+                <input type="radio" name="morfolgia_libera_2" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_libera_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_libera_2" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Primo argomento</label>
+                <input type="radio" name="argomento_2" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="argomento_2" value="attenzione"> <span class="attenzione">Salutario</span>
+                <input type="radio" name="argomento_2" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia legata primo argomento</label>
+                <input type="radio" name="morfolgia_legata_2" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_legata_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_legata_2" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Predicato</label>
+                <input type="radio" name="predicato_2" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="predicato_2" value="attenzione"> <span class="attenzione">Salutario</span>
+                <input type="radio" name="predicato_2" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia legata predicato</label>
+                <input type="radio" name="morfolgia_legata_predicato_2" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_legata_predicato_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_legata_predicato_2" value="critico"> <span
+                  class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia libera secondo argomento</label>
+                <input type="radio" name="morfolgia_libera_predicato_2" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_libera_predicato_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_libera_predicato_2" value="critico"> <span
+                  class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Secondo argomento</label>
+                <input type="radio" name="secondo_argomento_2" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="secondo_argomento_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="secondo_argomento_2" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row">
+                <label>Morfolgia legata secondo argomento</label>
+                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="attenzione"> <span
+                  class="attenzione">Salutario</span>
+                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="critico"> <span
+                  class="critico">Assente</span>
+              </div>
+            </form>
+          </div>
         </div>
-
-
-
-
-
-        <div class="form-container">
-          <div class="component-header">
-            Componenti
+        <div style="margin-top: 60px;">
+          <div style="width: 80%;margin: 0px auto; text-align: center;">
+            <span class="posizione">Posizione iniziale</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <div class="form-container" style="width: 60%;">
+                <div class="component-header">
+                  Occlusive
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Nasali</label>
+                    <div id="nasali"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Orali sorde</label>
+                    <div id="oraliSorde"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Orali sonore</label>
+                    <div id="oraliSonore"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Fricative
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Sorde</label>
+                    <div id="sorde"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Sonore</label>
+                    <div id="sonore"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Affricate
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Sorde</label>
+                    <div id="sordeS"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Sonore</label>
+                    <div id="sonoreS"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Vibranti e non
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Vibranti</label>
+                    <div id="vibranti"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Non vibranti</label>
+                    <div id="nonVibranti"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 20%;">
+                <div class="component-header">
+                  Semiconsonanti
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <div id="semiConsonanti"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <form>
-            <div class="form-row">
-              <label>Morfolgia libera primo argomento</label>
-              <input type="radio" name="morfolgia_libera_2" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_libera_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_libera_2" value="critico"> <span class="critico">Critico</span>
+          <div style="width: 80%;margin: 0px auto; text-align: center;margin-top: 25px;">
+            <span class="posizione">Posizione mediana</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <div class="form-container" style="width: 60%;">
+                <div class="component-header">
+                  Occlusive
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Nasali</label>
+                    <div id="nasali"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Orali sorde</label>
+                    <div id="oraliSorde"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Orali sonore</label>
+                    <div id="oraliSonore"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Fricative
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Sorde</label>
+                    <div id="sorde"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Sonore</label>
+                    <div id="sonore"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-row">
-              <label>Primo argomento</label>
-              <input type="radio" name="argomento_2" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="argomento_2" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="argomento_2" value="critico"> <span class="critico">Critico</span>
+            <div style="display: flex; gap: 0.5rem;">
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Affricate
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Sorde</label>
+                    <div id="sordeS"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Sonore</label>
+                    <div id="sonoreS"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 40%;">
+                <div class="component-header">
+                  Vibranti e non
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <label>Vibranti</label>
+                    <div id="vibranti"></div>
+                  </div>
+                  <div class="form-row2">
+                    <label>Non vibranti</label>
+                    <div id="nonVibranti"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-container" style="width: 20%;">
+                <div class="component-header">
+                  Semiconsonanti
+                </div>
+                <div style="display: flex;justify-content: space-around;">
+                  <div class="form-row2">
+                    <div id="semiConsonanti"></div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-row">
-              <label>Morfolgia legata primo argomento</label>
-              <input type="radio" name="morfolgia_legata_2" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_legata_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_legata_2" value="critico"> <span class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Predicato</label>
-              <input type="radio" name="predicato_2" value="corretto"> <span class="corretto">Corretto</span>
-              <input type="radio" name="predicato_2" value="attenzione"> <span class="attenzione">Attenzione</span>
-              <input type="radio" name="predicato_2" value="critico"> <span class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Morfolgia legata predicato</label>
-              <input type="radio" name="morfolgia_legata_predicato_2" value="corretto"> <span
-                class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_legata_predicato_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_legata_predicato_2" value="critico"> <span
-                class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Morfolgia libera secondo argomento</label>
-              <input type="radio" name="morfolgia_libera_predicato_2" value="corretto"> <span
-                class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_libera_predicato_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_libera_predicato_2" value="critico"> <span
-                class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Secondo argomento</label>
-              <input type="radio" name="secondo_argomento_2" value="corretto"> <span
-                class="corretto">Corretto</span>
-              <input type="radio" name="secondo_argomento_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="secondo_argomento_2" value="critico"> <span
-                class="critico">Critico</span>
-            </div>
-            <div class="form-row">
-              <label>Morfolgia legata secondo argomento</label>
-              <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="corretto"> <span
-                class="corretto">Corretto</span>
-              <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="attenzione"> <span
-                class="attenzione">Attenzione</span>
-              <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="critico"> <span
-                class="critico">Critico</span>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
 

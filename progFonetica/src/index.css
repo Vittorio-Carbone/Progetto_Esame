@@ -690,11 +690,23 @@ tbody>tr:hover {
   margin-bottom: 10px;
 }
 
+.form-row2 {
+  margin-bottom: 10px;
+  border-left: 2px solid #d8d7d7;
+  padding-left: 10px;
+}
+.form-row2 label{
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
 .form-row label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  font-size: 1.1em; /* Slightly increase font size */
+  font-size: 1.1em;
 }
 
 .form-row input[type="radio"] {
@@ -711,5 +723,11 @@ tbody>tr:hover {
 }
 .critico{
   color: rgb(255, 101, 12);
+  font-weight: bold;
+}
+
+
+.posizione{
+  font-size: 25pt;
   font-weight: bold;
 }

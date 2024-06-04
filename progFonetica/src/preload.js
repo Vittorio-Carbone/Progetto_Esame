@@ -73,10 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
             buttonClicked(this.value, this.name);
         });
     }
+
+
+    document.getElementById('xDivUtente').addEventListener('click', () => {
+        document.getElementById('containerForm').style.display = 'none';
+    });
 });
 
 function mese(nMese) {
-    document.getElementById('containerForm').style.display = 'flex';
+    document.getElementById('containerForm').style.display = 'block';
     document.getElementById('numMese').value = nMese;
     let month;
 
@@ -295,55 +300,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -352,55 +357,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -409,55 +414,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -466,55 +471,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -523,55 +528,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione":0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -580,55 +585,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -637,55 +642,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -694,55 +699,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -751,55 +756,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -808,55 +813,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -865,55 +870,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -922,55 +927,55 @@ function salvaPaziente() {
                     "componenti": [
                         {
                             "nome": 1,
-                            "valutazione": 3
+                            "valutazione": 0
                         },
                         {
                             "nome": 2,
-                            "valutazione": 1
+                            "valutazione": 0
                         },
                         {
                             "nome": 3,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 4,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 6,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 7,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 8,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 9,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 10,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 11,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 12,
-                            "valutazione": 2
+                            "valutazione": 0
                         },
                         {
                             "nome": 13,
-                            "valutazione": 2
+                            "valutazione": 0
                         }
                     ]
                 }
@@ -1321,6 +1326,7 @@ function caricaForm() {
 
 
 function eliminaPaziente() {
+    document.getElementById('containerForm').style.display = 'none';
     let _id = document.getElementById('idPaziente').value;
     users[idUser]["pazienti"] = users[idUser]["pazienti"].filter((item) => item.id !== parseInt(_id));
     users[idUser]["pazienti"].forEach((item, index) => {
