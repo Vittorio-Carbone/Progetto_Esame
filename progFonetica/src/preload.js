@@ -64,12 +64,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('confermaOptDel').addEventListener('click', () => {
         eliminaPaziente();
     });
+    let radioButtons = document.querySelectorAll('input[type=radio]');
+
+    for (let i = 0; i < radioButtons.length; i++) {
+        radioButtons[i].addEventListener('click', function () {
+            // console.log('Radio button clicked: ' + this.value+ ' '+this.name);
+            buttonClicked(this.value, this.name);
+        });
+    }
 });
 
 function mese(nMese) {
     let month;
 
-    switch(nMese) {
+    switch (nMese) {
         case '1':
             month = 'Gennaio';
             break;
@@ -113,7 +121,7 @@ function mese(nMese) {
     document.getElementById('trascrizioniMesi').innerHTML = '';
     let _id = document.getElementById('idPaziente').value;
     let data
-    let i=0
+    let i = 0
     for (let reg of users[idUser].pazienti[_id].reg) {
         data = reg["data"].split("/")
         if (parseInt(nMese) == parseInt(data[1])) {
@@ -138,7 +146,7 @@ function mese(nMese) {
         }
     }
 
-    if(i==0){
+    if (i == 0) {
         document.getElementById('trascrizioniMesi').innerHTML = 'NON CI SONO TRASCRIZIONI PER QUESTO MESE';
     }
 }
@@ -275,6 +283,60 @@ function salvaPaziente() {
             "cognome": inputCognomePaz,
             "dataNascita": inputDataPaz.split('-').reverse().join('/'),
             "diagnosi": inputDiagnosiPaz,
+            "componenti": [
+                {
+                    "nome": 1,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 2,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 3,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 4,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 5,
+                    "valutazione":0
+                },
+                {
+                    "nome": 6,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 7,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 8,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 9,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 10,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 11,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 12,
+                    "valutazione": 0
+                },
+                {
+                    "nome": 13,
+                    "valutazione": 0
+                }
+            ],
             "reg": [],
         };
 
@@ -416,6 +478,201 @@ function caricaSchedaUser() {
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
+    for (let comp of paziente['componenti']) {
+        if (comp.nome == 1) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 2) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="argomento"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="argomento"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="argomento"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 3) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 4) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="predicato"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="predicato"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="predicato"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 5) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 6) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 7) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="argomento_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="argomento_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="argomento_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 8) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 9) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="predicato_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="predicato_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="predicato_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 10) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 11) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_predicato_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_predicato_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_libera_predicato_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 12) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="secondo_argomento_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="secondo_argomento_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="secondo_argomento_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+
+        if (comp.nome == 13) {
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_secondo_predicato_2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_secondo_predicato_2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="morfolgia_legata_secondo_predicato_2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+    }
 }
 
 
@@ -435,4 +692,66 @@ function eliminaPaziente() {
     }
     ipcRenderer.send('salvaJson', users);
     console.log("scritto");
+}
+
+
+function buttonClicked(value, name) {
+    let nome="";
+    let valutazione = 0;
+    if (value === 'corretto') {
+        valutazione = 1;
+    }
+    if (value === 'attenzione') {
+        valutazione = 2;
+    }
+    if (value === 'critico') {
+        valutazione = 3;
+    }
+
+    if(name === 'morfolgia_libera'){
+        nome = 1;
+    }
+    if(name === 'argomento'){
+        nome = 2;
+    }
+    if(name === 'morfolgia_legata'){
+        nome = 3;
+    }
+    if(name === 'predicato'){
+        nome = 4;
+    }
+    if(name === 'morfolgia_legata_predicato'){
+        nome = 5;
+    }
+    if(name === 'morfolgia_libera_2'){
+        nome = 6;
+    }
+    if(name === 'argomento_2'){
+        nome = 7;
+    }
+    if(name === 'morfolgia_legata_2'){
+        nome = 8;
+    }
+    if(name === 'predicato_2'){
+        nome = 9;
+    }
+    if(name === 'morfolgia_legata_predicato_2'){
+        nome = 10;
+    }
+    if(name === 'morfolgia_libera_predicato_2'){
+        nome = 11;
+    }
+    if(name === 'secondo_argomento_2'){
+        nome = 12;
+    }
+    if(name === 'morfolgia_legata_secondo_predicato_2'){
+        nome = 13;
+    }
+    let _id = document.getElementById('idPaziente').value;
+    users[idUser]["pazienti"][_id]["componenti"].map((item) => {
+        if (item.nome === nome) {
+            item.valutazione = valutazione;
+        }
+    });
+    ipcRenderer.send('salvaJson', users);
 }
