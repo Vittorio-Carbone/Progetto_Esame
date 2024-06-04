@@ -8,6 +8,7 @@ let vettoreStampa2 = [];
 let vettoreStampaData = [];
 let idUser;
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('containerForm').style.display = 'none';
     users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     users = users;
     // for (let paziente of users["pazienti"]) {
@@ -75,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function mese(nMese) {
+    document.getElementById('containerForm').style.display = 'flex';
+    document.getElementById('numMese').value = nMese;
     let month;
 
     switch (nMese) {
@@ -149,6 +152,9 @@ function mese(nMese) {
     if (i == 0) {
         document.getElementById('trascrizioniMesi').innerHTML = 'NON CI SONO TRASCRIZIONI PER QUESTO MESE';
     }
+
+
+    caricaForm();
 }
 
 function salvaTrascrizione() {
@@ -283,58 +289,690 @@ function salvaPaziente() {
             "cognome": inputCognomePaz,
             "dataNascita": inputDataPaz.split('-').reverse().join('/'),
             "diagnosi": inputDiagnosiPaz,
-            "componenti": [
+            "mesi": [
                 {
-                    "nome": 1,
-                    "valutazione": 0
+                    "mese": 1,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 2,
-                    "valutazione": 0
+                    "mese": 2,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 3,
-                    "valutazione": 0
+                    "mese": 3,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 4,
-                    "valutazione": 0
+                    "mese": 4,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 5,
-                    "valutazione":0
+                    "mese": 5,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 6,
-                    "valutazione": 0
+                    "mese": 6,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 7,
-                    "valutazione": 0
+                    "mese": 7,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 8,
-                    "valutazione": 0
+                    "mese": 8,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 9,
-                    "valutazione": 0
+                    "mese": 9,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 10,
-                    "valutazione": 0
+                    "mese": 10,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 11,
-                    "valutazione": 0
+                    "mese": 11,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 },
                 {
-                    "nome": 12,
-                    "valutazione": 0
-                },
-                {
-                    "nome": 13,
-                    "valutazione": 0
+                    "mese": 12,
+                    "componenti": [
+                        {
+                            "nome": 1,
+                            "valutazione": 3
+                        },
+                        {
+                            "nome": 2,
+                            "valutazione": 1
+                        },
+                        {
+                            "nome": 3,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 4,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 5,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 6,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 7,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 8,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 9,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 10,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 11,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 12,
+                            "valutazione": 2
+                        },
+                        {
+                            "nome": 13,
+                            "valutazione": 2
+                        }
+                    ]
                 }
             ],
             "reg": [],
@@ -471,14 +1109,20 @@ function registrati() {
 
 
 function caricaSchedaUser() {
-
     let _id = document.getElementById('idPaziente').value;
     console.log(users[idUser]['pazienti'][_id]);
     let paziente = users[idUser]['pazienti'][_id];
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
-    for (let comp of paziente['componenti']) {
+
+}
+
+function caricaForm() {
+    let _id = document.getElementById('idPaziente').value;
+    let paziente = users[idUser]['pazienti'][_id];
+    let nMese = document.getElementById('numMese').value-1;
+    for (let comp of paziente['mesi'][nMese]["componenti"]) {
         if (comp.nome == 1) {
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_libera"][value="corretto"]');
@@ -696,7 +1340,9 @@ function eliminaPaziente() {
 
 
 function buttonClicked(value, name) {
-    let nome="";
+    let nMese = document.getElementById('numMese').value-1 ;
+    console.log(nMese)
+    let nome = "";
     let valutazione = 0;
     if (value === 'corretto') {
         valutazione = 1;
@@ -708,47 +1354,47 @@ function buttonClicked(value, name) {
         valutazione = 3;
     }
 
-    if(name === 'morfolgia_libera'){
+    if (name === 'morfolgia_libera') {
         nome = 1;
     }
-    if(name === 'argomento'){
+    if (name === 'argomento') {
         nome = 2;
     }
-    if(name === 'morfolgia_legata'){
+    if (name === 'morfolgia_legata') {
         nome = 3;
     }
-    if(name === 'predicato'){
+    if (name === 'predicato') {
         nome = 4;
     }
-    if(name === 'morfolgia_legata_predicato'){
+    if (name === 'morfolgia_legata_predicato') {
         nome = 5;
     }
-    if(name === 'morfolgia_libera_2'){
+    if (name === 'morfolgia_libera_2') {
         nome = 6;
     }
-    if(name === 'argomento_2'){
+    if (name === 'argomento_2') {
         nome = 7;
     }
-    if(name === 'morfolgia_legata_2'){
+    if (name === 'morfolgia_legata_2') {
         nome = 8;
     }
-    if(name === 'predicato_2'){
+    if (name === 'predicato_2') {
         nome = 9;
     }
-    if(name === 'morfolgia_legata_predicato_2'){
+    if (name === 'morfolgia_legata_predicato_2') {
         nome = 10;
     }
-    if(name === 'morfolgia_libera_predicato_2'){
+    if (name === 'morfolgia_libera_predicato_2') {
         nome = 11;
     }
-    if(name === 'secondo_argomento_2'){
+    if (name === 'secondo_argomento_2') {
         nome = 12;
     }
-    if(name === 'morfolgia_legata_secondo_predicato_2'){
+    if (name === 'morfolgia_legata_secondo_predicato_2') {
         nome = 13;
     }
     let _id = document.getElementById('idPaziente').value;
-    users[idUser]["pazienti"][_id]["componenti"].map((item) => {
+    users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
         if (item.nome === nome) {
             item.valutazione = valutazione;
         }
