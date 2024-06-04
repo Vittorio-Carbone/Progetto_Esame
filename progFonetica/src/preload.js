@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // for (let paziente of users["pazienti"]) {
     //     caricaUtenti(paziente);
     // }
+    let elements = document.getElementsByClassName('mese');
+
+    for (let i = 0; i < elements.length; i++) {
+        elements[i].addEventListener('click', function () {
+            mese(this.id)
+        });
+    }
 
     document.getElementById('btnSalvaTrascrizione').addEventListener('click', function () {
         salvaTrascrizione();
@@ -59,7 +66,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+function mese(nMese) {
+    let month;
 
+    switch(nMese) {
+        case '1':
+            month = 'Gennaio';
+            break;
+        case '2':
+            month = 'Febbraio';
+            break;
+        case '3':
+            month = 'Marzo';
+            break;
+        case '4':
+            month = 'Aprile';
+            break;
+        case '5':
+            month = 'Maggio';
+            break;
+        case '6':
+            month = 'Giugno';
+            break;
+        case '7':
+            month = 'Luglio';
+            break;
+        case '8':
+            month = 'Agosto';
+            break;
+        case '9':
+            month = 'Settembre';
+            break;
+        case '10':
+            month = 'Ottobre';
+            break;
+        case '11':
+            month = 'Novembre';
+            break;
+        case '12':
+            month = 'Dicembre';
+            break;
+        default:
+            month = '';
+    }
+    document.getElementById('meseTrasc').innerHTML = month;
+    document.getElementById('trascrizioniMesi').innerHTML = '';
+    let _id = document.getElementById('idPaziente').value;
+    let data
+    let i=0
+    for (let reg of users[idUser].pazienti[_id].reg) {
+        data = reg["data"].split("/")
+        if (parseInt(nMese) == parseInt(data[1])) {
+            i++
+            let frasiMese = document.createElement('div');
+            frasiMese.className = 'frasiMese';
+
+            let frase1 = document.createElement('div');
+            frase1.className = 'frase1';
+            frase1.textContent = reg['testo'];
+
+            let frase2 = document.createElement('div');
+            frase2.className = 'frase2';
+            frase2.textContent = reg['trascritto'];
+
+            frasiMese.appendChild(frase1);
+            frasiMese.appendChild(frase2);
+
+            let trascrizioniMesi = document.getElementById('trascrizioniMesi');
+            trascrizioniMesi.appendChild(frasiMese);
+
+        }
+    }
+
+    if(i==0){
+        document.getElementById('trascrizioniMesi').innerHTML = 'NON CI SONO TRASCRIZIONI PER QUESTO MESE';
+    }
+}
 
 function salvaTrascrizione() {
     document.getElementById('tableTrascrizioni').style.display = 'table';
@@ -326,11 +408,11 @@ function registrati() {
 
 
 
-function caricaSchedaUser(){
-    
-    let _id=document.getElementById('idPaziente').value;
+function caricaSchedaUser() {
+
+    let _id = document.getElementById('idPaziente').value;
     console.log(users[idUser]['pazienti'][_id]);
-    let paziente=users[idUser]['pazienti'][_id];
+    let paziente = users[idUser]['pazienti'][_id];
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
@@ -345,7 +427,7 @@ function eliminaPaziente() {
     });
     //rimuovi tutti gli elementi con class pazienti 
     let pazienti = document.getElementsByClassName('paziente');
-    while(pazienti[0]) {
+    while (pazienti[0]) {
         pazienti[0].parentNode.removeChild(pazienti[0]);
     }
     for (let paziente of users[idUser]["pazienti"]) {

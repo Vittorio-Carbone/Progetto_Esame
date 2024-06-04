@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     let btnRegistra = $("#btnRegistra");
     let tracciaAudio = $("#tracciaAudio").hide();
@@ -10,6 +9,9 @@ $(document).ready(function () {
         if ($("#btnRegistra").text() === "Registra") {
             $("#btnRegistra").text("Ferma registrazione");
             startRecording();
+            $("#outputTrascritto").val(" ");
+            $("#inputTrascrivere").val(" ");
+            tracciaAudio.hide();
         }
         else {
             $("#btnRegistra").text("Registra");
@@ -57,33 +59,42 @@ $(document).ready(function () {
 
 
     async function sendAudioToTranscriptionAPI(audioBlob) {
-        const apiKey = 'sk-proj-Jj5LVSSsDKN4ThYRAEHET3BlbkFJhuzAoVX1MnzxnpgxszVL';
-        const url = 'https://api.openai.com/v1/audio/transcriptions';
+        let key;
+        fetch('config.json')
+            .then(response => response.json())
+            .then(async (config) => {
+                key = config.apiKey;
+                const url = 'https://api.openai.com/v1/audio/transcriptions';
 
-        const formData = new FormData();
-        formData.append('file', audioBlob, 'audio.wav');
-        formData.append('model', 'whisper-1');  
-        formData.append('language', 'it');  
+                const formData = new FormData();
+                formData.append('file', audioBlob, 'audio.wav');
+                formData.append('model', 'whisper-1');
+                formData.append('language', 'it');
 
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`
-                },
-                body: formData
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${key}`
+                        },
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Errore di rete: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    console.log('Trascrizione:', data);
+                    $("#inputTrascrivere").val(data.text);
+                } catch (error) {
+                    console.error('Errore durante la trascrizione:', error);
+                }
+            })
+            .catch(error => {
+                console.error('Errore nel caricare la configurazione:', error);
             });
 
-            if (!response.ok) {
-                throw new Error(`Errore di rete: ${response.status}`);
-            }
-
-            const data = await response.json();
-            console.log('Trascrizione:', data);
-            $("#inputTrascrivere").val(data.text);
-        } catch (error) {
-            console.error('Errore durante la trascrizione:', error);
-        }
     }
 
 

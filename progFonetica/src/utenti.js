@@ -24,7 +24,6 @@ $(document).ready(function () {
         }, 600);
     });
 
-    
     $("#closePaz").click(function () {
         divAddPaz.fadeOut(600);
         setTimeout(function () {
@@ -38,6 +37,7 @@ $(document).ready(function () {
 
 
     $(document).on("click", ".paziente", function () {
+        $("#tracciaAudio").hide()
         divUtenti.slideUp(1000);
         setTimeout(function () {
             divUtente.slideDown(600);
