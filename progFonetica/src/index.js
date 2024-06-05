@@ -4,6 +4,8 @@ const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
 const { data } = require('jquery');
 
+
+
 // TO CREATE DIST USE electron-builder build --windows
 
 
@@ -36,6 +38,7 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
+  
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
@@ -82,3 +85,5 @@ ipcMain.on("salvaJson", (event, data) => {
     }
   });
 });
+
+

@@ -520,6 +520,7 @@ tbody>tr:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.6s ease;
   border: 2px solid red;
+  margin-bottom: 30px;
 }
 
 #eliminaPaziente:hover {
@@ -541,6 +542,11 @@ tbody>tr:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   transition: all 0.6s ease;
   border: 2px solid #30bbca;
+}
+#btnEsciScheda:hover {
+  scale: 1.02;
+  background-color: white;
+  color: #30bbca;
 }
 
 .spanUtente {
@@ -654,11 +660,13 @@ tbody>tr:hover {
   width: 50% !important;
   text-align: center;
   padding: 20px;
+  border-bottom: 1px solid #ccc;
 }
 .frase2{
   width: 50% !important;
   text-align: center;
   padding: 20px;
+  border-bottom: 1px solid #b1b1b1;
 }
 
 #meseTrasc{
@@ -731,4 +739,8 @@ tbody>tr:hover {
 .posizione{
   font-size: 25pt;
   font-weight: bold;
+}
+
+#myChart{
+  margin-top: 30px;
 }

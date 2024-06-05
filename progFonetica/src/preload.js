@@ -1,7 +1,10 @@
-const { ipcRenderer } = require('electron');
+const { contextBridge, ipcRenderer } = require('electron');
 const path = require('path');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
+const Chart = require('chart.js');
+
+
 let users = [];
 let vettoreStampa1 = [];
 let vettoreStampa2 = [];
@@ -1416,7 +1419,6 @@ function caricaPosizioni(numMese) {
     let write = ["/m/", "/n/", "/ɲ/ o /ŋ/", "/p/", "/t/", "/k/", "/b/", "/d/", "/g/", "/s/", "/f/", "/ʃ/", "/z/", "/v/", "/ʒ/", "/tʃ/", "/ts/", "/dʒ/", "/dz/", "/r/ o /ʀ/", "/l/", "/ʎ/", "/j/", "/w/"]
     let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    // console.log(letters.length+ " "+ posizioniMedie.length+ " "+ posizioniIniziali.length+ " "+ write.length)
     let _id = document.getElementById('idPaziente').value;
     let tras;
     // NON CONTA QUANTE C'E' NE SONO
@@ -1445,84 +1447,94 @@ function caricaPosizioni(numMese) {
     svuotaCampiFon();
     for (let [i, lettera] of posizioniIniziali.entries()) {
         if (lettera > 0) {
-            letteraAdd=write[i];
+            letteraAdd = write[i];
             if (i <= 2) {
                 containerWrite = document.getElementById('nasali');
             }
-            if(i >= 3 && i <= 5) {
+            if (i >= 3 && i <= 5) {
                 containerWrite = document.getElementById('oraliSorde');
             }
-            if(i >= 6 && i <= 8) {
+            if (i >= 6 && i <= 8) {
                 containerWrite = document.getElementById('oraliSonore');
             }
-            if(i >= 9 && i <= 11) {
+            if (i >= 9 && i <= 11) {
                 containerWrite = document.getElementById('sorde');
             }
-            if(i >= 12 && i <= 14) {
+            if (i >= 12 && i <= 14) {
                 containerWrite = document.getElementById('sonore');
             }
-            if(i >= 15 && i <= 16) {
+            if (i >= 15 && i <= 16) {
                 containerWrite = document.getElementById('sordeS');
             }
-            if(i >= 17 && i <= 18) {
+            if (i >= 17 && i <= 18) {
                 containerWrite = document.getElementById('sonoreS');
             }
-            if(i == 19) {
+            if (i == 19) {
                 containerWrite = document.getElementById('vibranti');
             }
-            if(i >= 20 && i <= 21) {
+            if (i >= 20 && i <= 21) {
                 containerWrite = document.getElementById('nonVibranti');
             }
-            if(i >= 22 && i <= 23) {
+            if (i >= 22 && i <= 23) {
                 containerWrite = document.getElementById('semiConsonanti');
             }
             let div = document.createElement('div');
-            div.innerHTML=letteraAdd;
+            div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
     }
     for (let [i, lettera] of posizioniMedie.entries()) {
         if (lettera > 0) {
-            letteraAdd=write[i];
+            letteraAdd = write[i];
             if (i <= 2) {
                 containerWrite = document.getElementById('nasali2');
             }
-            if(i >= 3 && i <= 5) {
+            if (i >= 3 && i <= 5) {
                 containerWrite = document.getElementById('oraliSorde2');
             }
-            if(i >= 6 && i <= 8) {
+            if (i >= 6 && i <= 8) {
                 containerWrite = document.getElementById('oraliSonore2');
             }
-            if(i >= 9 && i <= 11) {
+            if (i >= 9 && i <= 11) {
                 containerWrite = document.getElementById('sorde2');
             }
-            if(i >= 12 && i <= 14) {
+            if (i >= 12 && i <= 14) {
                 containerWrite = document.getElementById('sonore2');
             }
-            if(i >= 15 && i <= 16) {
+            if (i >= 15 && i <= 16) {
                 containerWrite = document.getElementById('sordeS2');
             }
-            if(i >= 17 && i <= 18) {
+            if (i >= 17 && i <= 18) {
                 containerWrite = document.getElementById('sonoreS2');
             }
-            if(i == 19) {
+            if (i == 19) {
                 containerWrite = document.getElementById('vibranti2');
             }
-            if(i >= 20 && i <= 21) {
+            if (i >= 20 && i <= 21) {
                 containerWrite = document.getElementById('nonVibranti2');
             }
-            if(i >= 22 && i <= 23) {
+            if (i >= 22 && i <= 23) {
                 containerWrite = document.getElementById('semiConsonanti2');
             }
             let div = document.createElement('div');
-            div.innerHTML=letteraAdd;
+            div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
     }
+
+
+
+    // CREAZIONE CHART
+    let jsonChar={
+        "testo":letters,
+        "fonMed":posizioniMedie,
+        "fonIniz":posizioniIniziali
+    }
+    document.getElementById('spanJson').textContent = JSON.stringify(jsonChar, null, 2);
 };
 
 
-function svuotaCampiFon(){
+function svuotaCampiFon() {
     document.getElementById('nasali').innerHTML = "";
     document.getElementById('oraliSorde').innerHTML = "";
     document.getElementById('oraliSonore').innerHTML = "";

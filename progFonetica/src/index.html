@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <title>Trascrizione Fonetica</title>
   <link rel="stylesheet" href="index.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="trascrizione.js"></script>
   <script src="registrazione.js"></script>
@@ -15,6 +16,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
     rel="stylesheet">
+
 
 </head>
 
@@ -278,7 +280,7 @@
           </div>
         </div>
         <div style="margin-top: 60px;">
-          <div style="width: 80%;margin: 0px auto; text-align: center;">
+          <div style="width: 90%;margin: 0px auto; text-align: center;">
             <span class="posizione">Posizione iniziale</span>
             <div style="display: flex; gap: 0.5rem;">
               <div class="form-container" style="width: 60%;">
@@ -360,7 +362,7 @@
               </div>
             </div>
           </div>
-          <div style="width: 80%;margin: 0px auto; text-align: center;margin-top: 25px;">
+          <div style="width: 90%;margin: 0px auto; text-align: center;margin-top: 25px;">
             <span class="posizione">Posizione mediana</span>
             <div style="display: flex; gap: 0.5rem;">
               <div class="form-container" style="width: 60%;">
@@ -443,6 +445,10 @@
             </div>
           </div>
         </div>
+        <div style="font-size: 25pt;margin-top: 50px; margin-left: 40px;">Fonemi</div>
+        <canvas id="myChart"></canvas>
+        <span id="spanJson" style="display: none;"></span>
+
       </div>
 
 
@@ -454,6 +460,9 @@
       </div>
     </div>
   </div>
+
+
+
 </body>
 
 </html>
