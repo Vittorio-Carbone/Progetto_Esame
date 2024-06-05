@@ -160,6 +160,7 @@ function mese(nMese) {
 
 
     caricaForm();
+    caricaPosizioni(nMese);
 }
 
 function salvaTrascrizione() {
@@ -540,7 +541,7 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 4,
-                            "valutazione":0
+                            "valutazione": 0
                         },
                         {
                             "nome": 5,
@@ -1126,7 +1127,7 @@ function caricaSchedaUser() {
 function caricaForm() {
     let _id = document.getElementById('idPaziente').value;
     let paziente = users[idUser]['pazienti'][_id];
-    let nMese = document.getElementById('numMese').value-1;
+    let nMese = document.getElementById('numMese').value - 1;
     for (let comp of paziente['mesi'][nMese]["componenti"]) {
         if (comp.nome == 1) {
             if (comp.valutazione == 1) {
@@ -1346,7 +1347,7 @@ function eliminaPaziente() {
 
 
 function buttonClicked(value, name) {
-    let nMese = document.getElementById('numMese').value-1 ;
+    let nMese = document.getElementById('numMese').value - 1;
     console.log(nMese)
     let nome = "";
     let valutazione = 0;
@@ -1406,4 +1407,107 @@ function buttonClicked(value, name) {
         }
     });
     ipcRenderer.send('salvaJson', users);
+}
+
+
+
+function caricaPosizioni(numMese) {
+    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "ʧ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
+    let write = ["/m/", "/n/", "/ɲ/ o /ŋ/", "/p/", "/t/", "/k/", "/b/", "/d/", "/g/", "/s/", "/f/", "/ʃ/", "/z/", "/v/", "/ʒ/", "/tʃ/", "/ts/", "/dʒ/", "/dz/", "/r/ o /ʀ/", "/l/", "/ʎ/", "/j/", "/w/"]
+    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    // console.log(letters.length+ " "+ posizioniMedie.length+ " "+ posizioniIniziali.length+ " "+ write.length)
+    let _id = document.getElementById('idPaziente').value;
+    let tras;
+    // NON CONTA QUANTE C'E' NE SONO
+    for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {
+        let mese = trascritto.data.split('/')[1];
+        if (mese == numMese) {
+            tras = trascritto.trascritto;
+            let parole = tras.split(" ");
+            for (let parola of parole) {
+                for (let [i, lettera] of letters.entries()) {
+                    if (parola.includes(lettera) && !parola.startsWith(lettera)) {
+                        posizioniMedie[i]++;
+                    }
+                    if (parola.startsWith(lettera)) {
+                        posizioniIniziali[i]++;
+                    }
+                }
+            }
+        }
+    }
+    // console.log(letters);
+    // console.log(posizioniMedie);
+    // console.log(posizioniIniziali);
+    let letteraAdd
+    let containerWrite
+    svuotaCampiFon();
+    for (let [i, lettera] of posizioniMedie.entries()) {
+        if (lettera > 0) {
+            letteraAdd=write[i];
+            if (i <= 2) {
+                containerWrite = document.getElementById('nasali');
+            }
+            if(i >= 3 && i <= 5) {
+                containerWrite = document.getElementById('oraliSorde');
+            }
+            if(i >= 6 && i <= 8) {
+                containerWrite = document.getElementById('oraliSonore');
+            }
+            if(i >= 9 && i <= 11) {
+                containerWrite = document.getElementById('sorde');
+            }
+            if(i >= 12 && i <= 14) {
+                containerWrite = document.getElementById('sonore');
+            }
+            if(i >= 15 && i <= 16) {
+                containerWrite = document.getElementById('sordeS');
+            }
+            if(i >= 17 && i <= 18) {
+                containerWrite = document.getElementById('sonoreS');
+            }
+            if(i == 19) {
+                containerWrite = document.getElementById('vibranti');
+            }
+            if(i >= 20 && i <= 21) {
+                containerWrite = document.getElementById('nonVibranti');
+            }
+            if(i >= 22 && i <= 23) {
+                containerWrite = document.getElementById('semiConsonanti');
+            }
+            let div = document.createElement('div');
+            div.innerHTML=letteraAdd;
+            containerWrite.append(div);
+        }
+    }
+    for (let [i, lettera] of posizioniIniziali.entries()) {
+        if (lettera > 0) {
+
+        }
+    }
+};
+
+
+function svuotaCampiFon(){
+    document.getElementById('nasali').innerHTML = "";
+    document.getElementById('oraliSorde').innerHTML = "";
+    document.getElementById('oraliSonore').innerHTML = "";
+    document.getElementById('sorde').innerHTML = "";
+    document.getElementById('sonore').innerHTML = "";
+    document.getElementById('sordeS').innerHTML = "";
+    document.getElementById('sonoreS').innerHTML = "";
+    document.getElementById('vibranti').innerHTML = "";
+    document.getElementById('nonVibranti').innerHTML = "";
+    document.getElementById('semiConsonanti').innerHTML = "";
+    document.getElementById('nasali2').innerHTML = "";
+    document.getElementById('oraliSorde2').innerHTML = "";
+    document.getElementById('oraliSonore2').innerHTML = "";
+    document.getElementById('sorde2').innerHTML = "";
+    document.getElementById('sonore2').innerHTML = "";
+    document.getElementById('sordeS2').innerHTML = "";
+    document.getElementById('sonoreS2').innerHTML = "";
+    document.getElementById('vibranti2').innerHTML = "";
+    document.getElementById('nonVibranti2').innerHTML = "";
+    document.getElementById('semiConsonanti2').innerHTML = "";
 }
