@@ -1412,7 +1412,7 @@ function buttonClicked(value, name) {
 
 
 function caricaPosizioni(numMese) {
-    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "ʧ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
+    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "tʃ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
     let write = ["/m/", "/n/", "/ɲ/ o /ŋ/", "/p/", "/t/", "/k/", "/b/", "/d/", "/g/", "/s/", "/f/", "/ʃ/", "/z/", "/v/", "/ʒ/", "/tʃ/", "/ts/", "/dʒ/", "/dz/", "/r/ o /ʀ/", "/l/", "/ʎ/", "/j/", "/w/"]
     let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -1443,7 +1443,7 @@ function caricaPosizioni(numMese) {
     let letteraAdd
     let containerWrite
     svuotaCampiFon();
-    for (let [i, lettera] of posizioniMedie.entries()) {
+    for (let [i, lettera] of posizioniIniziali.entries()) {
         if (lettera > 0) {
             letteraAdd=write[i];
             if (i <= 2) {
@@ -1481,9 +1481,42 @@ function caricaPosizioni(numMese) {
             containerWrite.append(div);
         }
     }
-    for (let [i, lettera] of posizioniIniziali.entries()) {
+    for (let [i, lettera] of posizioniMedie.entries()) {
         if (lettera > 0) {
-
+            letteraAdd=write[i];
+            if (i <= 2) {
+                containerWrite = document.getElementById('nasali2');
+            }
+            if(i >= 3 && i <= 5) {
+                containerWrite = document.getElementById('oraliSorde2');
+            }
+            if(i >= 6 && i <= 8) {
+                containerWrite = document.getElementById('oraliSonore2');
+            }
+            if(i >= 9 && i <= 11) {
+                containerWrite = document.getElementById('sorde2');
+            }
+            if(i >= 12 && i <= 14) {
+                containerWrite = document.getElementById('sonore2');
+            }
+            if(i >= 15 && i <= 16) {
+                containerWrite = document.getElementById('sordeS2');
+            }
+            if(i >= 17 && i <= 18) {
+                containerWrite = document.getElementById('sonoreS2');
+            }
+            if(i == 19) {
+                containerWrite = document.getElementById('vibranti2');
+            }
+            if(i >= 20 && i <= 21) {
+                containerWrite = document.getElementById('nonVibranti2');
+            }
+            if(i >= 22 && i <= 23) {
+                containerWrite = document.getElementById('semiConsonanti2');
+            }
+            let div = document.createElement('div');
+            div.innerHTML=letteraAdd;
+            containerWrite.append(div);
         }
     }
 };
