@@ -19,15 +19,19 @@ body {
 }
 
 #home {
-  text-align: center;
   font-size: 20pt;
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center; 
+  flex-direction: row; 
 }
 
 
 
 .inputTxt {
-  width: 15rem !important;
-  height: 5rem;
+  width: 28rem !important;
+  height: 15rem;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -35,12 +39,19 @@ body {
   outline: none;
   transition: border-color 0.3s ease;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
 }
 
 .inputTxt:focus {
   border-color: #007bff;
 }
 
+#btnInvia {
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 /* ==============================================================  UTENTI  =============================================================== */
 #utenti {
@@ -543,6 +554,7 @@ tbody>tr:hover {
   transition: all 0.6s ease;
   border: 2px solid #30bbca;
 }
+
 #btnEsciScheda:hover {
   scale: 1.02;
   background-color: white;
@@ -636,7 +648,8 @@ tbody>tr:hover {
   border-radius: 15px;
   transition: all 0.3s;
 }
-.mese:hover{
+
+.mese:hover {
   background-color: #e7e7e7;
   border: 1px solid #2c919c;
   scale: 1.01;
@@ -645,31 +658,34 @@ tbody>tr:hover {
 }
 
 
-#trascrizioniMesi{
+#trascrizioniMesi {
   width: 100% !important;
   text-align: center;
   margin-top: 25px;
   margin-bottom: 50px;
 }
-.frasiMese{
+
+.frasiMese {
   width: 100% !important;
   display: flex;
 
 }
-.frase1{
+
+.frase1 {
   width: 50% !important;
   text-align: center;
   padding: 20px;
   border-bottom: 1px solid #ccc;
 }
-.frase2{
+
+.frase2 {
   width: 50% !important;
   text-align: center;
   padding: 20px;
   border-bottom: 1px solid #b1b1b1;
 }
 
-#meseTrasc{
+#meseTrasc {
   text-align: center;
   font-size: 25pt;
   font-weight: bold;
@@ -704,7 +720,8 @@ tbody>tr:hover {
   border-left: 2px solid #d8d7d7;
   padding-left: 10px;
 }
-.form-row2 label{
+
+.form-row2 label {
   display: block;
   margin-bottom: 5px;
   font-size: 1.1em;
@@ -722,25 +739,28 @@ tbody>tr:hover {
   margin-right: 1px;
   margin-left: 15px;
 }
-.corretto{
+
+.corretto {
   color: rgb(151, 252, 0);
   font-weight: bold;
 }
-.attenzione{
+
+.attenzione {
   color: rgb(255, 220, 47);
   font-weight: bold;
 }
-.critico{
+
+.critico {
   color: rgb(255, 101, 12);
   font-weight: bold;
 }
 
 
-.posizione{
+.posizione {
   font-size: 25pt;
   font-weight: bold;
 }
 
-#myChart{
+#myChart {
   margin-top: 30px;
 }

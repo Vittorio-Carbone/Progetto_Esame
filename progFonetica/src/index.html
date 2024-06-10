@@ -27,28 +27,28 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" id="txtUsername" name="username" placeholder="Username" value="loris" required>
-          <input type="password" id="txtPassword" name="password" placeholder="Password" value="password" required>
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="loris" required>
+          <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password" value="password" required>
 
         </form>
         <div id="txtErrore"></div>
-        <input type="submit" id="btnAccedi" value="Accedi">
-        <p id="pRegistrati">Non hai un account? <a id="registrati">Registrati</a></p>
+        <input type="submit" class="btnForms" id="btnAccedi" value="Accedi">
+        <p id="pRegistrati" style="text-shadow: none; font-weight: 700;">Non hai un account? <a id="registrati" class="btnAccReg">Registrati</a></p>
         <hr>
       </div>
       <div id="divRegistrazione">
         <hr>
         <p id="pAccedi" style="font-size: 2rem;">Registrazione</p>
         <form action="">
-          <input type="text" id="txtNome" name="nome" placeholder="Nome" required>
-          <input type="text" id="txtCognome" name="cognome" placeholder="Cognome" required>
-          <input type="text" id="txtUsernameRegistrato" name="username" placeholder="Username" required>
-          <input type="password" id="txtPasswordRegistrato" name="password" placeholder="Password" required>
+          <input type="text" class="txtForm" id="txtNome" name="nome" placeholder="Nome" required>
+          <input type="text" class="txtForm" id="txtCognome" name="cognome" placeholder="Cognome" required>
+          <input type="text" class="txtForm" id="txtUsernameRegistrato" name="username" placeholder="Username" required>
+          <input type="password" class="txtForm" id="txtPasswordRegistrato" name="password" placeholder="Password" required>
 
         </form>
         <div class="txtErrore"></div>
-        <input type="submit" id="btnRegistrati" value="Registrati">
-        <p id="giaAccount">Hai già un account? <a id="accedi">Accedi</a></p>
+        <input type="submit" class="btnForms" id="btnRegistrati" value="Registrati">
+        <p id="giaAccount" style="text-shadow: none; font-weight: 700;">Hai già un account? <a id="accedi" class="btnAccReg">Accedi</a></p>
         <hr>
       </div>
     </div>
@@ -91,17 +91,16 @@
     <div id="utente">
       <div class="closeButton" id="closePazTab"><i class="fa-solid fa-user" id="iconUser"></i><i
           class="fa-solid fa-xmark" id="xDivUtente"></i></div>
+          <button id="btnRegistra">Registra</button>
+          <div id="#audio">
+            <audio id="tracciaAudio" src="" controls></audio>
+          </div>
       <div id="home">
-        <button id="btnRegistra">Registra</button>
-        <div id="#audio">
-          <audio id="tracciaAudio" src="" controls></audio>
-        </div>
         <textarea type="text" class="inputTxt" id="inputTrascrivere"></textarea><br><br>
         <button id="btnInvia" class="btnSalva">Trascrivi</button> <br><br>
         <textarea type="text" class="inputTxt" id="outputTrascritto"></textarea>
-        <br><br>
-        <button class="btnSalva" id="btnSalvaTrascrizione">Salva trascrizione</button>
       </div>
+      <button class="btnSalva" id="btnSalvaTrascrizione">Salva trascrizione</button>
       <input type="text" id="idPaziente" style="display: none;">
       <table id="tableTrascrizioni">
         <thead id="theadPaz">
