@@ -81,7 +81,7 @@ body {
 }
 
 #txtUsername{
-    width: 80%;
+    width: 90%;
     height: 5vh;
     border: none;
     font-size: 1.5em;
@@ -187,7 +187,7 @@ body {
 #txtPassword, #txtPasswordRegistrato{
     margin-top: 10%;
     margin-bottom: 9%;
-    width: 80%;
+    width: 70% !important;
     height: 5vh;
     border: none;
     font-size: 1.5em;
@@ -302,10 +302,8 @@ hr{
 .txtErrore{
     color: red;
     font-size: 1.2em;
-    text-shadow: 1px 1px 1px black;
     width: auto;
-    height: 1vh;
-    padding-bottom: 7vh;
+    height: 40px;
 }
 #logged{
     display: none;
@@ -362,4 +360,21 @@ hr{
     &:hover{
         font-size: 1.01em !important;
     }
+}
+
+#eyeAccedi{
+    height: 30.5px;
+    transition: all 0.4s;
+
+    &:hover{
+        scale: 1.0;
+    }
+}
+
+#txtPassword{
+    width: 65% !important;
+}
+
+#txtPasswordRegistrato{
+    width: 65% !important;
 }

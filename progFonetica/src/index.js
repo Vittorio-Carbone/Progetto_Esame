@@ -28,7 +28,7 @@ const createWindow = () => {
     },
   });
 
-  
+
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
     // mainWindow.webContents.closeDevTools();
@@ -38,7 +38,20 @@ const createWindow = () => {
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
-  
+
+
+  const filePath = path.join(__dirname, 'utenti.json');
+
+  // Verifica se il file esiste
+  if (!fs.existsSync(filePath)) {
+    // Crea il file
+    fs.writeFileSync(filePath, '[]', 'utf8', (err) => {
+      if (err) throw err;
+      console.log('File creato con successo!');
+    });
+  } else {
+    console.log('Il file esiste già.');
+  }
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
@@ -52,12 +65,24 @@ app.whenReady().then(() => {
 
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-   app.on('activate', function () {
+  app.on('activate', function () {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
   })
 });
 
 
+ipcMain.on("salvaJson", (event, data) => {
+  let sData = JSON.stringify(data);
+  let file = path.join(__dirname, 'utenti.json');
+
+  fs.writeFile(file, sData, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("JSON Salvato");
+    }
+  });
+});
 
 
 // Quit when all windows are closed, except on macOS. There, it's common
@@ -73,17 +98,5 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and import them here.
 
 
-ipcMain.on("salvaJson", (event, data) => {
-  let sData = JSON.stringify(data);
-  let file = path.join(__dirname, 'utenti.json');
-
-  fs.writeFile(file, sData, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("JSON Salvato");
-    }
-  });
-});
 
 

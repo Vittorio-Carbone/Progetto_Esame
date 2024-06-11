@@ -31,6 +31,33 @@ $(document).ready(function(){
         }, 450);
     })
 
+    $("#spanEyeAccedi").on("click", function(){
+        let eye= $("#eyeAccedi");
+        if(eye.hasClass("fa-eye")){
+            eye.removeClass("fa-eye");
+            eye.addClass("fa-eye-slash");
+            $("#txtPassword").attr("type", "text");
+        }
+        else{
+            eye.removeClass("fa-eye-slash");
+            eye.addClass("fa-eye");
+            $("#txtPassword").attr("type", "password");
+        }
+    })
+    $("#spanEyeReg").on("click", function(){
+        let eye= $("#eyeReg");
+        if(eye.hasClass("fa-eye")){
+            eye.removeClass("fa-eye");
+            eye.addClass("fa-eye-slash");
+            $("#txtPasswordRegistrato").attr("type", "text");
+        }
+        else{
+            eye.removeClass("fa-eye-slash");
+            eye.addClass("fa-eye");
+            $("#txtPasswordRegistrato").attr("type", "password");
+        }
+    })
+
     // btnAccedi.on("click", function(){
     //     usernameLogin = $("#txtUsername").val();
     //     passwordLogin = $("#txtPassword").val();

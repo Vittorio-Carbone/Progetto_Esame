@@ -29,11 +29,12 @@
         <form action="">
           <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="loris"
             required>
-          <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
-            value="password" required>
-
+          <div>
+            <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
+              value="password" required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
+          </div>
         </form>
-        <div id="txtErrore"></div>
+        <div class="txtErrore" id="errAcc">Utente non trovato</div>
         <input type="submit" class="btnForms" id="btnAccedi" value="Accedi">
         <p id="pRegistrati" style="text-shadow: none; font-weight: 700;">Non hai un account? <a id="registrati"
             class="btnAccReg">Registrati</a></p>
@@ -47,10 +48,10 @@
           <input type="text" class="txtForm" id="txtCognome" name="cognome" placeholder="Cognome" required>
           <input type="text" class="txtForm" id="txtUsernameRegistrato" name="username" placeholder="Username" required>
           <input type="password" class="txtForm" id="txtPasswordRegistrato" name="password" placeholder="Password"
-            required>
+            required><span id="spanEyeReg"><i class="fa-solid fa-eye" id="eyeReg"></i></span>
 
         </form>
-        <div class="txtErrore"></div>
+        <div class="txtErrore" id="errReg"></div>
         <input type="submit" class="btnForms" id="btnRegistrati" value="Registrati">
         <p id="giaAccount" style="text-shadow: none; font-weight: 700;">Hai già un account? <a id="accedi"
             class="btnAccReg">Accedi</a></p>

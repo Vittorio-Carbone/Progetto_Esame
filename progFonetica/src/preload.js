@@ -291,7 +291,7 @@ function salvaPaziente() {
         }, 5000);
     } else {
         infoPaz.style.display = 'none';
-
+        
         let paziente = {
             "id": 0,
             "nome": inputNomePaz,
@@ -987,7 +987,7 @@ function salvaPaziente() {
             "reg": [],
         };
 
-
+        console.log(idUser)
         users[idUser]['pazienti'].push(paziente);
         users[idUser]['pazienti'].forEach((item, index) => {
             item.id = index;
@@ -1060,6 +1060,7 @@ function accedi() {
     for (let utente of users) {
         console.log(utente)
         if (utente.username == txtUsername && utente.password == txtPassword) {
+            document.getElementById('errAcc').style.display = 'none';
             idUser = utente.id;
             console.log("Utente trovato");
             console.log(utente);
@@ -1073,6 +1074,7 @@ function accedi() {
         }
         if (!trovato) {
             console.log("Utente non trovato");
+            document.getElementById('errAcc').style.display = 'block';
         }
     }
 }
@@ -1092,6 +1094,8 @@ function registrati() {
     let trovatoUsername = false;
     if (txtNome == "" || txtCognome == "" || txtUsernameRegistrato == "" || txtPasswordRegistrato == "") {
         console.log("Compilare tutti i campi");
+        document.getElementById('errReg').style.display = 'block';
+        document.getElementById('errReg').textContent = 'Compilare tutti i campi';
     } else {
         for (let utente of users) {
             if (utente.username == newUser.username) {
@@ -1104,6 +1108,7 @@ function registrati() {
             users.forEach((item, index) => {
                 item.id = index;
             });
+            idUser = newUser.id;
             // fs.writeFileSync(filePath, JSON.stringify(users));
             ipcRenderer.send('salvaJson', users);
             document.getElementById('logged').style.display = 'block';
@@ -1111,6 +1116,8 @@ function registrati() {
         }
         else {
             console.log("Username già esistente");
+            document.getElementById('errReg').style.display = 'block';
+            document.getElementById('errReg').textContent = 'Username già esistente';
         }
     }
 }
