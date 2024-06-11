@@ -12,11 +12,13 @@ let vettoreStampaData = [];
 let idUser;
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('containerForm').style.display = 'none';
-    users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    // users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+    users = JSON.parse(window.localStorage.getItem('users'));
     users = users;
-    // for (let paziente of users["pazienti"]) {
-    //     caricaUtenti(paziente);
-    // }
+    if (users == null) {
+        users = [];
+    }
+
     let elements = document.getElementsByClassName('mese');
 
     for (let i = 0; i < elements.length; i++) {
@@ -184,7 +186,8 @@ function salvaTrascrizione() {
         item.id = index;
     });
     // fs.writeFileSync(filePath, JSON.stringify(users));
-    ipcRenderer.send('salvaJson', users);
+    // ipcRenderer.send('salvaJson', users);
+    window.localStorage.setItem('users', JSON.stringify(users));
     caricaTabella(users[idUser]['pazienti'][_id]);
 }
 
@@ -261,7 +264,9 @@ function caricaTabella(paziente) {
                 console.log(users)
                 caricaTabella(paziente);
                 // fs.writeFileSync(filePath, JSON.stringify(users));
-                ipcRenderer.send('salvaJson', users);
+                // ipcRenderer.send('salvaJson', users);
+                window.localStorage.setItem('users', JSON.stringify(users));
+
                 hidePopup();
             });
         });
@@ -291,7 +296,7 @@ function salvaPaziente() {
         }, 5000);
     } else {
         infoPaz.style.display = 'none';
-        
+
         let paziente = {
             "id": 0,
             "nome": inputNomePaz,
@@ -993,7 +998,8 @@ function salvaPaziente() {
             item.id = index;
         });
         // fs.writeFileSync(filePath, JSON.stringify(users));
-        ipcRenderer.send('salvaJson', users);
+        // ipcRenderer.send('salvaJson', users);
+        window.localStorage.setItem('users', JSON.stringify(users));
 
         caricaUtenti(paziente);
 
@@ -1057,10 +1063,15 @@ function accedi() {
     let txtUsername = document.getElementById('txtUsername').value;
     let txtPassword = document.getElementById('txtPassword').value;
     let trovato = false;
-    for (let utente of users) {
-        console.log(utente)
-        if (utente.username == txtUsername && utente.password == txtPassword) {
+    console.log(users)
+    if(users.length == 0){
+        document.getElementById('errAcc').style.display = 'block';
+        setTimeout(function () {
             document.getElementById('errAcc').style.display = 'none';
+        }, 5000);
+    }
+    for (let utente of users) {
+        if (utente.username == txtUsername && utente.password == txtPassword) {
             idUser = utente.id;
             console.log("Utente trovato");
             console.log(utente);
@@ -1075,6 +1086,9 @@ function accedi() {
         if (!trovato) {
             console.log("Utente non trovato");
             document.getElementById('errAcc').style.display = 'block';
+            setTimeout(function () {
+                document.getElementById('errAcc').style.display = 'none';
+            }, 5000);
         }
     }
 }
@@ -1083,8 +1097,15 @@ function registrati() {
     let txtCognome = document.getElementById('txtCognome').value;
     let txtUsernameRegistrato = document.getElementById('txtUsernameRegistrato').value;
     let txtPasswordRegistrato = document.getElementById('txtPasswordRegistrato').value;
+    let leng;
+    if (users == null) {
+        leng = 0;
+    }
+    else {
+        leng = users.length;
+    }
     let newUser = {
-        "id": users.length,
+        "id": leng,
         "nome": txtNome,
         "cognome": txtCognome,
         "username": txtUsernameRegistrato,
@@ -1096,6 +1117,9 @@ function registrati() {
         console.log("Compilare tutti i campi");
         document.getElementById('errReg').style.display = 'block';
         document.getElementById('errReg').textContent = 'Compilare tutti i campi';
+        setTimeout(function () {
+            document.getElementById('errReg').style.display = 'none';
+        }, 5000);
     } else {
         for (let utente of users) {
             if (utente.username == newUser.username) {
@@ -1110,7 +1134,8 @@ function registrati() {
             });
             idUser = newUser.id;
             // fs.writeFileSync(filePath, JSON.stringify(users));
-            ipcRenderer.send('salvaJson', users);
+            // ipcRenderer.send('salvaJson', users);
+            window.localStorage.setItem('users', JSON.stringify(users));
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
         }
@@ -1118,6 +1143,9 @@ function registrati() {
             console.log("Username già esistente");
             document.getElementById('errReg').style.display = 'block';
             document.getElementById('errReg').textContent = 'Username già esistente';
+            setTimeout(function () {
+                document.getElementById('errReg').style.display = 'none';
+            }, 5000);
         }
     }
 }
@@ -1351,7 +1379,8 @@ function eliminaPaziente() {
     for (let paziente of users[idUser]["pazienti"]) {
         caricaUtenti(paziente);
     }
-    ipcRenderer.send('salvaJson', users);
+    // ipcRenderer.send('salvaJson', users);
+    window.localStorage.setItem('users', JSON.stringify(users));
     console.log("scritto");
 }
 
@@ -1416,7 +1445,8 @@ function buttonClicked(value, name) {
             item.valutazione = valutazione;
         }
     });
-    ipcRenderer.send('salvaJson', users);
+    // ipcRenderer.send('salvaJson', users);
+    window.localStorage.setItem('users', JSON.stringify(users));
 }
 
 
@@ -1532,10 +1562,10 @@ function caricaPosizioni(numMese) {
 
 
     // CREAZIONE CHART
-    let jsonChar={
-        "testo":letters,
-        "fonMed":posizioniMedie,
-        "fonIniz":posizioniIniziali
+    let jsonChar = {
+        "testo": letters,
+        "fonMed": posizioniMedie,
+        "fonIniz": posizioniIniziali
     }
     document.getElementById('spanJson').textContent = JSON.stringify(jsonChar, null, 2);
 };

@@ -41,7 +41,7 @@ $(document).ready(function () {
         $("#tracciaAudio").hide()
         divUtenti.slideUp(1000);
         setTimeout(function () {
-            divUtente.slideDown(600);
+            divUtente.slideDown(670);
         }, 600);
     });
 

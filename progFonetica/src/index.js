@@ -39,19 +39,6 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
 
-
-  const filePath = path.join(__dirname, 'utenti.json');
-
-  // Verifica se il file esiste
-  if (!fs.existsSync(filePath)) {
-    // Crea il file
-    fs.writeFileSync(filePath, '[]', 'utf8', (err) => {
-      if (err) throw err;
-      console.log('File creato con successo!');
-    });
-  } else {
-    console.log('Il file esiste già.');
-  }
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
 
@@ -75,6 +62,7 @@ ipcMain.on("salvaJson", (event, data) => {
   let sData = JSON.stringify(data);
   let file = path.join(__dirname, 'utenti.json');
 
+
   fs.writeFile(file, sData, (err) => {
     if (err) {
       console.log(err);
@@ -82,6 +70,11 @@ ipcMain.on("salvaJson", (event, data) => {
       console.log("JSON Salvato");
     }
   });
+
+
+  // event.reply('salvaJson-reply', path.join(__dirname, 'utenti.json'));
+
+
 });
 
 
