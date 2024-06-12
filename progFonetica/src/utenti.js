@@ -6,6 +6,8 @@ $(document).ready(function () {
     let divSchedaUtente = $("#schedaUtente").hide();
     let chartJS = false;
     let myChart
+    let chartJS2 = false;
+    let myChart2
     $(".noInfo").hide();
 
     $(".inputPaz").on("keyup", function () {
@@ -52,6 +54,10 @@ $(document).ready(function () {
         divUtente.slideToggle(600);
         divSchedaUtente.slideToggle(600);
     });
+    $("#btnScheda").click(function () {
+        divUtente.slideToggle(600);
+        divSchedaUtente.slideToggle(600);
+    });
 
     $("#btnEsciScheda").click(function () {
         divUtente.slideToggle(600);
@@ -82,9 +88,9 @@ $(document).ready(function () {
             let max = Math.max(maxMed, maxIniz);
 
             if (chartJS) {
-                myChart.data.datasets[0].data = jsonChar.fonMed; 
-                myChart.data.datasets[1].data = jsonChar.fonIniz; 
-                myChart.options.scales.yAxes[0].ticks.max = max+2;
+                myChart.data.datasets[0].data = jsonChar.fonMed;
+                myChart.data.datasets[1].data = jsonChar.fonIniz;
+                myChart.options.scales.yAxes[0].ticks.max = max + 2;
 
                 myChart.update();
             } else {
@@ -100,31 +106,24 @@ $(document).ready(function () {
                     }, {
                         label: "Fonemi in posizione iniziale",
                         data: jsonChar.fonIniz,
-                        backgroundColor: 'rgba(0, 0, 255, 0.3)', 
+                        backgroundColor: 'rgba(0, 0, 255, 0.3)',
                         borderColor: "blue",
                         borderWidth: 1
                     }]
                 };
 
-                function generateRandomColors(numColors) {
-                    const colors = [];
-                    for (let i = 0; i < numColors; i++) {
-                        const color = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-                        colors.push(color);
-                    }
-                    return colors;
-                }
+
 
                 const options = {
                     responsive: true,
                     scales: {
                         xAxes: [{
-                            barThickness: 10 
+                            barThickness: 10
                         }],
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
-                                max: max+2
+                                max: max + 2
                             }
                         }]
                     }
@@ -139,8 +138,82 @@ $(document).ready(function () {
 
         }, 500);
     });
+    $("#mese2").change(function () {
+        setTimeout(() => {
+            let jsonChar = JSON.parse($("#spanJsonMesi").text());
+            let maxMed = Math.max(...jsonChar.fonMed);
+            let maxIniz = Math.max(...jsonChar.fonIniz);
+            let max = Math.max(maxMed, maxIniz);
+
+            if (chartJS2) {
+
+                myChart2.data.datasets[0].data = jsonChar.fonMed;
+                myChart2.data.datasets[1].data = jsonChar.fonIniz;
+                myChart2.options.scales.yAxes[0].ticks.max = max + 2;
+
+                myChart2.update();
+            } else {
+                chartJS2 = true;
+                const data = {
+                    labels: jsonChar.testo,
+                    datasets: [{
+                        label: "Fonemi in posizione mediana",
+                        data: jsonChar.fonMed,
+                        backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                        borderColor: "red",
+                        borderWidth: 1
+                    }, {
+                        label: "Fonemi in posizione iniziale",
+                        data: jsonChar.fonIniz,
+                        backgroundColor: 'rgba(0, 0, 255, 0.3)',
+                        borderColor: "blue",
+                        borderWidth: 1
+                    }]
+                };
+
+
+
+                const options = {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            barThickness: 10
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: max + 2
+                            }
+                        }]
+                    }
+                };
+
+                myChart2 = new Chart(document.getElementById("chart"), {
+                    type: "bar",
+                    data: data,
+                    options: options
+                });
+            }
+
+        }, 500);
+    });
+    $("#mese1").change(function () {
+        if (chartJS2) {
+            chartJS2 = false;
+            myChart2.destroy();
+        }
+        document.getElementById("divFonMes").innerHTML = "";
+    });
 
     $("#btnEsciScheda").click(function () {
         document.getElementById("containerForm").style.display = "none";
+        if (chartJS2) {
+            chartJS2 = false;
+            myChart2.destroy();
+        }
+        document.getElementById("divFonMes").innerHTML = "";
+        document.getElementById("mese1").selectedIndex = -1;
+        document.getElementById('mese2').innerHTML = '';
+        document.getElementById("divMese2").style.display = "none";
     });
 });

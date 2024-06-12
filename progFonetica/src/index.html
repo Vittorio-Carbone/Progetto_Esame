@@ -27,10 +27,11 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" required>
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="loris"
+            required>
           <div>
             <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
-              required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
+              value="password" required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
           </div>
         </form>
         <div class="txtErrore" id="errAcc">Utente non trovato</div>
@@ -106,11 +107,11 @@
         <textarea type="text" class="inputTxt" id="outputTrascritto"></textarea>
       </div>
       <button class="btnSalva" id="btnSalvaTrascrizione" style="margin: 25px 0px;">Salva trascrizione</button>
+      <br><br><button id="btnScheda">Vai alla scheda del paziente</button>
       <input type="text" id="idPaziente" style="display: none;">
       <table id="tableTrascrizioni">
         <thead id="theadPaz">
           <tr>
-            <th></th>
             <th></th>
             <th>Frase originale</th>
             <th>Frase trascritta</th>
@@ -455,6 +456,35 @@
         </div>
         <span id="spanJson" style="display: none;"></span>
 
+        <div id="divCharMesi" class="no-break">
+          <div>
+            <label for="mese1" style="font-size: 17pt;">Primo Mese:</label>
+            <select id="mese1" class="slcBox">
+              <option value="0">Gennaio</option>
+              <option value="1">Febbraio</option>
+              <option value="2">Marzo</option>
+              <option value="3">Aprile</option>
+              <option value="4">Maggio</option>
+              <option value="5">Giugno</option>
+              <option value="6">Luglio</option>
+              <option value="7">Agosto</option>
+              <option value="8">Settembre</option>
+              <option value="9">Ottobre</option>
+              <option value="10">Novembre</option>
+              <option value="11">Dicembre</option>
+            </select>
+            <br><br>
+            <div id="divMese2">
+              <label for="mese2" style="font-size: 17pt;">Secondo Mese:</label>
+              <select id="mese2" class="slcBox">
+
+              </select>
+            </div>
+          </div>
+          <div style="font-size: 25pt;margin-top: 50px; margin-left: 40px; font-weight: 800;" id="divFonMes"></div>
+          <canvas id="chart" class="no-break"></canvas>
+        </div>
+        <span id="spanJsonMesi" style="display: none;"></span>
         <div style="width: 100%;">
           <button id="generate-pdf">Scarica PDF</button>
         </div>

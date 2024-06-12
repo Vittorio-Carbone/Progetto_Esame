@@ -46,6 +46,9 @@ body {
     #titleChar{
         margin-left: -15%;
     }
+    #divCharMesi{
+        margin-left: -15%;
+    }
     #generate-pdf{
         display: none;
     }

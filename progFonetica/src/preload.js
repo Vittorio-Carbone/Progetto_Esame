@@ -11,6 +11,7 @@ let vettoreStampa2 = [];
 let vettoreStampaData = [];
 let idUser;
 let month;
+let mesiScritti=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('containerForm').style.display = 'none';
     // users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -66,6 +67,10 @@ document.addEventListener('DOMContentLoaded', () => {
         caricaSchedaUser();
     });
 
+    document.getElementById("btnScheda").addEventListener('click', () => {
+        caricaSchedaUser();
+    });
+
 
 
     document.getElementById('confermaOptDel').addEventListener('click', () => {
@@ -91,7 +96,62 @@ document.addEventListener('DOMContentLoaded', () => {
         let info = paziente.nome + "_" + paziente.cognome + "_" + month;
         ipcRenderer.send('print-to-pdf', info);
     });
+    document.getElementById('divMese2').style.display = 'none';
+    document.getElementById('mese1').selectedIndex = -1;
+    document.getElementById('mese1').addEventListener('change', () => {
+        document.getElementById('divMese2').style.display = 'block';
+        document.getElementById('mese2').innerHTML = '';
+        let nMese = parseInt(document.getElementById('mese1').value)+1;
+        for (let i = nMese; i < 12; i++) {
+            let option = document.createElement('option');
+            option.value = i;
+            option.textContent = mesiScritti[i];
+            document.getElementById('mese2').appendChild(option);
+        }
+        document.getElementById('mese2').selectedIndex = -1;
+        
+    });
+    document.getElementById('mese2').addEventListener('change', () => {
+        let mese1 = parseInt(document.getElementById('mese1').value);
+        let mese2 = parseInt(document.getElementById('mese2').value);
+        document.getElementById("divFonMes").innerHTML = mesiScritti[mese1]+" - "+mesiScritti[mese2];
+        console.log(mese1, mese2);
+        caricaFormMesi(mese1, mese2);
+    });
 });
+
+function caricaFormMesi(mese1, mese2) {
+    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "tʃ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
+    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let _id = document.getElementById('idPaziente').value;
+    let tras;
+    // NON CONTA QUANTE C'E' NE SONO
+    for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {
+        let mese = trascritto.data.split('/')[1];
+        if (mese >= mese1+1 && mese <= mese2+1) {
+            tras = trascritto.trascritto;
+            let parole = tras.split(" ");
+            for (let parola of parole) {
+                for (let [i, lettera] of letters.entries()) {
+                    if (parola.includes(lettera) && !parola.startsWith(lettera)) {
+                        posizioniMedie[i]++;
+                    }
+                    if (parola.startsWith(lettera)) {
+                        posizioniIniziali[i]++;
+                    }
+                }
+            }
+        }
+    }
+    let jsonChar = {
+        "testo": letters,
+        "fonMed": posizioniMedie,
+        "fonIniz": posizioniIniziali
+    }
+    document.getElementById('spanJsonMesi').textContent = JSON.stringify(jsonChar, null, 2);
+    console.log("cambiatoJSON")
+}
 
 function mese(nMese) {
     document.getElementById('containerForm').style.display = 'block';
@@ -214,30 +274,7 @@ function caricaTabella(paziente) {
         //console.log(registrazione);
         let tr = document.createElement('tr');
 
-        let tdChk = document.createElement('td');
-        tdChk.style.fontWeight = '700';
-        let chk = document.createElement('input');
-        chk.type = 'checkbox';
-        chk.value = registrazione['id'];
-        chk.className = 'chk';
-        chk.addEventListener('click', () => {
-            if (chk.checked) {
-                vettoreStampa1.push(registrazione['testo']);
-                vettoreStampa2.push(registrazione['trascritto']);
-                vettoreStampaData.push(registrazione['data']);
-            } else {
-                // Trova l'indice dell'elemento con lo stesso testo da eliminare
-                const index = vettoreStampa1.findIndex(item => item === registrazione['testo']);
 
-                // Rimuovi l'elemento dagli array solo se esiste un elemento con lo stesso testo
-                if (index !== -1) {
-                    vettoreStampa1.splice(index, 1);
-                    vettoreStampa2.splice(index, 1);
-                    vettoreStampaData.splice(index, 1);
-                }
-            }
-        });
-        tdChk.append(chk);
 
         let tdId = document.createElement('td');
         tdId.className = 'colored';
@@ -282,7 +319,7 @@ function caricaTabella(paziente) {
         iElimina.className = 'fa-solid fa-trash';
         tdElimina.append(iElimina);
 
-        tr.append(tdChk, tdId, tdFraseOriginale, tdFraseTrascritta, tdData, tdElimina);
+        tr.append(tdId, tdFraseOriginale, tdFraseTrascritta, tdData, tdElimina);
         document.getElementById('tobdyPaz').append(tr);
     }
 }
