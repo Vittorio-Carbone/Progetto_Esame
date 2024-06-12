@@ -201,7 +201,7 @@ function caricaTabella(paziente) {
     document.getElementById('tobdyPaz').innerHTML = '';
     document.getElementById('idPaziente').value = paziente['id'];
     let _id = paziente['id'];
-    for (let i = paziente['reg'].length - 1; i >= 0; i--) {
+    for (let i = 0; i <= paziente['reg'].length - 1; i++) {
         let registrazione = paziente['reg'][i];
         //console.log(registrazione);
         let tr = document.createElement('tr');

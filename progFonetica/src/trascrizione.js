@@ -155,6 +155,8 @@ $(document).ready(function () {
                     daTra = daTra.replace("sm", 'zm')
                     daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sl", 'zl'));
                     daTra = daTra.replace("sl", 'zl')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 'z'));
+                    daTra = daTra.replace("s", 'z')
                     daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z'));
                     daTra = daTra.replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z')
                 }
@@ -171,6 +173,8 @@ $(document).ready(function () {
                     daTra = "s" + daTra.substring(1, daTra.length).replace("sm", 'zm')
                     daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sl", 'zl'));
                     daTra = "s" + daTra.substring(1, daTra.length).replace("sl", 'zl')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("s", 'z'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("s", 'z')
                     daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z'));
                     daTra = "s" + daTra.substring(1, daTra.length).replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z')
                 }
