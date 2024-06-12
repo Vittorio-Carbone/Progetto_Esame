@@ -10,6 +10,7 @@ let vettoreStampa1 = [];
 let vettoreStampa2 = [];
 let vettoreStampaData = [];
 let idUser;
+let month;
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('containerForm').style.display = 'none';
     // users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -83,12 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('xDivUtente').addEventListener('click', () => {
         document.getElementById('containerForm').style.display = 'none';
     });
+
+    document.getElementById("generate-pdf").addEventListener('click', () => {
+        let _id = document.getElementById('idPaziente').value;
+        let paziente = users[idUser]['pazienti'][_id];
+        let info = paziente.nome + "_" + paziente.cognome + "_" + month;
+        ipcRenderer.send('print-to-pdf', info);
+    });
 });
 
 function mese(nMese) {
     document.getElementById('containerForm').style.display = 'block';
     document.getElementById('numMese').value = nMese;
-    let month;
+    month;
 
     switch (nMese) {
         case '1':
@@ -1064,7 +1072,7 @@ function accedi() {
     let txtPassword = document.getElementById('txtPassword').value;
     let trovato = false;
     console.log(users)
-    if(users.length == 0){
+    if (users.length == 0) {
         document.getElementById('errAcc').style.display = 'block';
         setTimeout(function () {
             document.getElementById('errAcc').style.display = 'none';
@@ -1168,6 +1176,11 @@ function caricaForm() {
     let nMese = document.getElementById('numMese').value - 1;
     for (let comp of paziente['mesi'][nMese]["componenti"]) {
         if (comp.nome == 1) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_libera"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_libera"][value="corretto"]');
                 radio[0].checked = true;
@@ -1182,6 +1195,11 @@ function caricaForm() {
             }
         }
         if (comp.nome == 2) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="argomento"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="argomento"][value="corretto"]');
                 radio[0].checked = true;
@@ -1197,6 +1215,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 3) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_legata"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_legata"][value="corretto"]');
                 radio[0].checked = true;
@@ -1212,6 +1235,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 4) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="predicato"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="predicato"][value="corretto"]');
                 radio[0].checked = true;
@@ -1227,6 +1255,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 5) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_legata_predicato"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato"][value="corretto"]');
                 radio[0].checked = true;
@@ -1242,6 +1275,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 6) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_libera_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_libera_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1257,6 +1295,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 7) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="argomento_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="argomento_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1272,6 +1315,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 8) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_legata_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_legata_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1287,6 +1335,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 9) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="predicato_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="predicato_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1302,6 +1355,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 10) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_legata_predicato_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_legata_predicato_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1317,6 +1375,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 11) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_libera_predicato_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_libera_predicato_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1332,6 +1395,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 12) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="secondo_argomento_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="secondo_argomento_2"][value="corretto"]');
                 radio[0].checked = true;
@@ -1347,6 +1415,11 @@ function caricaForm() {
         }
 
         if (comp.nome == 13) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="morfolgia_legata_secondo_predicato_2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
             if (comp.valutazione == 1) {
                 let radio = document.querySelectorAll('input[name="morfolgia_legata_secondo_predicato_2"][value="corretto"]');
                 radio[0].checked = true;

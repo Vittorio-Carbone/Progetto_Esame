@@ -18,6 +18,7 @@ body {
   text-shadow: 0.8px 0.8px 0.8px black;
 }
 
+
 #home {
   font-size: 20pt;
   display: flex;
@@ -733,10 +734,16 @@ tbody>tr:hover {
 }
 
 .form-row input[type="radio"] {
-  margin-right: 1px;
-  margin-left: 15px;
+  /* /* margin-right: 1px; */
+  margin-left: 15px; 
 }
-
+@media screen and (max-width: 600px) {
+  .form-row input[type="radio"],
+  .form-row span {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
 .corretto {
   color: rgb(151, 252, 0);
   font-weight: bold;
@@ -760,4 +767,18 @@ tbody>tr:hover {
 
 #myChart {
   margin-top: 30px;
+}
+
+#generate-pdf{
+  margin: 0px auto !important;
+  padding: 10px;
+  font-size: 15pt;
+  border-radius: 10px;
+  margin-top: 25px !important;
+  transition: all 0.3s;
+
+  &:hover {
+    scale: 1.02;
+    cursor: pointer;
+  }
 }

@@ -5,9 +5,9 @@ body {
 }
 
 .poppins-regular {
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 #title {
@@ -20,6 +20,35 @@ body {
     font-size: 2.5em;
     font-weight: bold;
     text-shadow: 1px 1px 1px black;
+}
+
+@media print {
+    #title {
+        display: none;
+    }
+    #divMesi {
+        display: none;
+    }
+    #btnEsciScheda{
+        display: none;
+    }
+    #eliminaPaziente{
+        display: none;
+    }
+
+    .break-before {
+        page-break-before: always;
+    }
+    .no-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+    #titleChar{
+        margin-left: -15%;
+    }
+    #generate-pdf{
+        display: none;
+    }
 }
 
 #loginHome {
@@ -37,7 +66,7 @@ body {
     height: 100% !important;
 }
 
-#divLogin{
+#divLogin {
     text-align: center;
     width: 300px;
     height: auto;
@@ -47,40 +76,40 @@ body {
     margin-top: 4vw;
 }
 
-#divRegistrazione{
+#divRegistrazione {
     text-align: center;
     width: 300px;
     height: auto;
     border-radius: 1vw;
     box-shadow: 0px 30px 60px rgba(0, 0, 0, 0.19), 0px 20px 20px rgba(0, 0, 0, 0.23);
     background-color: rgba(255, 255, 255, 0.838);
-    margin-top: 5vw;   
+    margin-top: 5vw;
 }
 
-#pAccedi{
+#pAccedi {
     text-align: center;
     font-size: 3rem;
     color: rgb(0, 0, 0);
     text-shadow: 1px 1px 1px black;
 }
 
-#pRegistrati{
+#pRegistrati {
     text-align: center;
     font-size: 1em;
-    color: rgb(0,0,0);
+    color: rgb(0, 0, 0);
     text-shadow: 1px 1px 1px black;
 
 }
 
-#giaAccount{
+#giaAccount {
     text-align: center;
     font-size: 1em;
-    color: rgb(0,0,0);
+    color: rgb(0, 0, 0);
     text-shadow: 1px 1px 1px black;
 
 }
 
-#txtUsername{
+#txtUsername {
     width: 90%;
     height: 5vh;
     border: none;
@@ -91,29 +120,29 @@ body {
     padding: 5px;
 }
 
-#txtUsername:focus{
+#txtUsername:focus {
     outline: none;
     transform: scale(1.01);
     transition: 0.3s ease;
 }
 
-#txtUsername:not(:focus){
+#txtUsername:not(:focus) {
     transform: scale(1);
     transition: 0.3s ease;
 }
 
-#txtPassword:focus{
+#txtPassword:focus {
     outline: none;
     transform: scale(1.01);
     transition: 0.3s ease;
 }
 
-#txtPassword:not(:focus){
+#txtPassword:not(:focus) {
     transform: scale(1);
     transition: 0.3s ease;
 }
 
-#txtNome{
+#txtNome {
     width: 80%;
     height: 5vh;
     border: none;
@@ -125,18 +154,18 @@ body {
     padding: 5px;
 }
 
-#txtNome:focus{
+#txtNome:focus {
     outline: none;
     transform: scale(1.01);
     transition: 0.3s ease;
 }
 
-#txtNome:not(:focus){
+#txtNome:not(:focus) {
     transform: scale(1);
     transition: 0.3s ease;
 }
 
-#txtCognome{
+#txtCognome {
     width: 80%;
     height: 5vh;
     border: none;
@@ -149,18 +178,18 @@ body {
 
 }
 
-#txtCognome:focus{
+#txtCognome:focus {
     outline: none;
     transform: scale(1.01);
     transition: 0.3s ease;
 }
 
-#txtCognome:not(:focus){
+#txtCognome:not(:focus) {
     transform: scale(1);
     transition: 0.3s ease;
 }
 
-#txtUsernameRegistrato{
+#txtUsernameRegistrato {
     width: 80%;
     height: 5vh;
     border: none;
@@ -172,19 +201,20 @@ body {
     padding: 5px;
 }
 
-#txtUsernameRegistrato:focus{
+#txtUsernameRegistrato:focus {
     outline: none;
     transform: scale(1.01);
     transition: 0.3s ease;
 }
 
-#txtUsernameRegistrato:not(:focus){
+#txtUsernameRegistrato:not(:focus) {
     transform: scale(1);
     transition: 0.3s ease;
 }
 
 
-#txtPassword, #txtPasswordRegistrato{
+#txtPassword,
+#txtPasswordRegistrato {
     margin-top: 10%;
     margin-bottom: 9%;
     width: 70% !important;
@@ -197,21 +227,21 @@ body {
     padding: 5px;
 }
 
-hr{
+hr {
     width: 90%;
     opacity: 0.7;
     margin: 2vh 5%;
     border: 1px solid rgb(0, 0, 0);
 }
 
-#btnAccedi{
+#btnAccedi {
     width: 80%;
     height: 5vh;
     border: none;
     font-size: 1.5em;
     background-color: transparent;
     color: rgb(143, 133, 133);
-    font-weight: bold;  
+    font-weight: bold;
     background-color: #fbeee0;
     border: 2px solid #000000;
     border-radius: 30px;
@@ -231,14 +261,14 @@ hr{
 
 }
 
-#btnRegistrati{
+#btnRegistrati {
     width: 80%;
     height: 5vh;
     border: none;
     font-size: 1.5em;
     background-color: transparent;
     color: rgb(143, 133, 133);
-    font-weight: bold;  
+    font-weight: bold;
     background-color: #fbeee0;
     border: 2px solid #000000;
     border-radius: 30px;
@@ -262,119 +292,123 @@ hr{
 #btnAccedi:hover {
     color: #000000;
     background-color: #07e7e7;
-  }
+}
 
-  #btnRegistyrati:hover {
+#btnRegistyrati:hover {
     color: #000000;
     background-color: #07e7e7;
-  }
+}
 
-#btnAccedi:not(:hover){
+#btnAccedi:not(:hover) {
     background-color: rgb(255, 253, 253);
     color: rgb(0, 0, 0);
     transition: 0.5s ease;
 
 }
 
-#btnRegistrati:not(:hover){
+#btnRegistrati:not(:hover) {
     background-color: rgb(255, 253, 253);
     color: rgb(0, 0, 0);
     transition: 0.5s ease;
 
 }
 
-#registrati{
+#registrati {
     text-decoration: none;
     color: rgb(22, 75, 75);
 }
 
-#accedi{
+#accedi {
     text-decoration: none;
     color: rgb(22, 75, 75);
 }
 
-#userIcon{
+#userIcon {
     width: 5vw;
     height: 5vh;
     padding: 0%;
 }
 
-.txtErrore{
+.txtErrore {
     color: red;
     font-size: 1.2em;
     width: auto;
     height: 40px;
 }
-#logged{
+
+#logged {
     display: none;
 }
 
 
 
-#logOut{
-    width: 100% !important; 
-    text-align: right; 
+#logOut {
+    width: 100% !important;
+    text-align: right;
     margin-bottom: 30px;
     font-size: 20pt;
 }
-#logOut:hover>i{
+
+#logOut:hover>i {
     transition: all 0.4s;
     color: red;
     scale: 1.1;
 }
-#logOut:not(:hover)>i{
+
+#logOut:not(:hover)>i {
     transition: all 0.4s;
 }
 
 
-.txtForm{
-    font-size: 1.4em !important; 
+.txtForm {
+    font-size: 1.4em !important;
     border: none !important;
-    border-bottom: 2px solid black !important; 
-    border-radius: 0px !important;  
+    border-bottom: 2px solid black !important;
+    border-radius: 0px !important;
     width: 70% !important;
 
-    &:focus{
+    &:focus {
         outline: none !important;
         border-bottom: 2px solid rgb(0, 0, 0) !important;
     }
 }
 
-.btnForms{
+.btnForms {
     transition: all 0.4s;
     box-shadow: none !important;
     background-color: rgb(170, 249, 249) !important;
 }
-.btnForms:hover{
+
+.btnForms:hover {
     background-color: rgb(0, 255, 255) !important;
     color: #000000 !important;
     scale: 1.02;
 }
 
-.btnAccReg{
+.btnAccReg {
     text-shadow: none !important;
     color: #414141 !important;
     cursor: pointer !important;
     transition: all 0.4s !important;
-    
-    &:hover{
+
+    &:hover {
         font-size: 1.01em !important;
     }
 }
 
-#eyeAccedi{
+#eyeAccedi {
     height: 30.5px;
     transition: all 0.4s;
 
-    &:hover{
+    &:hover {
         scale: 1.0;
     }
 }
 
-#txtPassword{
+#txtPassword {
     width: 65% !important;
 }
 
-#txtPasswordRegistrato{
+#txtPasswordRegistrato {
     width: 65% !important;
 }

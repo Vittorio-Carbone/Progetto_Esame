@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog } = require('electron');
 const path = require('path');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
@@ -14,9 +14,10 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+let mainWindow;
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     roundedCorners: true,
@@ -29,9 +30,13 @@ const createWindow = () => {
   });
 
 
+
+
+
+
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
-    mainWindow.webContents.closeDevTools();
+    // mainWindow.webContents.closeDevTools();
   });
 
 
@@ -72,11 +77,33 @@ ipcMain.on("salvaJson", (event, data) => {
   });
 
 
-  // event.reply('salvaJson-reply', path.join(__dirname, 'utenti.json'));
-
 
 });
 
+
+ipcMain.on('print-to-pdf', async (event, data) => {
+  const pdfPath = path.join(app.getPath('desktop'), data+'.pdf');
+  const options = {
+      marginsType: 0,
+      pageSize: 'A4',
+      printBackground: true,
+      landscape: true
+  };
+
+  try {
+      const data = await mainWindow.webContents.printToPDF(options);
+      fs.writeFile(pdfPath, data, (error) => {
+          if (error) throw error;
+          dialog.showMessageBox({
+              type: 'info',
+              title: 'PDF Generated',
+              message: `Il PDF è stato salvato in: ${pdfPath}`
+          });
+      });
+  } catch (error) {
+      console.log(error);
+  }
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

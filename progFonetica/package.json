@@ -38,7 +38,7 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.3.1",
     "@electron-forge/plugin-fuses": "^7.3.1",
     "@electron/fuses": "^1.8.0",
-    "electron": "^29.4.0",
+    "electron": "^29.4.2",
     "electron-builder": "^24.13.3"
   },
   "keywords": [],
@@ -49,10 +49,14 @@
     "chart.js": "^4.4.3",
     "deepspeech": "^0.9.3",
     "electron-chartjs": "^1.0.0",
+    "electron-pdf": "^25.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^9.0.0",
+    "exceljs": "^4.4.0",
     "fs": "^0.0.1-security",
     "jquery": "^3.7.1",
-    "mic": "^2.1.2"
+    "jspdf": "^2.5.1",
+    "mic": "^2.1.2",
+    "pdf-lib": "^1.17.1"
   }
 }
