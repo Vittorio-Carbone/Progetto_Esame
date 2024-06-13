@@ -68,6 +68,12 @@ body {
   font-size: 20pt;
   height: auto;
 }
+audio{
+  z-index: 1;
+}
+#title{
+  z-index: 2;
+}
 
 .paziente {
   display: flex;
@@ -154,41 +160,6 @@ body {
   color: #7b7a7a !important;
 }
 
-input[type=checkbox] {
-  position: relative;
-  cursor: pointer;
-  margin-left: -4px;
-  margin-top: -1px;
-  padding: 5px 0px;
-}
-
-input[type=checkbox]:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 0;
-  left: 0;
-  border: 2px solid #555555;
-  border-radius: 3px;
-  background-color: white;
-}
-
-input[type=checkbox]:checked:after {
-  content: "";
-  display: block;
-  width: 5px;
-  height: 10px;
-  border: solid green;
-  border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  position: absolute;
-  top: 2px;
-  left: 6px;
-}
 
 
 /* ============================================================== FORM PAZIENTI  =============================================================== */
@@ -843,4 +814,31 @@ tbody>tr:hover {
     scale: 1.02;
     cursor: pointer;
   }
+}
+
+/* Stile base per il checkbox */
+.chkboxForm input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #f0f0f0;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  min-width: 50px !important; 
+  min-height: 50px !important; 
+  border: 2px solid #555;
+  border-radius: 5px;
+  transform: translateY(-0.075em);
+  display: inline-block;
+  place-content: center;
+}
+
+/* Quando il checkbox è selezionato */
+.chkboxForm input[type="checkbox"]:checked {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+/* Aggiungi una transizione per un effetto morbido al cambio */
+.chkboxForm input[type="checkbox"] {
+  transition: background-color 0.3s, border-color 0.3s;
 }
