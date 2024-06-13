@@ -11,7 +11,7 @@ let vettoreStampa2 = [];
 let vettoreStampaData = [];
 let idUser;
 let month;
-let mesiScritti=["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('containerForm').style.display = 'none';
     // users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('mese1').addEventListener('change', () => {
         document.getElementById('divMese2').style.display = 'block';
         document.getElementById('mese2').innerHTML = '';
-        let nMese = parseInt(document.getElementById('mese1').value)+1;
+        let nMese = parseInt(document.getElementById('mese1').value) + 1;
         for (let i = nMese; i < 12; i++) {
             let option = document.createElement('option');
             option.value = i;
@@ -109,14 +109,20 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('mese2').appendChild(option);
         }
         document.getElementById('mese2').selectedIndex = -1;
-        
+
     });
     document.getElementById('mese2').addEventListener('change', () => {
         let mese1 = parseInt(document.getElementById('mese1').value);
         let mese2 = parseInt(document.getElementById('mese2').value);
-        document.getElementById("divFonMes").innerHTML = mesiScritti[mese1]+" - "+mesiScritti[mese2];
+        document.getElementById("divFonMes").innerHTML = mesiScritti[mese1] + " - " + mesiScritti[mese2];
         console.log(mese1, mese2);
         caricaFormMesi(mese1, mese2);
+    });
+
+
+    document.getElementById("cercaPazienti").addEventListener("input", function () {
+        let value= document.getElementById("cercaPazienti").value;
+        cercaPaziente(value);
     });
 });
 
@@ -126,24 +132,50 @@ function caricaFormMesi(mese1, mese2) {
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let _id = document.getElementById('idPaziente').value;
     let tras;
-    // NON CONTA QUANTE C'E' NE SONO
+    // NON CONTA QUANTE C'E' NE SONO o forse ora si
     for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {
         let mese = trascritto.data.split('/')[1];
-        if (mese >= mese1+1 && mese <= mese2+1) {
+        if (mese >= mese1 + 1 && mese <= mese2 + 1) {
             tras = trascritto.trascritto;
             let parole = tras.split(" ");
             for (let parola of parole) {
                 for (let [i, lettera] of letters.entries()) {
                     if (parola.includes(lettera) && !parola.startsWith(lettera)) {
-                        posizioniMedie[i]++;
+                        let nLettere = countLetters(parola, lettera);
+                        // posizioniMedie[i]++;
+                        posizioniMedie[i] += nLettere;
+                    }
+                    if(parola.startsWith(lettera) && parola.substring(1,parola.length).includes(lettera)){
+                        let count = countLetters(parola.substring(1,parola.length), lettera);
+                        posizioniMedie[i] += count;
                     }
                     if (parola.startsWith(lettera)) {
-                        posizioniIniziali[i]++;
+                        let nLettere = countLetters(parola, lettera);
+                        // posizioniIniziali[i]++;
+                        posizioniIniziali[i] += nLettere;
                     }
                 }
             }
         }
     }
+    function countLetters(str, letters) {
+        let count = 0;
+        if (letters.length === 1) {
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] === letters) {
+                    count++;
+                }
+            }
+        } else if (letters.length === 2) {
+            for (let i = 0; i < str.length - 1; i++) {
+                if (str.substring(i, i + 2) === letters) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     let jsonChar = {
         "testo": letters,
         "fonMed": posizioniMedie,
@@ -1577,7 +1609,14 @@ function caricaPosizioni(numMese) {
             for (let parola of parole) {
                 for (let [i, lettera] of letters.entries()) {
                     if (parola.includes(lettera) && !parola.startsWith(lettera)) {
-                        posizioniMedie[i]++;
+                        let count = countLetters(parola, lettera);
+                        posizioniMedie[i] += count;
+
+                        // posizioniMedie[i]++;
+                    }
+                    if(parola.startsWith(lettera) && parola.substring(1,parola.length).includes(lettera)){
+                        let count = countLetters(parola.substring(1,parola.length), lettera);
+                        posizioniMedie[i] += count;
                     }
                     if (parola.startsWith(lettera)) {
                         posizioniIniziali[i]++;
@@ -1585,6 +1624,23 @@ function caricaPosizioni(numMese) {
                 }
             }
         }
+    }
+    function countLetters(str, letters) {
+        let count = 0;
+        if (letters.length === 1) {
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] === letters) {
+                    count++;
+                }
+            }
+        } else if (letters.length === 2) {
+            for (let i = 0; i < str.length - 1; i++) {
+                if (str.substring(i, i + 2) === letters) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
     // console.log(letters);
     // console.log(posizioniMedie);
@@ -1702,4 +1758,19 @@ function svuotaCampiFon() {
     document.getElementById('vibranti2').innerHTML = "";
     document.getElementById('nonVibranti2').innerHTML = "";
     document.getElementById('semiConsonanti2').innerHTML = "";
+}
+
+function cercaPaziente(value){
+    let pazienti = document.getElementsByClassName('paziente');
+    value=value.toString();
+    for(let paziente of pazienti){
+        if(paziente.textContent.toLowerCase().includes(value.toLowerCase())){
+            paziente.style.display = 'block';
+        }
+        else{
+            paziente.style.display = 'none';
+        }
+    }
+
+
 }

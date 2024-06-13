@@ -797,6 +797,37 @@ tbody>tr:hover {
   outline: none; /* Rimuove il contorno quando è selezionato */
   transition: all 0.3s ease; /* Transizione fluida per hover e focus */
 }
+#searcBox{
+  text-align: center;
+  width: 100%;
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+#cercaPazienti {
+  width: 300px;
+  padding: 12px 15px;
+  font-size: 20px;
+  border: none;
+  border-radius: 20px;
+  background-color: #e6e6e6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+#cercaPazienti:hover,
+#cercaPazienti:focus {
+  background-color: #e0e0e0;
+}
+
+#cercaPazienti::placeholder {
+  color: #999;
+}
+
+#cercaPazienti:focus {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 .slcBox:hover, .slcBox:focus {
   border-color: #0056b3; /* Cambia il colore del bordo quando si passa sopra o si seleziona */

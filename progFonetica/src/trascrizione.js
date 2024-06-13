@@ -5,12 +5,12 @@ noAccentate = ['a', 'i', 'e', 'e', 'o', 'u'];
 // fonemi = ['a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k', 'ɲ:', 'k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', 'ʎ:i', 'ʎ:i', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃe', 'ʃi', 'ʃo', 'ʃa', 'ʃu', 'tʃa', 'tʃo', 'tʃe', 'tʃi', 'tʃu', 'dʒa', 'dʒo', 'dʒe', 'dʒi', 'dʒu', '', 'dʒ', 'i', ':'];
 // scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'a', 'i', 'i', 'e', 'o', 'u', 'u', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'c', 'q', 'r', 'l', 'f', 'v', 's', 's', 'z', 'z', 'h', 'j', 'y' ]
 // fonemi = ['ʎ:a', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃo', 'ʃa', 'ʃu', 'ʎ:i','ʃe', 'ʃi', 'tʃa', 'tʃo', 'tʃu', 'dʒa', 'dʒo', 'dʒu', 'ɲ:', 'tʃe',  'tʃi',  'dʒe', 'dʒi', 'a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k','k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', '', 'dʒ', 'i' ]
-scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'q', 'r', 'l', 'f', 'v']
-fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'k', 'r', 'l', 'f', 'v']
-scrittaDopo = ['y', '*', 'h']
-fonemiDopo = ['i', 'j', '']
-scrittaPrima = ["cci", "ggi","cch","cca", "cco", "ccu","cce","ggh","gga","ggo","ggu","gge"]
-fonemiPrima = ["tʃ:", "dʒ:i","k:","k:a", "k:o", "k:u","tʃ:","g:","g:a","g:o","g:u","dʒ:e"]
+scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
+fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
+scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi","q"]
+fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui","k"]
+scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge"]
+fonemiPrima = ["tʃ:e", "tʃ:", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
 
 
 trascritto = "";
@@ -30,7 +30,7 @@ $(document).ready(function () {
 
     function trascrivi() {
         // trascritto = trascrizione;
-        trascritto=trascritto.toLowerCase();
+        trascritto = trascritto.toLowerCase();
         for (let i = 0; i < trascritto.length; i++) {
             for (let j = 0; j < accentate.length; j++) {
                 sostituisciAccenti(i, j);
@@ -88,6 +88,7 @@ $(document).ready(function () {
         console.log(daTrascrivere2)
         for (let daTra of daTrascrivere2) {
             // for (let i = 0; i < scritta.length; i++) {
+            console.log(daTra);
             // Controllo delle I
             if (daTra.includes("ia") || daTra.includes("ie") || daTra.includes("io") || daTra.includes("iu")) {
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("ia", "ja"));
@@ -133,56 +134,50 @@ $(document).ready(function () {
                 daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("z", 'ʣ'));
                 daTra = daTra.replace("z", 'ʣ')
             }
-            if (daTra.includes("z") && isZAtMiddle(daTra)) {
+            if (daTra.includes("z")) {
                 console.log("metà con z: " + daTra);
-                daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("z", "ʦ:"));
-                daTra = daTra.replaceAll("z", "ʦ:")
+                daTrascrivere = daTrascrivere.replaceAll(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replaceAll("z", "ts:"));
+                daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll("z", "ts:")
+                
             }
             //Controllo della S
-            if (daTra.includes("s") || daTra.includes("sg") || daTra.includes("sb")
-                || daTra.includes("sd") || daTra.includes("sv") || daTra.includes("sm")
-                || daTra.includes("sl")) {
+            if ( daTra.includes("st") || daTra.includes("sc")||
+                daTra.includes("sp") || daTra.includes("sf") || daTra.includes("sq")){
                 if (!daTra.startsWith("s")) {
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sg", 'zg'));
-                    daTra = daTra.replace("sg", 'zg')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sb", 'zb'));
-                    daTra = daTra.replace("sb", 'zb')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sd", 'zd'));
-                    daTra = daTra.replace("sd", 'zd')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sv", 'zv'));
-                    daTra = daTra.replace("sv", 'zv')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sm", 'zm'));
-                    daTra = daTra.replace("sm", 'zm')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sl", 'zl'));
-                    daTra = daTra.replace("sl", 'zl')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 'z'));
-                    daTra = daTra.replace("s", 'z')
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z'));
-                    daTra = daTra.replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("st", 'zt'));
+                    daTra = daTra.replace("st", 'zt')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sc", 'zc'));
+                    daTra = daTra.replace("sc", 'zc')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sp", 'zp'));
+                    daTra = daTra.replace("sp", 'zp')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sf", 'zf'));
+                    daTra = daTra.replace("sf", 'zf')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sq", 'zq'));
+                    daTra = daTra.replace("sq", 'zq')
+                    
                 }
                 else {
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sg", 'zg'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sg", 'zg')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sb", 'zb'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sb", 'zb')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sd", 'zd'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sd", 'zd')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sv", 'zv'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sv", 'zv')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sm", 'zm'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sm", 'zm')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sl", 'zl'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("sl", 'zl')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("s", 'z'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace("s", 'z')
-                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z'));
-                    daTra = "s" + daTra.substring(1, daTra.length).replace(/s(?![t|ca|co|cu|ch|p|r|f|:])/g, 'z')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("st", 'zt'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("st", 'zt')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sc", 'zc'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("sc", 'zc')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sp", 'zp'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("sp", 'zp')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sf", 'zf'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("sf", 'zf')
+                    daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sq", 'zq'));
+                    daTra = "s" + daTra.substring(1, daTra.length).replace("sq", 'zq')
                 }
             }
-            if (daTra.startsWith("s") || daTra.includes("s:") ||
-                daTra.includes("st") || daTra.includes("sca") || daTra.includes("sco")
-                || daTra.includes("scu") || daTra.includes("sch") || daTra.includes("sp")
-                || daTra.includes("sr") || daTra.includes("sf")) {
+            if (daTra.startsWith("s")) {
+                if(daTra.startsWith("sa")||daTra.startsWith("se")||daTra.startsWith("si")||daTra.startsWith("so")||daTra.startsWith("st")||daTra.startsWith("sk")||daTra.startsWith("sp")||daTra.startsWith("sf")||daTra.startsWith("sq")){
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 's'));
+                    daTra = daTra.replace("s", 's')
+                }
+                if(daTra.startsWith("sd")||daTra.startsWith("sb")||daTra.startsWith("sg")||daTra.startsWith("sv")||daTra.startsWith("sm")||daTra.startsWith("sl")||daTra.startsWith("sn") || daTra.startsWith("sr")){
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 'z'));
+                    daTra = daTra.replace("s", 'z')
+                }
 
             }
 

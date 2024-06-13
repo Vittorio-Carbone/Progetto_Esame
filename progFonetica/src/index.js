@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron');
+const { app, BrowserWindow, ipcMain, dialog, screen } = require('electron');
 const path = require('path');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
@@ -16,12 +16,12 @@ if (require('electron-squirrel-startup')) {
 
 let mainWindow;
 const createWindow = () => {
-  // Create the browser window.
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: width,
+    height: height,
     roundedCorners: true,
-    // frame: false, // Rimuove il bordo della finestra (barra sopra)
+    // frame: true, // Rimuove il bordo della finestra (barra sopra)
     webPreferences: {
       contextIsolation: true,
       nodeIntegration: true,
@@ -36,7 +36,7 @@ const createWindow = () => {
 
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
-    // mainWindow.webContents.closeDevTools();
+    mainWindow.webContents.closeDevTools();
   });
 
 
