@@ -178,9 +178,7 @@ function caricaFormMesi(mese1, mese2) {
                         posizioniMedie[i] += count;
                     }
                     if (parola.startsWith(lettera)) {
-                        let nLettere = countLetters(parola, lettera);
-                        // posizioniIniziali[i]++;
-                        posizioniIniziali[i] += nLettere;
+                        posizioniIniziali[i]++;
                     }
                 }
             }
@@ -2012,7 +2010,7 @@ function registrati() {
             window.localStorage.setItem('users', JSON.stringify(users));
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
-            document.getElementById("nomeLogop").innerHTML =txtNome + " " + txtCognome;
+            document.getElementById("nomeLogop").innerHTML = txtNome + " " + txtCognome;
         }
         else {
             console.log("Username già esistente");
@@ -2035,7 +2033,7 @@ function caricaSchedaUser() {
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
 
-    
+
 }
 
 function caricaForm() {
@@ -2455,7 +2453,7 @@ function caricaForm() {
     caricaGraficiGruppi()
 }
 
-function caricaGraficiGruppi(){
+function caricaGraficiGruppi() {
     let _id = document.getElementById('idPaziente').value;
     document.getElementById('jsonGruppi').textContent = JSON.stringify(users[idUser]["pazienti"][_id]["reg"], null, 2);
 }
@@ -2628,18 +2626,60 @@ function caricaPosizioni(numMese) {
             let parole = tras.split(" ");
             for (let parola of parole) {
                 for (let [i, lettera] of letters.entries()) {
-                    if (parola.includes(lettera) && !parola.startsWith(lettera)) {
-                        let count = countLetters(parola, lettera);
-                        posizioniMedie[i] += count;
+                    if (lettera != "d"&&lettera!="t" &&lettera!="s"&&lettera!="z") {
+                        if (parola.includes(lettera) && !parola.startsWith(lettera)) {
+                            let count = countLetters(parola, lettera);
+                            posizioniMedie[i] += count;
 
-                        // posizioniMedie[i]++;
+                            // posizioniMedie[i]++;
+                        }
+                        if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
+                            let count = countLetters(parola.substring(1, parola.length), lettera);
+                            posizioniMedie[i] += count;
+                        }
+                        if (parola.startsWith(lettera)) {
+                            posizioniIniziali[i]++;
+                        }
                     }
-                    if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
-                        let count = countLetters(parola.substring(1, parola.length), lettera);
-                        posizioniMedie[i] += count;
+                    if (lettera == "d") {
+                        let nD;
+                        if(parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")){
+                            posizioniIniziali[i]++;
+                        }
+                        let regex = /d(?![zʒ])/gi;
+                        let corrispondenze = parola.substring(1,parola.length).match(regex);
+                        nD= corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nD;
                     }
-                    if (parola.startsWith(lettera)) {
-                        posizioniIniziali[i]++;
+                    if(lettera=="t"){
+                        let nT;
+                        if(parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")){
+                            posizioniIniziali[i]++;
+                        }
+                        let regex = /t(?![sʃ])/gi;
+                        let corrispondenze = parola.match(regex);
+                        nT= corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nT;
+                    }
+                    if(lettera=="s"){
+                        let nS;
+                        if(parola.startsWith("s") ){
+                            posizioniIniziali[i]++;
+                        }
+                        let regex = /(?<!t)s/g;
+                        let corrispondenze = parola.match(regex);
+                        nS= corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nS;
+                    }
+                    if(lettera=="z"){
+                        let nZ;
+                        if(parola.startsWith("z")){
+                            posizioniIniziali[i]++;
+                        }
+                        let regex = /(?<!d)z/g;
+                        let corrispondenze = parola.match(regex);
+                        nZ= corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nZ;
                     }
                 }
             }
@@ -2675,31 +2715,31 @@ function caricaPosizioni(numMese) {
             if (lc === "m" || lc === "n" || lc === "ɲ" || lc === "ŋ") {
                 containerWrite = document.getElementById('nasali');
             }
-            if (lc==="p" || lc==="t" || lc==="k") {
+            if (lc === "p" || lc === "t" || lc === "k") {
                 containerWrite = document.getElementById('oraliSorde');
             }
-            if (lc==="b" || lc==="d" || lc==="g") {
+            if (lc === "b" || lc === "d" || lc === "g") {
                 containerWrite = document.getElementById('oraliSonore');
             }
-            if (lc==="f" || lc==="s" || lc==="ʃ") {
+            if (lc === "f" || lc === "s" || lc === "ʃ") {
                 containerWrite = document.getElementById('sorde');
             }
-            if (lc==="v" || lc==="z" || lc==="ʒ") {
+            if (lc === "v" || lc === "z" || lc === "ʒ") {
                 containerWrite = document.getElementById('sonore');
             }
-            if (lc==="tʃ" || lc==="ts") {
+            if (lc === "tʃ" || lc === "ts") {
                 containerWrite = document.getElementById('sordeS');
             }
-            if (lc==="dʒ" || lc==="dz") {
+            if (lc === "dʒ" || lc === "dz") {
                 containerWrite = document.getElementById('sonoreS');
             }
-            if (lc==="r" || lc==="R") {
+            if (lc === "r" || lc === "R") {
                 containerWrite = document.getElementById('vibranti');
             }
-            if (lc==="l" || lc==="ʎ") {
+            if (lc === "l" || lc === "ʎ") {
                 containerWrite = document.getElementById('nonVibranti');
             }
-            if (lc==="j" || lc==="w") {
+            if (lc === "j" || lc === "w") {
                 containerWrite = document.getElementById('semiConsonanti');
             }
             let div = document.createElement('div');
@@ -2711,34 +2751,34 @@ function caricaPosizioni(numMese) {
         if (lettera > 0) {
             letteraAdd = write[i];
             let lc = letters[i];
-            if (lc==="m" || lc==="n" || lc==="ɲ" || lc==="ŋ") {
+            if (lc === "m" || lc === "n" || lc === "ɲ" || lc === "ŋ") {
                 containerWrite = document.getElementById('nasali2');
             }
-            if (lc==="p" || lc==="t" || lc==="k") {
+            if (lc === "p" || lc === "t" || lc === "k") {
                 containerWrite = document.getElementById('oraliSorde2');
             }
-            if (lc==="b" || lc==="d" || lc==="g") {
+            if (lc === "b" || lc === "d" || lc === "g") {
                 containerWrite = document.getElementById('oraliSonore2');
             }
-            if (lc==="f" || lc==="s" || lc==="ʃ") {
+            if (lc === "f" || lc === "s" || lc === "ʃ") {
                 containerWrite = document.getElementById('sorde2');
             }
-            if (lc==="v" || lc==="z" || lc==="ʒ") {
+            if (lc === "v" || lc === "z" || lc === "ʒ") {
                 containerWrite = document.getElementById('sonore2');
             }
-            if (lc==="tʃ" || lc==="ts") {
+            if (lc === "tʃ" || lc === "ts") {
                 containerWrite = document.getElementById('sordeS2');
             }
-            if (lc==="dʒ" || lc==="dz") {
+            if (lc === "dʒ" || lc === "dz") {
                 containerWrite = document.getElementById('sonoreS2');
             }
-            if (lc==="r" || lc==="R") {
+            if (lc === "r" || lc === "R") {
                 containerWrite = document.getElementById('vibranti2');
             }
-            if (lc==="l" || lc==="ʎ") {
+            if (lc === "l" || lc === "ʎ") {
                 containerWrite = document.getElementById('nonVibranti2');
             }
-            if (lc==="j" || lc==="w") {
+            if (lc === "j" || lc === "w") {
                 containerWrite = document.getElementById('semiConsonanti2');
             }
             let div = document.createElement('div');

@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-
+    let colori="";
     let divUtenti = $("#utenti");
     let divAddPaz = $("#formPaz").hide();
     let divUtente = $("#utente").hide();
@@ -12,12 +12,12 @@ $(document).ready(function () {
     let myChart2
     let chartJS3 = false;
     let myChart3
-    
+
     let chartJS4 = false;
     let myChart4
     let chartJS5 = false;
     let myChart5
-    
+
     $(".noInfo").hide();
 
     $(".inputPaz").on("keyup", function () {
@@ -100,8 +100,8 @@ $(document).ready(function () {
                 return elemento.replace("r", "r o R");
             });
             if (chartJS) {
-                myChart.data.datasets[0].data = jsonChar.fonMed;
-                myChart.data.datasets[1].data = jsonChar.fonIniz;
+                myChart.data.datasets[1].data = jsonChar.fonMed;
+                myChart.data.datasets[0].data = jsonChar.fonIniz;
                 myChart.options.scales.yAxes[0].ticks.max = max + 2;
 
                 myChart.update();
@@ -110,16 +110,16 @@ $(document).ready(function () {
                 const data = {
                     labels: jsonChar.testo,
                     datasets: [{
-                        label: "Fonemi in posizione mediana",
-                        data: jsonChar.fonMed,
-                        backgroundColor: 'rgba(255, 0, 0, 0.3)',
-                        borderColor: "red",
-                        borderWidth: 1
-                    }, {
                         label: "Fonemi in posizione iniziale",
                         data: jsonChar.fonIniz,
                         backgroundColor: 'rgba(0, 0, 255, 0.3)',
                         borderColor: "blue",
+                        borderWidth: 1
+                    }, {
+                        label: "Fonemi in posizione mediana",
+                        data: jsonChar.fonMed,
+                        backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                        borderColor: "red",
                         borderWidth: 1
                     }]
                 };
@@ -159,7 +159,6 @@ $(document).ready(function () {
                 data = tras.data.split("/");
                 if (data[1] === nMese) {
                     for (let [i, gruppo] of gruppiCons.entries()) {
-                        // console.log(gruppo);
                         let nlett = contaLettere(tras.trascritto, gruppo);
                         nCons[i] += nlett;
                     }
@@ -215,16 +214,16 @@ $(document).ready(function () {
                 const vocali = "aeiou";
                 if (gruppo !== "r") {
                     for (let i = 0; i < frase.length - 1; i++) {
-                        if(gruppo===frase[i]&&consonanti.includes(frase[i+1])){
+                        if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
                             count++;
                         }
                     }
                 } else {
-                    if(frase.startsWith("r")&&consonanti.includes(frase[1])){
+                    if (frase.startsWith("r") && consonanti.includes(frase[1])) {
                         count++;
                     }
                     for (let i = 1; i < frase.length - 1; i++) {
-                        if((frase[i]===gruppo&&consonanti.includes(frase[i+1])) ||(frase[i]===gruppo&&consonanti.includes(frase[i-1]))){
+                        if ((frase[i] === gruppo && consonanti.includes(frase[i + 1])) || (frase[i] === gruppo && consonanti.includes(frase[i - 1]))) {
                             count++;
                         }
                     }
@@ -251,7 +250,7 @@ $(document).ready(function () {
             let n1 = numMese(mesi[0]);
             let n2 = numMese(mesi[1]);
             let n = n2 - n1 + 1;
-            console.log("Numero mesi: "+n);
+            console.log("Numero mesi: " + n);
             barLarge = 10;
             if (n === 2) {
                 barLarge = 13;
@@ -291,19 +290,59 @@ $(document).ready(function () {
                         let parole = tras.split(" ");
                         for (let parola of parole) {
                             for (let [i, lettera] of letters.entries()) {
-                                if (parola.includes(lettera) && !parola.startsWith(lettera)) {
-                                    let nLettere = countLetters(parola, lettera);
-                                    // posizioniMedie[i]++;
-                                    posMed[i] += nLettere;
+                                if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z") {
+                                    if (parola.includes(lettera) && !parola.startsWith(lettera)) {
+                                        let nLettere = countLetters(parola, lettera);
+                                        // posizioniMedie[i]++;
+                                        posMed[i] += nLettere;
+                                    }
+                                    if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
+                                        let count = countLetters(parola.substring(1, parola.length), lettera);
+                                        posMed[i] += count;
+                                    }
+                                    if (parola.startsWith(lettera)) {
+                                        posIn[i]++;
+                                    }
                                 }
-                                if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
-                                    let count = countLetters(parola.substring(1, parola.length), lettera);
-                                    posMed[i] += count;
+                                if (lettera == "d") {
+                                    let nD;
+                                    if(parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")){
+                                        posIn[i]++;
+                                    }
+                                    let regex = /d(?![zʒ])/gi;
+                                    let corrispondenze = parola.substring(1,parola.length).match(regex);
+                                    nD= corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nD;
                                 }
-                                if (parola.startsWith(lettera)) {
-                                    let nLettere = countLetters(parola, lettera);
-                                    // posizioniIniziali[i]++;
-                                    posIn[i] += nLettere;
+                                if(lettera=="t"){
+                                    let nT;
+                                    if(parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")){
+                                        posIn[i]++;
+                                    }
+                                    let regex = /t(?![sʃ])/gi;
+                                    let corrispondenze = parola.match(regex);
+                                    nT= corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nT;
+                                }
+                                if(lettera=="s"){
+                                    let nS;
+                                    if(parola.startsWith("s") ){
+                                        posIn[i]++;
+                                    }
+                                    let regex = /(?<!t)s/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nS= corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
+                                }
+                                if(lettera=="z"){
+                                    let nZ;
+                                    if(parola.startsWith("z")){
+                                        posIn[i]++;
+                                    }
+                                    let regex = /(?<!d)z/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nZ= corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nZ;
                                 }
                             }
                         }
@@ -487,13 +526,12 @@ $(document).ready(function () {
             let n1 = numMese(mesi[0]);
             let n2 = numMese(mesi[1]);
             let n = n2 - n1 + 1;
-            console.log("Numero mesi: "+n);
+            console.log("Numero mesi: " + n);
             barLarge = 10;
             if (n > 6) {
                 barLarge = 8;
             }
-            else
-            {
+            else {
                 barLarge = 13;
             }
 
@@ -501,25 +539,25 @@ $(document).ready(function () {
             let letters = ["m", "n", "s", "z", "r", "l"]
             let gruppiConsWr = ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"]
             let tras;
-            for(let i=n1;i<=n2;i++){
+            for (let i = n1; i <= n2; i++) {
                 let posizioni = [0, 0, 0, 0, 0, 0];
-                for(let frasi of jsonChar){
+                for (let frasi of jsonChar) {
                     let nMese = frasi.data.split("/");
-                    if(parseInt(nMese[1])===i){
+                    if (parseInt(nMese[1]) === i) {
                         tras = frasi.trascritto;
-                        for(let [i,lettera] of letters.entries()){
+                        for (let [i, lettera] of letters.entries()) {
                             let nLettere = contaLettere(tras, lettera);
                             posizioni[i] += nLettere;
                         }
                     }
                 }
                 let maxBet = Math.max(...posizioni);
-                if(maxBet>maxAssoluto){
+                if (maxBet > maxAssoluto) {
                     maxAssoluto = maxBet;
                 }
                 let color = getRandomColor();
                 let datasett = {
-                    label: mesiS[i-1],
+                    label: mesiS[i - 1],
                     data: posizioni,
                     backgroundColor: color,
                     borderColor: color,
@@ -574,16 +612,16 @@ $(document).ready(function () {
                 const vocali = "aeiou";
                 if (gruppo !== "r") {
                     for (let i = 0; i < frase.length - 1; i++) {
-                        if(gruppo===frase[i]&&consonanti.includes(frase[i+1])){
+                        if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
                             count++;
                         }
                     }
                 } else {
-                    if(frase.startsWith("r")&&consonanti.includes(frase[1])){
+                    if (frase.startsWith("r") && consonanti.includes(frase[1])) {
                         count++;
                     }
                     for (let i = 1; i < frase.length - 1; i++) {
-                        if((frase[i]===gruppo&&consonanti.includes(frase[i+1])) ||(frase[i]===gruppo&&consonanti.includes(frase[i-1]))){
+                        if ((frase[i] === gruppo && consonanti.includes(frase[i + 1])) || (frase[i] === gruppo && consonanti.includes(frase[i - 1]))) {
                             count++;
                         }
                     }
@@ -592,16 +630,21 @@ $(document).ready(function () {
             }
 
 
-            
+
         }, 500);
     });
-    
+
     function getRandomColor() {
         let letters = '0123456789ABCDEF';
-        let color = '#';
-        for (let i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
+        let color;
+        do{
+            color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+
+        }while(colori.includes(color))
+        colori+=color;
         return color;
     }
 
@@ -631,9 +674,17 @@ $(document).ready(function () {
             chartJS4 = false;
             myChart4.destroy();
         }
+        if (chartJS5) {
+            chartJS5 = false;
+            myChart5.destroy();
+
+        }
         document.getElementById("divFonMes").innerHTML = "";
         document.getElementById("mese1").selectedIndex = -1;
         document.getElementById('mese2').innerHTML = '';
+        document.getElementById("mese12").selectedIndex = -1;
+        document.getElementById('mese22').innerHTML = '';
+        document.getElementById("divMese22").style.display = "none";
         document.getElementById("divMese2").style.display = "none";
     });
     function numMese(mese) {

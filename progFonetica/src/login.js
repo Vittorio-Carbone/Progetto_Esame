@@ -57,7 +57,6 @@ $(document).ready(function(){
             $("#txtPasswordRegistrato").attr("type", "password");
         }
     })
-
     // btnAccedi.on("click", function(){
     //     usernameLogin = $("#txtUsername").val();
     //     passwordLogin = $("#txtPassword").val();
