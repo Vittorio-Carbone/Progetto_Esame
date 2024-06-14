@@ -82,7 +82,7 @@
       <button id="btnSalvaPaz" class="btnSalva">Salva</button>
     </div>
     <div id="utenti">
-      <div id="logOut"><i id="logOutClick" class="fa-solid fa-right-from-bracket"></i></div><br><br>
+      <div id="logOut"><div id="nomeLogop"></div><i id="logOutClick" class="fa-solid fa-right-from-bracket"></i></div><br><br>
       <div id="searcBox">Cerca paziente: <input type="text" id="cercaPazienti" placeholder="Cerca un paziente..."></div>
       <br><br>
       <div class="divAgg">
@@ -286,30 +286,98 @@
             </form>
           </div>
         </div>
+        <hr style="margin: 0px auto; margin-bottom: 25px;margin-top: 10px; width: 500px;">
+        <div class="form-row no-break" style="text-align: center;">
+          <label>Giudizio finale</label>
+          <input type="radio" name="valFinaleRBT" value="corretto"> <span class="corretto">Corretto</span>
+          <input type="radio" name="valFinaleRBT" value="attenzione"> <span class="attenzione">Attenzione</span>
+          <input type="radio" name="valFinaleRBT" value="critico"> <span class="critico">Critico</span>
+        </div>
 
         <div style="display: flex; gap: 4rem; margin-top: 40px;">
-          <div class="form-container" style="display: block;">
+          <div class="form-container">
             <div class="component-header">
               Di Sistema
             </div>
             <form>
-              <div class="form-row no-break">
-                <input class="chkboxForm" type="checkbox">CIAOO
+              <div class="form-row">
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="stopping">
+                  <label for="stopping">Stopping</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="affricazione">
+                  <label for="affricazione">Affricazione</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="fricazione">
+                  <label for="fricazione">Fricazione</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="gliding">
+                  <label for="gliding">Gliding</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="anteriorizzazione">
+                  <label for="anteriorizzazione">Anteriorizzazione</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="desonorizzazione">
+                  <label for="desonorizzazione">Desonorizzazione</label>
+                </div>
               </div>
             </form>
           </div>
-          <div class="form-container" style="display: block;">
+          <div class="form-container">
             <div class="component-header">
               Di Struttura
             </div>
             <form>
-              <div class="form-row no-break">
-                <input class="chkboxForm" type="checkbox">CIAOO
+              <div class="form-row ">
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="semplificazione_gruppi_consonantici">
+                  <label for="semplificazione_gruppi_consonantici">Semplificazione gruppi consonantici</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="riduzione_dittonghi">
+                  <label for="riduzione_dittonghi">Riduzione dittonghi</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="metatesi">
+                  <label for="metatesi">Metatesi</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="armonie_vocaliche">
+                  <label for="armonie_vocaliche">Armonie vocaliche</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="armonie_consonantiche">
+                  <label for="armonie_consonantiche">Armonie consonantiche</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="epentesi">
+                  <label for="epentesi">Epentesi</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="cancellazione_sillaba">
+                  <label for="cancellazione_sillaba">Cancellazione di sillaba</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="cancellazione_fonema">
+                  <label for="cancellazione_fonema">Cancellazione fonema</label>
+                </div>
               </div>
             </form>
           </div>
         </div>
-        <div style="margin-top: 60px;">
+        <hr style="margin-bottom: 10px; ">
+        <div class="form-row no-break" style="text-align: center;">
+          <label>Giudizio finale</label>
+          <input type="radio" name="valFinaleRBT2" value="corretto"> <span class="corretto">Corretto</span>
+          <input type="radio" name="valFinaleRBT2" value="attenzione"> <span class="attenzione">Attenzione</span>
+          <input type="radio" name="valFinaleRBT2" value="critico"> <span class="critico">Critico</span>
+        </div>
+        <div style="margin-top: 60px;" class="escludiPrint">
           <div style="width: 90%;margin: 0px auto; text-align: center;" class="no-break">
             <span class="posizione">Posizione iniziale</span>
             <div style="display: flex; gap: 0.5rem;">
@@ -482,7 +550,7 @@
         <span id="spanJson" style="display: none;"></span>
 
         <div id="divCharMesi" class="no-break">
-          <div>
+          <div class="escludiPrint">
             <label for="mese1" style="font-size: 17pt;">Primo Mese:</label>
             <select id="mese1" class="slcBox">
               <option value="0">Gennaio</option>
@@ -508,8 +576,47 @@
           </div>
           <div style="font-size: 25pt;margin-top: 50px; margin-left: 40px; font-weight: 800;" id="divFonMes"></div>
           <canvas id="chart" class="no-break"></canvas>
+          <canvas id="chart2" class="no-break"></canvas>
         </div>
         <span id="spanJsonMesi" style="display: none;"></span>
+
+        <div class="no-break">
+          <div style="text-align: center; width: 100%; font-size: 20pt; font-weight: bold; margin-top: 40px;">Gruppi
+            consonantici</div>
+          <canvas id="chartGruppi1" class="no-break"></canvas>
+          <span id="jsonGruppi" style="display: none;"></span>
+        </div>
+        <div style="margin-top: 40px;" >
+          <div id="divMesiGrou">
+            <label for="mese12" style="font-size: 17pt;">Primo Mese:</label>
+            <select id="mese12" class="slcBox">
+              <option value="0">Gennaio</option>
+              <option value="1">Febbraio</option>
+              <option value="2">Marzo</option>
+              <option value="3">Aprile</option>
+              <option value="4">Maggio</option>
+              <option value="5">Giugno</option>
+              <option value="6">Luglio</option>
+              <option value="7">Agosto</option>
+              <option value="8">Settembre</option>
+              <option value="9">Ottobre</option>
+              <option value="10">Novembre</option>
+              <option value="11">Dicembre</option>
+            </select>
+            <br><br>
+            <div id="divMese22">
+              <label for="mese22" style="font-size: 17pt;">Secondo Mese:</label>
+              <select id="mese22" class="slcBox">
+
+              </select>
+            </div>
+          </div>
+          <div class="no-break">
+            <div id="mesiGruppi"></div>
+            <canvas id="chartGruppi2" class="no-break"></canvas>
+          </div>
+          <span id="jsonGruppi2" style="display: none;"></span>
+        </div>
         <div style="width: 100%;">
           <button id="generate-pdf">Scarica PDF</button>
         </div>

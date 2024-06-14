@@ -23,6 +23,9 @@ body {
 }
 
 @media print {
+    .escludiPrint{
+        display: none;
+    }
     #title {
         display: none;
     }
@@ -43,6 +46,10 @@ body {
         break-inside: avoid;
         page-break-inside: avoid;
     }
+    .containerChk{
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
     #titleChar{
         margin-left: -15%;
     }
@@ -52,6 +59,30 @@ body {
     #generate-pdf{
         display: none;
     }
+    #divMesiGroup{
+        display: none;
+    }
+    .canvas{
+        margin-left: -15px;
+    }
+    #divMesiGrou{
+        display: none;
+    
+    }
+    #chartGruppi1{
+        margin-left: -15%;
+    }
+    #chartGruppi2{
+        margin-left: -15%;
+    
+    }
+}
+
+#mesiGruppi{
+    font-size: 20pt;
+    font-weight: bold;
+    margin-left: 4%;
+    margin-top: 4%;
 }
 
 #loginHome {
@@ -350,6 +381,12 @@ hr {
     text-align: right;
     margin-bottom: 15px;
     font-size: 20pt;
+    display: flex;
+    justify-content: space-between;
+}
+#logOut>div{
+    font-size: 23pt;
+    font-weight: bold;
 }
 
 #logOut:hover>i {

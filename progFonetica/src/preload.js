@@ -85,6 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    let chkButton = document.querySelectorAll('input[type=checkbox]');
+
+    for (let i = 0; i < chkButton.length; i++) {
+        chkButton[i].addEventListener('click', function () {
+            buttonChkClicked(this.id, this.checked);
+        });
+    }
+
 
     document.getElementById('xDivUtente').addEventListener('click', () => {
         document.getElementById('containerForm').style.display = 'none';
@@ -97,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         ipcRenderer.send('print-to-pdf', info);
     });
     document.getElementById('divMese2').style.display = 'none';
+    document.getElementById('divMese22').style.display = 'none';
     document.getElementById('mese1').selectedIndex = -1;
+    document.getElementById('mese12').selectedIndex = -1;
     document.getElementById('mese1').addEventListener('change', () => {
         document.getElementById('divMese2').style.display = 'block';
         document.getElementById('mese2').innerHTML = '';
@@ -111,28 +121,46 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('mese2').selectedIndex = -1;
 
     });
+    document.getElementById('mese12').addEventListener('change', () => {
+        document.getElementById('divMese22').style.display = 'block';
+        document.getElementById('mese22').innerHTML = '';
+        let nMese = parseInt(document.getElementById('mese12').value) + 1;
+        for (let i = nMese; i < 12; i++) {
+            let option = document.createElement('option');
+            option.value = i;
+            option.textContent = mesiScritti[i];
+            document.getElementById('mese22').appendChild(option);
+        }
+        document.getElementById('mese22').selectedIndex = -1;
+
+    });
     document.getElementById('mese2').addEventListener('change', () => {
         let mese1 = parseInt(document.getElementById('mese1').value);
         let mese2 = parseInt(document.getElementById('mese2').value);
         document.getElementById("divFonMes").innerHTML = mesiScritti[mese1] + " - " + mesiScritti[mese2];
-        console.log(mese1, mese2);
+        caricaFormMesi(mese1, mese2);
+    });
+    document.getElementById('mese22').addEventListener('change', () => {
+        let mese1 = parseInt(document.getElementById('mese12').value);
+        let mese2 = parseInt(document.getElementById('mese22').value);
+        document.getElementById("mesiGruppi").innerHTML = mesiScritti[mese1] + " - " + mesiScritti[mese2];
         caricaFormMesi(mese1, mese2);
     });
 
 
     document.getElementById("cercaPazienti").addEventListener("input", function () {
-        let value= document.getElementById("cercaPazienti").value;
+        let value = document.getElementById("cercaPazienti").value;
         cercaPaziente(value);
     });
 });
 
 function caricaFormMesi(mese1, mese2) {
-    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "tʃ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
-    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "ʃ", "ʒ"]
+    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/ʃ/", "/ʒ/"]
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let _id = document.getElementById('idPaziente').value;
     let tras;
-    // NON CONTA QUANTE C'E' NE SONO o forse ora si
     for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {
         let mese = trascritto.data.split('/')[1];
         if (mese >= mese1 + 1 && mese <= mese2 + 1) {
@@ -145,8 +173,8 @@ function caricaFormMesi(mese1, mese2) {
                         // posizioniMedie[i]++;
                         posizioniMedie[i] += nLettere;
                     }
-                    if(parola.startsWith(lettera) && parola.substring(1,parola.length).includes(lettera)){
-                        let count = countLetters(parola.substring(1,parola.length), lettera);
+                    if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
+                        let count = countLetters(parola.substring(1, parola.length), lettera);
                         posizioniMedie[i] += count;
                     }
                     if (parola.startsWith(lettera)) {
@@ -181,7 +209,7 @@ function caricaFormMesi(mese1, mese2) {
         "fonMed": posizioniMedie,
         "fonIniz": posizioniIniziali
     }
-    document.getElementById('spanJsonMesi').textContent = JSON.stringify(jsonChar, null, 2);
+    document.getElementById('spanJsonMesi').textContent = JSON.stringify(users[idUser]["pazienti"][_id]["reg"], null, 2);
     console.log("cambiatoJSON")
 }
 
@@ -435,6 +463,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -491,6 +583,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -549,6 +705,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -605,6 +825,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -663,6 +947,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -719,6 +1067,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -777,6 +1189,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -833,6 +1309,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -891,6 +1431,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -947,6 +1551,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -1005,6 +1673,70 @@ function salvaPaziente() {
                         {
                             "nome": 13,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1061,6 +1793,70 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 13,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 14,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 15,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 16,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 17,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 18,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 19,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 20,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 21,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 22,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 23,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 24,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 25,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 26,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 27,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 28,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 29,
                             "valutazione": 0
                         }
                     ]
@@ -1149,6 +1945,7 @@ function accedi() {
     }
     for (let utente of users) {
         if (utente.username == txtUsername && utente.password == txtPassword) {
+            document.getElementById("nomeLogop").innerHTML = utente.nome + " " + utente.cognome;
             idUser = utente.id;
             console.log("Utente trovato");
             console.log(utente);
@@ -1215,6 +2012,7 @@ function registrati() {
             window.localStorage.setItem('users', JSON.stringify(users));
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
+            document.getElementById("nomeLogop").innerHTML =txtNome + " " + txtCognome;
         }
         else {
             console.log("Username già esistente");
@@ -1237,6 +2035,7 @@ function caricaSchedaUser() {
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;
 
+    
 }
 
 function caricaForm() {
@@ -1502,10 +2301,164 @@ function caricaForm() {
                 radio[0].checked = true;
             }
         }
+        if (comp.nome == 28) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="valFinaleRBT"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 29) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="valFinaleRBT2"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT2"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT2"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="valFinaleRBT2"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 14) {
+            if (comp.valutazione == 0) {
+                document.getElementById('stopping').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('stopping').checked = true;
+            }
+        }
+        if (comp.nome == 15) {
+            if (comp.valutazione == 0) {
+                document.getElementById('affricazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('affricazione').checked = true;
+            }
+        }
+        if (comp.nome == 16) {
+            if (comp.valutazione == 0) {
+                document.getElementById('fricazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('fricazione').checked = true;
+            }
+        }
+        if (comp.nome == 17) {
+            if (comp.valutazione == 0) {
+                document.getElementById('gliding').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('gliding').checked = true;
+            }
+        }
+        if (comp.nome == 18) {
+            if (comp.valutazione == 0) {
+                document.getElementById('anteriorizzazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('anteriorizzazione').checked = true;
+            }
+        }
+        if (comp.nome == 19) {
+            if (comp.valutazione == 0) {
+                document.getElementById('desonorizzazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('desonorizzazione').checked = true;
+            }
+        }
+        if (comp.nome == 20) {
+            if (comp.valutazione == 0) {
+                document.getElementById('semplificazione_gruppi_consonantici').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('semplificazione_gruppi_consonantici').checked = true;
+            }
+        }
+        if (comp.nome == 21) {
+            if (comp.valutazione == 0) {
+                document.getElementById('riduzione_dittonghi').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('riduzione_dittonghi').checked = true;
+            }
+        }
+        if (comp.nome == 22) {
+            if (comp.valutazione == 0) {
+                document.getElementById('metatesi').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('metatesi').checked = true;
+            }
+        }
+        if (comp.nome == 23) {
+            if (comp.valutazione == 0) {
+                document.getElementById('armonie_vocaliche').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('armonie_vocaliche').checked = true;
+            }
+        }
+        if (comp.nome == 24) {
+            if (comp.valutazione == 0) {
+                document.getElementById('armonie_consonantiche').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('armonie_consonantiche').checked = true;
+            }
+        }
+        if (comp.nome == 25) {
+            if (comp.valutazione == 0) {
+                document.getElementById('epentesi').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('epentesi').checked = true;
+            }
+        }
+        if (comp.nome == 26) {
+            if (comp.valutazione == 0) {
+                document.getElementById('cancellazione_sillaba').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('cancellazione_sillaba').checked = true;
+            }
+        }
+        if (comp.nome == 27) {
+            if (comp.valutazione == 0) {
+                document.getElementById('cancellazione_fonema').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('cancellazione_fonema').checked = true;
+            }
+        }
     }
+    caricaGraficiGruppi()
 }
 
-
+function caricaGraficiGruppi(){
+    let _id = document.getElementById('idPaziente').value;
+    document.getElementById('jsonGruppi').textContent = JSON.stringify(users[idUser]["pazienti"][_id]["reg"], null, 2);
+}
 function eliminaPaziente() {
     document.getElementById('containerForm').style.display = 'none';
     let _id = document.getElementById('idPaziente').value;
@@ -1529,7 +2482,6 @@ function eliminaPaziente() {
 
 function buttonClicked(value, name) {
     let nMese = document.getElementById('numMese').value - 1;
-    console.log(nMese)
     let nome = "";
     let valutazione = 0;
     if (value === 'corretto') {
@@ -1581,6 +2533,12 @@ function buttonClicked(value, name) {
     if (name === 'morfolgia_legata_secondo_predicato_2') {
         nome = 13;
     }
+    if (name === 'valFinaleRBT') {
+        nome = 28;
+    }
+    if (name === 'valFinaleRBT2') {
+        nome = 29;
+    }
     let _id = document.getElementById('idPaziente').value;
     users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
         if (item.nome === nome) {
@@ -1592,15 +2550,77 @@ function buttonClicked(value, name) {
 }
 
 
+function buttonChkClicked(id, value) {
+    let nMese = document.getElementById('numMese').value - 1;
+    let nome = "";
+    let valutazione = 0;
+    if (value === true) {
+        valutazione = 1;
+    }
+    if (value === false) {
+        valutazione = 0;
+    }
+    if (id === 'stopping') {
+        nome = 14;
+    }
+    if (id === 'affricazione') {
+        nome = 15;
+    }
+    if (id === 'fricazione') {
+        nome = 16;
+    }
+    if (id === 'gliding') {
+        nome = 17;
+    }
+    if (id === 'anteriorizzazione') {
+        nome = 18;
+    }
+    if (id === 'desonorizzazione') {
+        nome = 19;
+    }
+    if (id === 'semplificazione_gruppi_consonantici') {
+        nome = 20;
+    }
+    if (id === 'riduzione_dittonghi') {
+        nome = 21;
+    }
+    if (id === 'metatesi') {
+        nome = 22;
+    }
+    if (id === 'armonie_vocaliche') {
+        nome = 23;
+    }
+    if (id === 'armonie_consonantiche') {
+        nome = 24;
+    }
+    if (id === 'epentesi') {
+        nome = 25;
+    }
+    if (id === 'cancellazione_sillaba') {
+        nome = 26;
+    }
+    if (id === 'cancellazione_fonema') {
+        nome = 27;
+    }
+    let _id = document.getElementById('idPaziente').value;
+    users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
+        if (item.nome === nome) {
+            item.valutazione = valutazione;
+        }
+    });
+    // ipcRenderer.send('salvaJson', users);
+    window.localStorage.setItem('users', JSON.stringify(users));
+}
+
 
 function caricaPosizioni(numMese) {
-    let letters = ["m", "n", "ɲ", "p", "t", "k", "b", "d", "g", "s", "f", "ʃ", "z", "v", "ʒ", "tʃ", "ʦ", "dʒ", "ʣ", "r", "l", "ʎ", "j", "w"]
-    let write = ["/m/", "/n/", "/ɲ/ o /ŋ/", "/p/", "/t/", "/k/", "/b/", "/d/", "/g/", "/s/", "/f/", "/ʃ/", "/z/", "/v/", "/ʒ/", "/tʃ/", "/ts/", "/dʒ/", "/dz/", "/r/ o /ʀ/", "/l/", "/ʎ/", "/j/", "/w/"]
+    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
+    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/"]
+
     let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let _id = document.getElementById('idPaziente').value;
     let tras;
-    // NON CONTA QUANTE C'E' NE SONO
     for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {
         let mese = trascritto.data.split('/')[1];
         if (mese == numMese) {
@@ -1614,8 +2634,8 @@ function caricaPosizioni(numMese) {
 
                         // posizioniMedie[i]++;
                     }
-                    if(parola.startsWith(lettera) && parola.substring(1,parola.length).includes(lettera)){
-                        let count = countLetters(parola.substring(1,parola.length), lettera);
+                    if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
+                        let count = countLetters(parola.substring(1, parola.length), lettera);
                         posizioniMedie[i] += count;
                     }
                     if (parola.startsWith(lettera)) {
@@ -1651,34 +2671,35 @@ function caricaPosizioni(numMese) {
     for (let [i, lettera] of posizioniIniziali.entries()) {
         if (lettera > 0) {
             letteraAdd = write[i];
-            if (i <= 2) {
+            let lc = letters[i];
+            if (lc === "m" || lc === "n" || lc === "ɲ" || lc === "ŋ") {
                 containerWrite = document.getElementById('nasali');
             }
-            if (i >= 3 && i <= 5) {
+            if (lc==="p" || lc==="t" || lc==="k") {
                 containerWrite = document.getElementById('oraliSorde');
             }
-            if (i >= 6 && i <= 8) {
+            if (lc==="b" || lc==="d" || lc==="g") {
                 containerWrite = document.getElementById('oraliSonore');
             }
-            if (i >= 9 && i <= 11) {
+            if (lc==="f" || lc==="s" || lc==="ʃ") {
                 containerWrite = document.getElementById('sorde');
             }
-            if (i >= 12 && i <= 14) {
+            if (lc==="v" || lc==="z" || lc==="ʒ") {
                 containerWrite = document.getElementById('sonore');
             }
-            if (i >= 15 && i <= 16) {
+            if (lc==="tʃ" || lc==="ts") {
                 containerWrite = document.getElementById('sordeS');
             }
-            if (i >= 17 && i <= 18) {
+            if (lc==="dʒ" || lc==="dz") {
                 containerWrite = document.getElementById('sonoreS');
             }
-            if (i == 19) {
+            if (lc==="r" || lc==="R") {
                 containerWrite = document.getElementById('vibranti');
             }
-            if (i >= 20 && i <= 21) {
+            if (lc==="l" || lc==="ʎ") {
                 containerWrite = document.getElementById('nonVibranti');
             }
-            if (i >= 22 && i <= 23) {
+            if (lc==="j" || lc==="w") {
                 containerWrite = document.getElementById('semiConsonanti');
             }
             let div = document.createElement('div');
@@ -1689,34 +2710,35 @@ function caricaPosizioni(numMese) {
     for (let [i, lettera] of posizioniMedie.entries()) {
         if (lettera > 0) {
             letteraAdd = write[i];
-            if (i <= 2) {
+            let lc = letters[i];
+            if (lc==="m" || lc==="n" || lc==="ɲ" || lc==="ŋ") {
                 containerWrite = document.getElementById('nasali2');
             }
-            if (i >= 3 && i <= 5) {
+            if (lc==="p" || lc==="t" || lc==="k") {
                 containerWrite = document.getElementById('oraliSorde2');
             }
-            if (i >= 6 && i <= 8) {
+            if (lc==="b" || lc==="d" || lc==="g") {
                 containerWrite = document.getElementById('oraliSonore2');
             }
-            if (i >= 9 && i <= 11) {
+            if (lc==="f" || lc==="s" || lc==="ʃ") {
                 containerWrite = document.getElementById('sorde2');
             }
-            if (i >= 12 && i <= 14) {
+            if (lc==="v" || lc==="z" || lc==="ʒ") {
                 containerWrite = document.getElementById('sonore2');
             }
-            if (i >= 15 && i <= 16) {
+            if (lc==="tʃ" || lc==="ts") {
                 containerWrite = document.getElementById('sordeS2');
             }
-            if (i >= 17 && i <= 18) {
+            if (lc==="dʒ" || lc==="dz") {
                 containerWrite = document.getElementById('sonoreS2');
             }
-            if (i == 19) {
+            if (lc==="r" || lc==="R") {
                 containerWrite = document.getElementById('vibranti2');
             }
-            if (i >= 20 && i <= 21) {
+            if (lc==="l" || lc==="ʎ") {
                 containerWrite = document.getElementById('nonVibranti2');
             }
-            if (i >= 22 && i <= 23) {
+            if (lc==="j" || lc==="w") {
                 containerWrite = document.getElementById('semiConsonanti2');
             }
             let div = document.createElement('div');
@@ -1760,14 +2782,14 @@ function svuotaCampiFon() {
     document.getElementById('semiConsonanti2').innerHTML = "";
 }
 
-function cercaPaziente(value){
+function cercaPaziente(value) {
     let pazienti = document.getElementsByClassName('paziente');
-    value=value.toString();
-    for(let paziente of pazienti){
-        if(paziente.textContent.toLowerCase().includes(value.toLowerCase())){
+    value = value.toString();
+    for (let paziente of pazienti) {
+        if (paziente.textContent.toLowerCase().includes(value.toLowerCase())) {
             paziente.style.display = 'block';
         }
-        else{
+        else {
             paziente.style.display = 'none';
         }
     }

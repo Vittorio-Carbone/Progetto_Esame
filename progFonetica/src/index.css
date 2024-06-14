@@ -24,8 +24,8 @@ body {
   display: flex;
   text-align: center;
   justify-content: space-around;
-  align-items: center; 
-  flex-direction: row; 
+  align-items: center;
+  flex-direction: row;
 }
 
 
@@ -53,6 +53,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
 /* ==============================================================  UTENTI  =============================================================== */
 #utenti {
   padding-top: 20px;
@@ -68,10 +69,12 @@ body {
   font-size: 20pt;
   height: auto;
 }
-audio{
+
+audio {
   z-index: 1;
 }
-#title{
+
+#title {
   z-index: 2;
 }
 
@@ -706,15 +709,18 @@ tbody>tr:hover {
 
 .form-row input[type="radio"] {
   /* /* margin-right: 1px; */
-  margin-left: 15px; 
+  margin-left: 15px;
 }
+
 @media screen and (max-width: 600px) {
+
   .form-row input[type="radio"],
   .form-row span {
     display: block;
     margin-bottom: 5px;
   }
 }
+
 .corretto {
   color: rgb(151, 252, 0);
   font-weight: bold;
@@ -740,7 +746,7 @@ tbody>tr:hover {
   margin-top: 30px;
 }
 
-#generate-pdf{
+#generate-pdf {
   margin: 0px auto !important;
   padding: 10px;
   font-size: 15pt;
@@ -753,27 +759,40 @@ tbody>tr:hover {
     cursor: pointer;
   }
 }
-#divCharMesi{
+
+#divCharMesi {
   margin-top: 30px;
 
 }
+
 .slcBox {
-  font-size: 16px; /* Dimensione del testo */
-  padding: 10px 20px; /* Spaziatura interna */
-  border-radius: 20px; /* Bordi arrotondati */
-  border: 2px solid #007BFF; /* Colore del bordo */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
-  background-color: white; /* Colore di sfondo */
-  cursor: pointer; /* Cambia il cursore in una mano per indicare che è cliccabile */
-  outline: none; /* Rimuove il contorno quando è selezionato */
-  transition: all 0.3s ease; /* Transizione fluida per hover e focus */
+  font-size: 16px;
+  /* Dimensione del testo */
+  padding: 10px 20px;
+  /* Spaziatura interna */
+  border-radius: 20px;
+  /* Bordi arrotondati */
+  border: 2px solid #007BFF;
+  /* Colore del bordo */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* Ombra leggera */
+  background-color: white;
+  /* Colore di sfondo */
+  cursor: pointer;
+  /* Cambia il cursore in una mano per indicare che è cliccabile */
+  outline: none;
+  /* Rimuove il contorno quando è selezionato */
+  transition: all 0.3s ease;
+  /* Transizione fluida per hover e focus */
 }
-#searcBox{
+
+#searcBox {
   text-align: center;
   width: 100%;
   font-size: 28px;
   margin-bottom: 15px;
 }
+
 #cercaPazienti {
   width: 300px;
   padding: 12px 15px;
@@ -800,11 +819,15 @@ tbody>tr:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.slcBox:hover, .slcBox:focus {
-  border-color: #0056b3; /* Cambia il colore del bordo quando si passa sopra o si seleziona */
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra più pronunciata per hover e focus */
+.slcBox:hover,
+.slcBox:focus {
+  border-color: #0056b3;
+  /* Cambia il colore del bordo quando si passa sopra o si seleziona */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  /* Ombra più pronunciata per hover e focus */
 }
-#btnScheda{
+
+#btnScheda {
   padding: 10px;
   font-size: 13pt;
   border-radius: 10px;
@@ -817,28 +840,31 @@ tbody>tr:hover {
 }
 
 /* Stile base per il checkbox */
-.chkboxForm input[type="checkbox"] {
+input[type="checkbox"] {
   -webkit-appearance: none;
-  appearance: none;
-  background-color: #f0f0f0;
-  margin: 0;
-  font: inherit;
-  color: currentColor;
-  min-width: 50px !important; 
-  min-height: 50px !important; 
-  border: 2px solid #555;
+  width: 20px;
+  height: 20px;
+  background: white;
   border-radius: 5px;
-  transform: translateY(-0.075em);
-  display: inline-block;
-  place-content: center;
+  border: 2px solid #555;
+  margin-top: -4px;
 }
 
 /* Quando il checkbox è selezionato */
-.chkboxForm input[type="checkbox"]:checked {
-  background-color: #007bff;
-  border-color: #007bff;
+input[type="checkbox"]:checked {
+  background-color: #5dba70;
+  border-color: #479860;
 }
+
 /* Aggiungi una transizione per un effetto morbido al cambio */
-.chkboxForm input[type="checkbox"] {
+input[type="checkbox"] {
   transition: background-color 0.3s, border-color 0.3s;
+}
+
+.containerChk {
+  display: flex;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 15pt;
+  margin-bottom: 10px;
 }

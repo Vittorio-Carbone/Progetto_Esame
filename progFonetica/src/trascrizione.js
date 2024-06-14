@@ -7,10 +7,10 @@ noAccentate = ['a', 'i', 'e', 'e', 'o', 'u'];
 // fonemi = ['ʎ:a', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃo', 'ʃa', 'ʃu', 'ʎ:i','ʃe', 'ʃi', 'tʃa', 'tʃo', 'tʃu', 'dʒa', 'dʒo', 'dʒu', 'ɲ:', 'tʃe',  'tʃi',  'dʒe', 'dʒi', 'a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k','k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', '', 'dʒ', 'i' ]
 scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
 fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
-scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi", "q"]
-fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui", "k"]
+scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi","cq", "q"]
+fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui","k:" ,"k"]
 scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge"]
-fonemiPrima = ["tʃ:e", "tʃ:", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
+fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
 
 
 trascritto = "";
@@ -132,8 +132,8 @@ $(document).ready(function () {
             //Controllo della Z
             if (daTra.startsWith("z")) {
                 console.log("inizia con z: " + daTra);
-                daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("z", 'ʣ'));
-                daTra = daTra.replace("z", 'ʣ')
+                daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("z", '§§'));
+                daTra = daTra.replace("z", '§§')
             }
             if (daTra.includes("z")) {
                 console.log("metà con z: " + daTra);
@@ -141,6 +141,8 @@ $(document).ready(function () {
                 daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll("z", "ts:")
 
             }
+            daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("§§", 'dz:'));
+            daTra = daTra.replace("§§", 'dz:')
             // //Controllo della S
             // if ( daTra.includes("st") || daTra.includes("sc")||
             //     daTra.includes("sp") || daTra.includes("sf") || daTra.includes("sq")){
@@ -184,8 +186,8 @@ $(document).ready(function () {
 
             if (daTra.includes("s")) {
                 if (daTra.startsWith("s")) {
-                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/s(?!([tpcfqaeiou:]))/g, 'z'));
-                    daTra = daTra.replace(/g(?!([tpcfqaeiou:]))/g, 'z')
+                    daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/s(?!([tpcfqaeiouj:]))/g, 'z'));
+                    daTra = daTra.replace(/g(?!([tpcfqaeiouj:]))/g, 'z')
                 }
                 daTrascrivere = daTrascrivere.replaceAll(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z'));
                 daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z')
