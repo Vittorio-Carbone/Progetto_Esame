@@ -2657,7 +2657,7 @@ function caricaPosizioni(numMese) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /t(?![sʃ])/gi;
-                        let corrispondenze = parola.match(regex);
+                        let corrispondenze = parola.substring(1,parola.length).match(regex);
                         nT= corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nT;
                     }
@@ -2667,7 +2667,7 @@ function caricaPosizioni(numMese) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /(?<!t)s/g;
-                        let corrispondenze = parola.match(regex);
+                        let corrispondenze = parola.substring(1,parola.length).match(regex);
                         nS= corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nS;
                     }
@@ -2677,7 +2677,7 @@ function caricaPosizioni(numMese) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /(?<!d)z/g;
-                        let corrispondenze = parola.match(regex);
+                        let corrispondenze = parola.substring(1,parola.length).match(regex);
                         nZ= corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nZ;
                     }
