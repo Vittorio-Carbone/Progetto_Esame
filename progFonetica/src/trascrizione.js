@@ -192,8 +192,21 @@ $(document).ready(function () {
                 daTrascrivere = daTrascrivere.replaceAll(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z'));
                 daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z')
 
+                if(daTrascrivere.includes("zw")){
+                    daTrascrivere = daTrascrivere.replace("zwa", "swa");
+                    daTra = daTra.replace("zwa", 'swa')
+                    daTrascrivere = daTrascrivere.replace("zwe", "swe");
+                    daTra = daTra.replace("zwe", 'swe')
+                    daTrascrivere = daTrascrivere.replace("zwi", "swi");
+                    daTra = daTra.replace("zwi", 'swi')
+                    daTrascrivere = daTrascrivere.replace("zwo", "swo");
+                    daTra = daTra.replace("zwo", 'swo')
+                    daTrascrivere = daTrascrivere.replace("zwu", "swu");
+                    daTra = daTra.replace("zwu", 'swu')
+                }
+                
             }
-
+            
             //controllo delle C
             if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch")) {
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("ca", "ka"));
@@ -214,7 +227,7 @@ $(document).ready(function () {
                 // daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/c(?!([hau]))/g, ''));
                 // daTra = daTra.replace(/c(?!([hau]))/g, '')
             }
-        }
+            }
 
         for (let i = 0; i < scrittaDopo.length; i++) {
             if (daTrascrivere.includes(scrittaDopo[i])) {
@@ -223,8 +236,8 @@ $(document).ready(function () {
         }
         daTrascrivere = daTrascrivere.replaceAll("::", ":");
         trascritto = daTrascrivere;
-
-
+        
+        
     }
     function isZAtMiddle(word) {
         var middleIndex = Math.floor(word.length / 2);
