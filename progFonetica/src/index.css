@@ -39,8 +39,9 @@ body {
   font-size: 16px;
   outline: none;
   transition: border-color 0.3s ease;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
   font-family: Arial, sans-serif;
+  border-radius: 15px;
 }
 
 .inputTxt:focus {
@@ -64,7 +65,7 @@ body {
   /* Aggiunto */
   justify-content: center;
   align-items: center;
-  margin-top: 140px;
+  /* margin-top: 140px; */
   text-align: center;
   font-size: 20pt;
   height: auto;
@@ -278,7 +279,7 @@ audio {
 
 /* ==============================================================  TABLE  =============================================================== */
 #utente {
-  margin-top: 140px;
+  /* margin-top: 140px; */
 }
 
 #closePazTab {
@@ -475,7 +476,7 @@ tbody>tr:hover {
 #schedaUtente {
   width: 70%;
   margin: 0px auto;
-  margin-top: 140px;
+  /* margin-top: 140px; */
 }
 
 #schedaNome {
@@ -867,4 +868,42 @@ input[type="checkbox"] {
   font-family: Arial, sans-serif;
   font-size: 15pt;
   margin-bottom: 10px;
+}
+
+
+
+/* TASTIERA */
+#tastiera {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  width: 100%;
+  
+}
+.divTasti{
+  width: 33% !important;
+}
+#tasti{
+  display: flex;
+  align-items: left;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  gap: 1.5rem;
+}
+
+.tasto{
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 17pt;
+  font-weight: bold;
+  
+  &:hover{
+    background-color: #e7e7e7;
+    cursor: pointer;
+  }
 }

@@ -283,10 +283,12 @@ function mese(nMese) {
             trascrizioniMesi.appendChild(frasiMese);
 
         }
-    }
+    } 
+    document.getElementById('containerForm').style.display = 'block';
 
     if (i == 0) {
         document.getElementById('trascrizioniMesi').innerHTML = 'NON CI SONO TRASCRIZIONI PER QUESTO MESE';
+        document.getElementById('containerForm').style.display = 'none';
     }
 
 

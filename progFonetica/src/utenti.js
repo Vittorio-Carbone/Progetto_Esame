@@ -703,4 +703,16 @@ $(document).ready(function () {
         if (mese === "dicembre") return 12;
         return -1;
     }
+
+
+
+
+
+    $(".tasto").on("click", function () {
+        let fonema=$(this).text();
+        console.log(fonema);
+        let frase = $("#outputTrascritto").val();
+        frase += fonema;
+        $("#outputTrascritto").val(frase);
+    });
 });

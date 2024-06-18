@@ -27,11 +27,11 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" 
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="loris"
             required>
           <div>
             <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
-             required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
+              value="password" required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
           </div>
         </form>
         <div class="txtErrore" id="errAcc">Utente non trovato</div>
@@ -82,7 +82,9 @@
       <button id="btnSalvaPaz" class="btnSalva">Salva</button>
     </div>
     <div id="utenti">
-      <div id="logOut"><div id="nomeLogop"></div><i id="logOutClick" class="fa-solid fa-right-from-bracket"></i></div><br><br>
+      <div id="logOut">
+        <div id="nomeLogop"></div><i id="logOutClick" class="fa-solid fa-right-from-bracket"></i>
+      </div><br><br>
       <div id="searcBox">Cerca paziente: <input type="text" id="cercaPazienti" placeholder="Cerca un paziente..."></div>
       <br><br>
       <div class="divAgg">
@@ -108,7 +110,22 @@
         <button id="btnInvia" class="btnSalva">Trascrivi</button> <br><br>
         <textarea type="text" class="inputTxt" id="outputTrascritto"></textarea>
       </div>
-      <button class="btnSalva" id="btnSalvaTrascrizione" style="margin: 25px 0px;">Salva trascrizione</button>
+      <div id="tastiera">
+        <div class="divTasti">
+
+        </div>
+        <div class="divTasti">
+
+          <button class="btnSalva" id="btnSalvaTrascrizione" style="margin: 25px 0px;">Salva trascrizione</button>
+        </div>
+        <div class="divTasti" id="tasti">
+          <button class="tasto">ɲ:</button>
+          <button class="tasto">ʎ:</button>
+          <button class="tasto">ʃ</button>
+          <button class="tasto">ʒ</button>
+          
+        </div>
+      </div>
       <br><br><button id="btnScheda">Vai alla scheda del paziente</button>
       <input type="text" id="idPaziente" style="display: none;">
       <table id="tableTrascrizioni">
@@ -167,9 +184,9 @@
         <div class="mese" id="11">Novembre</div>
         <div class="mese" id="12">Dicembre</div>
       </div>
+      <div id="meseTrasc"></div>
+      <div id="trascrizioniMesi"></div>
       <div id="containerForm">
-        <div id="meseTrasc"></div>
-        <div id="trascrizioniMesi"></div>
         <div style="display: flex; gap: 4rem;">
           <div class="form-container" style="display: none;">
             <div class="component-header">
@@ -551,6 +568,7 @@
 
         <div id="divCharMesi" class="no-break">
           <div class="escludiPrint">
+            <span style="font-size: 18pt;">Grafico dei fonemi su più mesi:</span><br><br>
             <label for="mese1" style="font-size: 17pt;">Primo Mese:</label>
             <select id="mese1" class="slcBox">
               <option value="0">Gennaio</option>
@@ -586,8 +604,9 @@
           <canvas id="chartGruppi1" class="no-break"></canvas>
           <span id="jsonGruppi" style="display: none;"></span>
         </div>
-        <div style="margin-top: 40px;" >
+        <div style="margin-top: 40px;">
           <div id="divMesiGrou">
+            <span style="font-size: 18pt;">Grafico dei gruppi consonantici su più mesi:</span><br><br>
             <label for="mese12" style="font-size: 17pt;">Primo Mese:</label>
             <select id="mese12" class="slcBox">
               <option value="0">Gennaio</option>
