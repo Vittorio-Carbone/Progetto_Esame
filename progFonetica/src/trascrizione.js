@@ -208,7 +208,8 @@ $(document).ready(function () {
             }
             
             //controllo delle C
-            if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch")) {
+            if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch")||
+            daTra.includes("cw") ) {
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("ca", "ka"));
                 daTra = daTra.replaceAll("ca", "ka")
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("co", "ko"));
@@ -221,6 +222,8 @@ $(document).ready(function () {
                 daTra = daTra.replaceAll("cr", "kr")
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("cl", "kl"));
                 daTra = daTra.replaceAll("cl", "kl")
+                daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("cw", "kw"));
+                daTra = daTra.replaceAll("cw", "kw")
             }
             if (daTra.includes("c")) {
                 // TOGLIE TUTTE LE C CHE NON SONO SEGUITE DA H A U 
