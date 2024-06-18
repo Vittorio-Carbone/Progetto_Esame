@@ -662,6 +662,8 @@ $(document).ready(function () {
 
     $("#btnEsciScheda").click(function () {
         document.getElementById("containerForm").style.display = "none";
+        document.getElementById("meseTrasc").style.display = "none";
+        document.getElementById("trascrizioniMesi").style.display = "none";
         if (chartJS2) {
             chartJS2 = false;
             myChart2.destroy();

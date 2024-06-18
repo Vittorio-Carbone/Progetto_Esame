@@ -285,6 +285,8 @@ function mese(nMese) {
         }
     } 
     document.getElementById('containerForm').style.display = 'block';
+    document.getElementById("meseTrasc").style.display = "block";
+    document.getElementById("trascrizioniMesi").style.display = "block";
 
     if (i == 0) {
         document.getElementById('trascrizioniMesi').innerHTML = 'NON CI SONO TRASCRIZIONI PER QUESTO MESE';
