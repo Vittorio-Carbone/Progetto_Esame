@@ -36,7 +36,7 @@ const createWindow = () => {
 
   // Disabilita l'apertura automatica degli strumenti di sviluppo (devtools)
   mainWindow.webContents.on('devtools-opened', () => {
-    // mainWindow.webContents.closeDevTools();
+    mainWindow.webContents.closeDevTools();
   });
 
 

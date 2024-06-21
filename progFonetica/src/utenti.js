@@ -95,6 +95,15 @@ $(document).ready(function () {
             let jsonChar = JSON.parse($("#spanJson").text());
             let maxMed = Math.max(...jsonChar.fonMed);
             let maxIniz = Math.max(...jsonChar.fonIniz);
+            // m 4
+            // n 7
+            // s 14
+            // l 12
+            // r 13
+            // z 15
+            let nConsonanti=calcolaNCons();
+            console.log(nConsonanti);
+            
             let max = Math.max(maxMed, maxIniz);
             jsonChar.testo = jsonChar.testo.map(elemento => {
                 return elemento.replace("r", "r o R");
@@ -149,55 +158,7 @@ $(document).ready(function () {
             }
 
 
-            let data = 0;
-            let nMese = document.getElementById('numMese').value;
-            let jsonGruppi = JSON.parse($("#jsonGruppi").text());
-            let gruppiCons = ["m", "n", "s", "z", "r", "l"]
-            let gruppiConsWr = ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"]
-            let nCons = [0, 0, 0, 0, 0, 0];
-            for (let tras of jsonGruppi) {
-                data = tras.data.split("/");
-                if (data[1] === nMese) {
-                    for (let [i, gruppo] of gruppiCons.entries()) {
-                        let nlett = contaLettere(tras.trascritto, gruppo);
-                        nCons[i] += nlett;
-                    }
-                }
-            }
-
-            const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
-            let consonanti= "bcdfghjklmnpqrstvwxyz";
-            let index = -1;
-            let countL=0;
-            for (let tras of jsonGruppi) {
-                let frase = tras.trascritto;
-                data = tras.data.split("/");
-                if (data[1] === nMese) {
-                    for (let prefisso of prefissi) {
-                        if (prefisso != "al ") {
-                            do {
-                                index = frase.indexOf(prefisso, index + 1);
-                                if (index != -1) {
-                                    if(consonanti.includes(frase[index + prefisso.length])){
-                                        countL++;
-                                    }
-                                }
-                            } while (index != -1);
-                        }
-                        if (prefisso == "al ") {
-                            do {
-                                index = frase.indexOf(prefisso, index + 1);
-                                if (index != -1 && frase[index - 1] != "d") {
-                                    if(consonanti.includes(frase[index + prefisso.length])){
-                                        countL++;
-                                    }
-                                }
-                            } while (index != -1);
-                        }
-                    }
-                }
-            }
-            nCons[5] = countL;
+            let nCons=calcolaNCons();
 
 
 
@@ -210,7 +171,7 @@ $(document).ready(function () {
             } else {
                 chartJS4 = true;
                 const data = {
-                    labels: gruppiConsWr,
+                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"],
                     datasets: [{
                         label: "Gruppi consonantici presenti",
                         data: nCons,
@@ -574,7 +535,6 @@ $(document).ready(function () {
 
             let dataset = [];
             let letters = ["m", "n", "s", "z", "r", "l"]
-            let gruppiConsWr = ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"]
             let tras;
             for (let i = n1; i <= n2; i++) {
                 let posizioni = [0, 0, 0, 0, 0, 0];
@@ -615,7 +575,7 @@ $(document).ready(function () {
             } else {
                 chartJS5 = true;
                 const data = {
-                    labels: gruppiConsWr,
+                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"],
                     datasets: dataset
                 };
 
@@ -754,4 +714,83 @@ $(document).ready(function () {
         frase += fonema;
         $("#outputTrascritto").val(frase);
     });
+
+
+
+    function calcolaNCons(){
+        let data = 0;
+        let nMese = document.getElementById('numMese').value;
+        let jsonGruppi = JSON.parse($("#jsonGruppi").text());
+        let gruppiCons = ["m", "n", "s", "z", "r", "l"]
+        let nCons = [0, 0, 0, 0, 0, 0];
+        for (let tras of jsonGruppi) {
+            data = tras.data.split("/");
+            if (data[1] === nMese) {
+                for (let [i, gruppo] of gruppiCons.entries()) {
+                    let nlett = contaLettere(tras.trascritto, gruppo);
+                    nCons[i] += nlett;
+                }
+            }
+        }
+
+        const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+        let consonanti= "bcdfghjklmnpqrstvwxyz";
+        let index = -1;
+        let countL=0;
+        for (let tras of jsonGruppi) {
+            let frase = tras.trascritto;
+            data = tras.data.split("/");
+            if (data[1] === nMese) {
+                for (let prefisso of prefissi) {
+                    if (prefisso != "al ") {
+                        do {
+                            index = frase.indexOf(prefisso, index + 1);
+                            if (index != -1) {
+                                if(consonanti.includes(frase[index + prefisso.length])){
+                                    countL++;
+                                }
+                            }
+                        } while (index != -1);
+                    }
+                    if (prefisso == "al ") {
+                        do {
+                            index = frase.indexOf(prefisso, index + 1);
+                            if (index != -1 && frase[index - 1] != "d") {
+                                if(consonanti.includes(frase[index + prefisso.length])){
+                                    countL++;
+                                }
+                            }
+                        } while (index != -1);
+                    }
+                }
+            }
+        }
+        nCons[5] = countL;
+
+
+        function contaLettere(frase, gruppo) {
+            let count = 0;
+            const consonanti = "bcdfghjklmnpqrstvwxyz";
+            const vocali = "aeiou";
+            if (gruppo !== "r") {
+                for (let i = 0; i < frase.length - 1; i++) {
+                    if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
+                        count++;
+                    }
+                }
+            } else {
+                if (frase.startsWith("r") && consonanti.includes(frase[1])) {
+                    count++;
+                }
+                for (let i = 1; i < frase.length - 1; i++) {
+                    if ((frase[i] === gruppo && consonanti.includes(frase[i + 1])) || (frase[i] === gruppo && consonanti.includes(frase[i - 1]))) {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
+        return nCons;
+    }
 });
