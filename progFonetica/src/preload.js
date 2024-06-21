@@ -2621,6 +2621,7 @@ function caricaPosizioni(numMese) {
 
     let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    const consonanti = "bcdfghjklmnpqrstvwxyz";
     let _id = document.getElementById('idPaziente').value;
     let tras;
     for (let trascritto of users[idUser]["pazienti"][_id]["reg"]) {

@@ -7,8 +7,8 @@ noAccentate = ['a', 'i', 'e', 'e', 'o', 'u'];
 // fonemi = ['ʎ:a', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃo', 'ʃa', 'ʃu', 'ʎ:i','ʃe', 'ʃi', 'tʃa', 'tʃo', 'tʃu', 'dʒa', 'dʒo', 'dʒu', 'ɲ:', 'tʃe',  'tʃi',  'dʒe', 'dʒi', 'a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k','k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', '', 'dʒ', 'i' ]
 scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
 fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
-scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi","cq", "q"]
-fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui","k:" ,"k"]
+scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi","cq", "q","i:","z'e"]
+fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui","k:" ,"k","ij","s'e"]
 scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge"]
 fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
 
