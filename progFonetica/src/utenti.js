@@ -1,7 +1,7 @@
 
 
 $(document).ready(function () {
-    let colori="";
+    let colori = "";
     let divUtenti = $("#utenti");
     let divAddPaz = $("#formPaz").hide();
     let divUtente = $("#utente").hide();
@@ -164,6 +164,43 @@ $(document).ready(function () {
                     }
                 }
             }
+
+            const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+            let consonanti= "bcdfghjklmnpqrstvwxyz";
+            let index = -1;
+            let countL=0;
+            for (let tras of jsonGruppi) {
+                let frase = tras.trascritto;
+                data = tras.data.split("/");
+                if (data[1] === nMese) {
+                    for (let prefisso of prefissi) {
+                        if (prefisso != "al ") {
+                            do {
+                                index = frase.indexOf(prefisso, index + 1);
+                                if (index != -1) {
+                                    if(consonanti.includes(frase[index + prefisso.length])){
+                                        countL++;
+                                    }
+                                }
+                            } while (index != -1);
+                        }
+                        if (prefisso == "al ") {
+                            do {
+                                index = frase.indexOf(prefisso, index + 1);
+                                if (index != -1 && frase[index - 1] != "d") {
+                                    if(consonanti.includes(frase[index + prefisso.length])){
+                                        countL++;
+                                    }
+                                }
+                            } while (index != -1);
+                        }
+                    }
+                }
+            }
+            nCons[5] = countL;
+
+
+
             let maxCons = Math.max(...nCons);
             if (chartJS4) {
                 myChart4.data.datasets[0].data = nCons;
@@ -306,42 +343,42 @@ $(document).ready(function () {
                                 }
                                 if (lettera == "d") {
                                     let nD;
-                                    if(parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")){
+                                    if (parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")) {
                                         posIn[i]++;
                                     }
                                     let regex = /d(?![zʒ])/gi;
-                                    let corrispondenze = parola.substring(1,parola.length).match(regex);
-                                    nD= corrispondenze ? corrispondenze.length : 0;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nD = corrispondenze ? corrispondenze.length : 0;
                                     posMed[i] += nD;
                                 }
-                                if(lettera=="t"){
+                                if (lettera == "t") {
                                     let nT;
-                                    if(parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")){
+                                    if (parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")) {
                                         posIn[i]++;
                                     }
                                     let regex = /t(?![sʃ])/gi;
-                                    let corrispondenze = parola.substring(1,parola.length).match(regex);
-                                    nT= corrispondenze ? corrispondenze.length : 0;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nT = corrispondenze ? corrispondenze.length : 0;
                                     posMed[i] += nT;
                                 }
-                                if(lettera=="s"){
+                                if (lettera == "s") {
                                     let nS;
-                                    if(parola.startsWith("s") ){
+                                    if (parola.startsWith("s")) {
                                         posIn[i]++;
                                     }
                                     let regex = /(?<!t)s/g;
-                                    let corrispondenze = parola.substring(1,parola.length).match(regex);
-                                    nS= corrispondenze ? corrispondenze.length : 0;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
                                     posMed[i] += nS;
                                 }
-                                if(lettera=="z"){
+                                if (lettera == "z") {
                                     let nZ;
-                                    if(parola.startsWith("z")){
+                                    if (parola.startsWith("z")) {
                                         posIn[i]++;
                                     }
                                     let regex = /(?<!d)z/g;
-                                    let corrispondenze = parola.substring(1,parola.length).match(regex);
-                                    nZ= corrispondenze ? corrispondenze.length : 0;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nZ = corrispondenze ? corrispondenze.length : 0;
                                     posMed[i] += nZ;
                                 }
                             }
@@ -637,14 +674,14 @@ $(document).ready(function () {
     function getRandomColor() {
         let letters = '0123456789ABCDEF';
         let color;
-        do{
+        do {
             color = '#';
             for (let i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
 
-        }while(colori.includes(color))
-        colori+=color;
+        } while (colori.includes(color))
+        colori += color;
         return color;
     }
 
@@ -711,7 +748,7 @@ $(document).ready(function () {
 
 
     $(".tasto").on("click", function () {
-        let fonema=$(this).text();
+        let fonema = $(this).text();
         console.log(fonema);
         let frase = $("#outputTrascritto").val();
         frase += fonema;

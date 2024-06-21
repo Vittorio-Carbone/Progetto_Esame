@@ -75,7 +75,6 @@ $(document).ready(function () {
         trascritto = trascritto.toLowerCase();
         // let daTrascrivere: any = trascritto.split(" ");
         let daTrascrivere = trascritto;
-        console.log(daTrascrivere);
         trascritto = "";
         for (let i = 0; i < scritta.length; i++) {
             if (daTrascrivere.includes(scritta[i])) {
@@ -88,7 +87,6 @@ $(document).ready(function () {
         console.log(daTrascrivere2)
         for (let daTra of daTrascrivere2) {
             // for (let i = 0; i < scritta.length; i++) {
-            console.log(daTra);
             // Controllo delle I
             if (daTra.includes("ia") || daTra.includes("ie") || daTra.includes("io") || daTra.includes("iu")) {
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("ia", "ja"));
@@ -131,12 +129,10 @@ $(document).ready(function () {
             }
             //Controllo della Z
             if (daTra.startsWith("z")) {
-                console.log("inizia con z: " + daTra);
                 daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("z", '§§'));
                 daTra = daTra.replace("z", '§§')
             }
             if (daTra.includes("z")) {
-                console.log("metà con z: " + daTra);
                 daTrascrivere = daTrascrivere.replaceAll(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replaceAll("z", "ts:"));
                 daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll("z", "ts:")
 

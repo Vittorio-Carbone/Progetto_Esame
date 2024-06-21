@@ -2691,6 +2691,7 @@ function caricaPosizioni(numMese) {
         }
     }
     function countLetters(str, letters) {
+        const consonanti = "bcdfghjklmnpqrstvwxyz";
         let count = 0;
         if (letters.length === 1) {
             for (let i = 0; i < str.length; i++) {
