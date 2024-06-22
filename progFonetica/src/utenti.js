@@ -98,12 +98,18 @@ $(document).ready(function () {
             // m 4
             // n 7
             // s 14
-            // l 12
-            // r 13
             // z 15
-            let nConsonanti=calcolaNCons();
-            console.log(nConsonanti);
-            
+            // r 13
+            // l 12
+            let nConsonanti = calcolaNCons();
+            jsonChar.fonMed[4] = jsonChar.fonMed[4] - nConsonanti.nConsMed[0];
+            jsonChar.fonMed[7] = jsonChar.fonMed[7] - nConsonanti.nConsMed[1];
+            jsonChar.fonMed[14] = jsonChar.fonMed[14] - nConsonanti.nConsMed[2];
+            jsonChar.fonMed[15] = jsonChar.fonMed[15] - nConsonanti.nConsMed[3];
+            jsonChar.fonMed[13] = jsonChar.fonMed[13] - nConsonanti.nConsMed[4];
+            jsonChar.fonMed[12] = jsonChar.fonMed[12] - nConsonanti.nConsMed[5];
+            jsonChar.fonIniz[14] = jsonChar.fonIniz[14] - nConsonanti.nConsIni[2];
+
             let max = Math.max(maxMed, maxIniz);
             jsonChar.testo = jsonChar.testo.map(elemento => {
                 return elemento.replace("r", "r o R");
@@ -158,7 +164,11 @@ $(document).ready(function () {
             }
 
 
-            let nCons=calcolaNCons();
+            let nConsMedIni = calcolaNCons();
+            //sommo i valori dei due vettori paralleli
+            let nCons = nConsMedIni.nConsIni.map((elemento, indice) => {
+                return elemento + nConsMedIni.nConsMed[indice];
+            });
 
 
 
@@ -248,7 +258,6 @@ $(document).ready(function () {
             let n1 = numMese(mesi[0]);
             let n2 = numMese(mesi[1]);
             let n = n2 - n1 + 1;
-            console.log("Numero mesi: " + n);
             barLarge = 10;
             if (n === 2) {
                 barLarge = 13;
@@ -358,6 +367,27 @@ $(document).ready(function () {
                 if (maxBet > maxAssoluto) {
                     maxAssoluto = maxBet;
                 }
+                // m 4
+                // n 7
+                // s 14
+                // z 15
+                // r 13
+                // l 12
+                let jsonG = calcolaGruppiConsMesi(i, jsonChar);
+                posIn[4] = posIn[4] - jsonG.gruppiIni[0];
+                posIn[7] = posIn[7] - jsonG.gruppiIni[1];
+                posIn[14] = posIn[14] - jsonG.gruppiIni[2];
+                posIn[15] = posIn[15] - jsonG.gruppiIni[3];
+                posIn[13] = posIn[13] - jsonG.gruppiIni[4];
+                posIn[12] = posIn[12] - jsonG.gruppiIni[5];
+                posMed[4] = posMed[4] - jsonG.gruppiMed[0];
+                posMed[7] = posMed[7] - jsonG.gruppiMed[1];
+                posMed[14] = posMed[14] - jsonG.gruppiMed[2];
+                posMed[15] = posMed[15] - jsonG.gruppiMed[3];
+                posMed[13] = posMed[13] - jsonG.gruppiMed[4];
+                posMed[12] = posMed[12] - jsonG.gruppiMed[5];
+                
+
                 //dividi i vettori
                 let midIndex = Math.ceil(posIn.length / 2);
                 let firstIn = posIn.slice(0, midIndex);
@@ -717,26 +747,38 @@ $(document).ready(function () {
 
 
 
-    function calcolaNCons(){
+    function calcolaNCons() {
         let data = 0;
         let nMese = document.getElementById('numMese').value;
         let jsonGruppi = JSON.parse($("#jsonGruppi").text());
         let gruppiCons = ["m", "n", "s", "z", "r", "l"]
-        let nCons = [0, 0, 0, 0, 0, 0];
+        let nConsIni = [0, 0, 0, 0, 0, 0];
+        let nConsMed = [0, 0, 0, 0, 0, 0];
+        let consonanti = "bcdfghjklmnpqrstvwxyz";
         for (let tras of jsonGruppi) {
             data = tras.data.split("/");
             if (data[1] === nMese) {
                 for (let [i, gruppo] of gruppiCons.entries()) {
-                    let nlett = contaLettere(tras.trascritto, gruppo);
-                    nCons[i] += nlett;
+                    if (gruppo == "s") {
+                        let parole = tras.trascritto.split(" ");
+                        for (let parola of parole) {
+                            if (parola.startsWith("s") && consonanti.includes(parola[1])) {
+                                nConsIni[i]++;
+                            }
+                            let nlett = contaLettere(parola.substring(1, parola.length), gruppo);
+                            nConsMed[i] += nlett;
+                        }
+                    } else {
+                        let nlett = contaLettere(tras.trascritto, gruppo);
+                        nConsMed[i] += nlett;
+                    }
                 }
             }
         }
 
         const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
-        let consonanti= "bcdfghjklmnpqrstvwxyz";
         let index = -1;
-        let countL=0;
+        let countL = 0;
         for (let tras of jsonGruppi) {
             let frase = tras.trascritto;
             data = tras.data.split("/");
@@ -746,7 +788,7 @@ $(document).ready(function () {
                         do {
                             index = frase.indexOf(prefisso, index + 1);
                             if (index != -1) {
-                                if(consonanti.includes(frase[index + prefisso.length])){
+                                if (consonanti.includes(frase[index + prefisso.length])) {
                                     countL++;
                                 }
                             }
@@ -756,7 +798,7 @@ $(document).ready(function () {
                         do {
                             index = frase.indexOf(prefisso, index + 1);
                             if (index != -1 && frase[index - 1] != "d") {
-                                if(consonanti.includes(frase[index + prefisso.length])){
+                                if (consonanti.includes(frase[index + prefisso.length])) {
                                     countL++;
                                 }
                             }
@@ -765,7 +807,12 @@ $(document).ready(function () {
                 }
             }
         }
-        nCons[5] = countL;
+        nConsMed[5] = countL;
+
+        let nCons = {
+            nConsIni,
+            nConsMed
+        }
 
 
         function contaLettere(frase, gruppo) {
@@ -792,5 +839,65 @@ $(document).ready(function () {
         }
 
         return nCons;
+    }
+
+
+
+
+    function calcolaGruppiConsMesi(i, json) {
+        let gruppiCons = ["m", "n", "s", "z", "r", "l"]
+        let gruppiIni = [0, 0, 0, 0, 0, 0];
+        let gruppiMed = [0, 0, 0, 0, 0, 0];
+        let consonanti = "bcdfghjklmnpqrstvwxyz";
+        for(let frase of json){
+            let data = frase.data.split("/");
+            if(data[1] == i){
+                for(let [j, gruppo] of gruppiCons.entries()){
+                    if(gruppo == "s"){
+                        let parole = frase.trascritto.split(" ");
+                        for(let parola of parole){
+                            if(parola.startsWith("s") && consonanti.includes(parola[1])){
+                                gruppiIni[j]++;
+                            }
+                            let nlett = contaLettere(parola.substring(1, parola.length), gruppo);
+                            gruppiMed[j] += nlett;
+                        }
+                    }else{
+                        let nlett = contaLettere(frase.trascritto, gruppo);
+                        gruppiMed[j] += nlett;
+                    }
+                }
+            }
+        }
+
+
+        function contaLettere(frase, gruppo) {
+            let count = 0;
+            const consonanti = "bcdfghjklmnpqrstvwxyz";
+            const vocali = "aeiou";
+            if (gruppo !== "r") {
+                for (let i = 0; i < frase.length - 1; i++) {
+                    if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
+                        count++;
+                    }
+                }
+            } else {
+                if (frase.startsWith("r") && consonanti.includes(frase[1])) {
+                    count++;
+                }
+                for (let i = 1; i < frase.length - 1; i++) {
+                    if ((frase[i] === gruppo && consonanti.includes(frase[i + 1])) || (frase[i] === gruppo && consonanti.includes(frase[i - 1]))) {
+                        count++;
+                    }
+                }
+            }
+            return count;
+        }
+
+        let jsonGruppi={
+            gruppiIni,
+            gruppiMed
+        }
+        return jsonGruppi
     }
 });
