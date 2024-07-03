@@ -23,62 +23,100 @@ body {
 }
 
 @media print {
-    .escludiPrint{
+    .escludiPrint {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
+
     #title {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
+
     #divMesi {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
-    #btnEsciScheda{
+
+    #btnEsciScheda {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
-    #eliminaPaziente{
+
+    #eliminaPaziente {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
 
     .break-before {
         page-break-before: always;
     }
+
     .no-break {
         break-inside: avoid;
         page-break-inside: avoid;
     }
-    .containerChk{
+
+    .containerChk {
         break-inside: avoid;
         page-break-inside: avoid;
     }
-    #titleChar{
+
+    #titleChar {
         margin-left: -15%;
     }
-    #divCharMesi{
+
+    #divCharMesi {
         margin-left: -15%;
     }
-    #generate-pdf{
+
+    #generate-pdf {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
-    #divMesiGroup{
+
+    #divMesiGroup {
         display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
     }
-    .canvas{
+
+    .canvas {
         margin-left: -17px;
     }
-    #divMesiGrou{
+
+    #divMesiGrou {
         display: none;
-    
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+
     }
-    #chartGruppi1{
+
+    #chartGruppi1 {
         margin-left: -17%;
     }
-    #chartGruppi2{
+
+    #chartGruppi2 {
         margin-left: -17%;
-    
+
     }
 }
 
-#mesiGruppi{
+#mesiGruppi {
     font-size: 20pt;
     font-weight: bold;
     margin-left: 4%;
@@ -387,7 +425,8 @@ hr {
     display: flex;
     justify-content: space-between;
 }
-#logOut>div{
+
+#logOut>div {
     font-size: 23pt;
     font-weight: bold;
 }

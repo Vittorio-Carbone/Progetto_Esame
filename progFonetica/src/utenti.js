@@ -152,6 +152,16 @@ $(document).ready(function () {
                                 beginAtZero: true,
                                 max: max + 2
                             }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
                         }]
                     }
                 };
@@ -204,6 +214,16 @@ $(document).ready(function () {
                                 beginAtZero: true,
                                 max: maxCons + 2
                             }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
                         }]
                     }
                 };
@@ -248,6 +268,7 @@ $(document).ready(function () {
         let mesiS = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
         let maxAssoluto = 0;
         setTimeout(() => {
+            console.log("MESE")
             let jsonChar = JSON.parse($("#spanJsonMesi").text());
             console.log(jsonChar);
             // let maxMed = Math.max(...jsonChar.fonMed);
@@ -283,7 +304,7 @@ $(document).ready(function () {
 
             let dataset1 = [];
             let dataset2 = [];
-            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "ʃ", "ʒ"]
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
             let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             let tras;
@@ -297,7 +318,7 @@ $(document).ready(function () {
                         let parole = tras.split(" ");
                         for (let parola of parole) {
                             for (let [i, lettera] of letters.entries()) {
-                                if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z") {
+                                if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z" && lettera != "ʃ" && lettera != "ʒ") {
                                     if (parola.includes(lettera) && !parola.startsWith(lettera)) {
                                         let nLettere = countLetters(parola, lettera);
                                         // posizioniMedie[i]++;
@@ -310,6 +331,20 @@ $(document).ready(function () {
                                     if (parola.startsWith(lettera)) {
                                         posIn[i]++;
                                     }
+                                }
+                                if (lettera == "ʃ") {
+                                    let nS;
+                                    let regex = /(?<!t)ʃ/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
+                                }
+                                if (lettera == "ʒ") {
+                                    let nS;
+                                    let regex = /(?<!d)ʒ/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
                                 }
                                 if (lettera == "d") {
                                     let nD;
@@ -358,6 +393,66 @@ $(document).ready(function () {
 
                     }
                 }
+
+                const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+                let index = -1;
+                let countL = 0;
+                const consonanti = "bcdfghjklmnpqrstvwxyz";
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    let data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        for (let prefisso of prefissi) {
+                            if (prefisso != "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1) {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                            if (prefisso == "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1 && frase[index - 1] != "d") {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                        }
+                    }
+                }
+                // console.log(countL)
+                posMed[12] -= countL;
+
+
+
+                const prefissiN = ["un ", "in "];
+                let indexN = -1;
+                let countN = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    let data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        for (let prefisso of prefissiN) {
+                            do {
+                                indexN = frase.indexOf(prefisso, indexN + 1);
+                                if (indexN != -1) {
+                                    if (consonanti.includes(frase[indexN + prefisso.length])) {
+                                        countN++;
+                                    }
+                                }
+                            } while (indexN != -1);
+
+                        }
+                    }
+                }
+                posMed[7] -= countN;
+
                 let maxBet
                 if (Math.max(...posIn) > Math.max(...posMed)) {
                     maxBet = Math.max(...posIn);
@@ -386,7 +481,8 @@ $(document).ready(function () {
                 posMed[15] = posMed[15] - jsonG.gruppiMed[3];
                 posMed[13] = posMed[13] - jsonG.gruppiMed[4];
                 posMed[12] = posMed[12] - jsonG.gruppiMed[5];
-                
+
+
 
                 //dividi i vettori
                 let midIndex = Math.ceil(posIn.length / 2);
@@ -491,6 +587,16 @@ $(document).ready(function () {
                                 beginAtZero: true,
                                 max: maxAssoluto + 2
                             }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
                         }]
                     }
                 };
@@ -531,6 +637,16 @@ $(document).ready(function () {
                                 beginAtZero: true,
                                 max: maxAssoluto + 2
                             }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
                         }]
                     }
                 };
@@ -548,6 +664,7 @@ $(document).ready(function () {
     $("#mese22").change(function () {
         let mesiS = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
         let maxAssoluto = 0;
+        const consonanti = "bcdfghjklmnpqrstvwxyz";
         setTimeout(() => {
             let jsonChar = JSON.parse($("#spanJsonMesi").text());
             let mesi = document.getElementById("mesiGruppi").innerHTML.split(" - ");
@@ -578,6 +695,64 @@ $(document).ready(function () {
                         }
                     }
                 }
+                const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+                let index = -1;
+                let countL = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    data = tras.data.split("/");
+                    if (parseInt(data[1]) === i) {
+                        for (let prefisso of prefissi) {
+                            if (prefisso != "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1) {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                            if (prefisso == "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1 && frase[index - 1] != "d") {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                        }
+                    }
+                }
+                posizioni[5] += countL;
+
+
+
+                const prefissiN = ["un ", "in "];
+                let indexN = -1;
+                let countN = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    data = tras.data.split("/");
+                    if (parseInt(data[1]) === i) {
+                        for (let prefisso of prefissiN) {
+                            do {
+                                indexN = frase.indexOf(prefisso, indexN + 1);
+                                if (indexN != -1) {
+                                    if (consonanti.includes(frase[indexN + prefisso.length])) {
+                                        countN++;
+                                    }
+                                }
+                            } while (indexN != -1);
+
+                        }
+                    }
+                }
+                posizioni[1] += countN;
+
+
                 let maxBet = Math.max(...posizioni);
                 if (maxBet > maxAssoluto) {
                     maxAssoluto = maxBet;
@@ -621,6 +796,16 @@ $(document).ready(function () {
                             ticks: {
                                 beginAtZero: true,
                                 max: maxAssoluto + 2
+                            }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
                             }
                         }]
                     }
@@ -768,6 +953,15 @@ $(document).ready(function () {
                             let nlett = contaLettere(parola.substring(1, parola.length), gruppo);
                             nConsMed[i] += nlett;
                         }
+                    } else if (gruppo == "l") {
+                        let parole = tras.trascritto.split(" ");
+                        for (let parola of parole) {
+                            if (parola.startsWith("l") && consonanti.includes(parola[1])) {
+                                nConsIni[i]++;
+                            }
+                            let nlett = contaLettere(parola.substring(1, parola.length), gruppo);
+                            nConsMed[i] += nlett;
+                        }
                     } else {
                         let nlett = contaLettere(tras.trascritto, gruppo);
                         nConsMed[i] += nlett;
@@ -807,7 +1001,31 @@ $(document).ready(function () {
                 }
             }
         }
-        nConsMed[5] = countL;
+        nConsMed[5] += countL;
+
+
+        const prefissiN = ["un ", "in "];
+        let indexN = -1;
+        let countN = 0;
+        for (let tras of jsonGruppi) {
+            let frase = tras.trascritto;
+            data = tras.data.split("/");
+            if (data[1] === nMese) {
+                for (let prefisso of prefissiN) {
+                    do {
+                        indexN = frase.indexOf(prefisso, indexN + 1);
+                        if (indexN != -1) {
+                            if (consonanti.includes(frase[indexN + prefisso.length])) {
+                                countN++;
+                            }
+                        }
+                    } while (indexN != -1);
+
+                }
+            }
+        }
+        nConsMed[1] += countN;
+
 
         let nCons = {
             nConsIni,
@@ -819,18 +1037,29 @@ $(document).ready(function () {
             let count = 0;
             const consonanti = "bcdfghjklmnpqrstvwxyz";
             const vocali = "aeiou";
-            if (gruppo !== "r") {
+            if (gruppo !== "r" && gruppo !== "l") {
                 for (let i = 0; i < frase.length - 1; i++) {
                     if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
                         count++;
                     }
                 }
-            } else {
+            }
+            if (gruppo == "r") {
                 if (frase.startsWith("r") && consonanti.includes(frase[1])) {
                     count++;
                 }
                 for (let i = 1; i < frase.length - 1; i++) {
                     if ((frase[i] === gruppo && consonanti.includes(frase[i + 1])) || (frase[i] === gruppo && consonanti.includes(frase[i - 1]))) {
+                        count++;
+                    }
+                }
+            }
+            if (gruppo == "l") {
+                if (frase.startsWith("l") && consonanti.includes(frase[1])) {
+                    count++;
+                }
+                for (let i = 1; i < frase.length - 1; i++) {
+                    if ((frase[i] === gruppo && consonanti.includes(frase[i + 1]))) {
                         count++;
                     }
                 }
@@ -849,20 +1078,20 @@ $(document).ready(function () {
         let gruppiIni = [0, 0, 0, 0, 0, 0];
         let gruppiMed = [0, 0, 0, 0, 0, 0];
         let consonanti = "bcdfghjklmnpqrstvwxyz";
-        for(let frase of json){
+        for (let frase of json) {
             let data = frase.data.split("/");
-            if(data[1] == i){
-                for(let [j, gruppo] of gruppiCons.entries()){
-                    if(gruppo == "s"){
+            if (data[1] == i) {
+                for (let [j, gruppo] of gruppiCons.entries()) {
+                    if (gruppo == "s") {
                         let parole = frase.trascritto.split(" ");
-                        for(let parola of parole){
-                            if(parola.startsWith("s") && consonanti.includes(parola[1])){
+                        for (let parola of parole) {
+                            if (parola.startsWith("s") && consonanti.includes(parola[1])) {
                                 gruppiIni[j]++;
                             }
                             let nlett = contaLettere(parola.substring(1, parola.length), gruppo);
                             gruppiMed[j] += nlett;
                         }
-                    }else{
+                    } else {
                         let nlett = contaLettere(frase.trascritto, gruppo);
                         gruppiMed[j] += nlett;
                     }
@@ -870,6 +1099,39 @@ $(document).ready(function () {
             }
         }
 
+        // const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+        // let index = -1;
+        // let countL = 0;
+        // for (let tras of json) {
+        //     let frase = tras.trascritto;
+        //     data = tras.data.split("/");
+        //     if (data[1] === i) {
+        //         for (let prefisso of prefissi) {
+        //             if (prefisso != "al ") {
+        //                 do {
+        //                     index = frase.indexOf(prefisso, index + 1);
+        //                     if (index != -1) {
+        //                         if (consonanti.includes(frase[index + prefisso.length])) {
+        //                             countL++;
+        //                         }
+        //                     }
+        //                 } while (index != -1);
+        //             }
+        //             if (prefisso == "al ") {
+        //                 do {
+        //                     index = frase.indexOf(prefisso, index + 1);
+        //                     if (index != -1 && frase[index - 1] != "d") {
+        //                         if (consonanti.includes(frase[index + prefisso.length])) {
+        //                             countL++;
+        //                         }
+        //                     }
+        //                 } while (index != -1);
+        //             }
+        //         }
+        //     }
+        // }
+        // gruppiMed[5] += countL;
+        // console.log(countL)
 
         function contaLettere(frase, gruppo) {
             let count = 0;
@@ -894,7 +1156,7 @@ $(document).ready(function () {
             return count;
         }
 
-        let jsonGruppi={
+        let jsonGruppi = {
             gruppiIni,
             gruppiMed
         }

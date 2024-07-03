@@ -155,8 +155,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function caricaFormMesi(mese1, mese2) {
-    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "ʃ", "ʒ"]
-    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/ʃ/", "/ʒ/"]
+    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
+    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/"]
     let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     let _id = document.getElementById('idPaziente').value;
@@ -283,7 +283,7 @@ function mese(nMese) {
             trascrizioniMesi.appendChild(frasiMese);
 
         }
-    } 
+    }
     document.getElementById('containerForm').style.display = 'block';
     document.getElementById("meseTrasc").style.display = "block";
     document.getElementById("trascrizioniMesi").style.display = "block";
@@ -2631,7 +2631,7 @@ function caricaPosizioni(numMese) {
             let parole = tras.split(" ");
             for (let parola of parole) {
                 for (let [i, lettera] of letters.entries()) {
-                    if (lettera != "d"&&lettera!="t" &&lettera!="s"&&lettera!="z") {
+                    if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z" && lettera != "ʃ" && lettera != "ʒ") {
                         if (parola.includes(lettera) && !parola.startsWith(lettera)) {
                             let count = countLetters(parola, lettera);
                             posizioniMedie[i] += count;
@@ -2646,44 +2646,58 @@ function caricaPosizioni(numMese) {
                             posizioniIniziali[i]++;
                         }
                     }
+                    if (lettera == "ʃ") {
+                        let nS;
+                        let regex = /(?<!t)ʃ/g;
+                        let corrispondenze = parola.match(regex);
+                        nS = corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nS;
+                    }
+                    if (lettera == "ʒ") {
+                        let nS;
+                        let regex = /(?<!d)ʒ/g;
+                        let corrispondenze = parola.match(regex);
+                        nS = corrispondenze ? corrispondenze.length : 0;
+                        posizioniMedie[i] += nS;
+                    }
                     if (lettera == "d") {
                         let nD;
-                        if(parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")){
+                        if (parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /d(?![zʒ])/gi;
-                        let corrispondenze = parola.substring(1,parola.length).match(regex);
-                        nD= corrispondenze ? corrispondenze.length : 0;
+                        let corrispondenze = parola.substring(1, parola.length).match(regex);
+                        nD = corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nD;
                     }
-                    if(lettera=="t"){
+                    if (lettera == "t") {
                         let nT;
-                        if(parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")){
+                        if (parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /t(?![sʃ])/gi;
-                        let corrispondenze = parola.substring(1,parola.length).match(regex);
-                        nT= corrispondenze ? corrispondenze.length : 0;
+                        let corrispondenze = parola.substring(1, parola.length).match(regex);
+                        nT = corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nT;
                     }
-                    if(lettera=="s"){
+                    if (lettera == "s") {
                         let nS;
-                        if(parola.startsWith("s") ){
+                        if (parola.startsWith("s")) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /(?<!t)s/g;
-                        let corrispondenze = parola.substring(1,parola.length).match(regex);
-                        nS= corrispondenze ? corrispondenze.length : 0;
+                        let corrispondenze = parola.substring(1, parola.length).match(regex);
+                        nS = corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nS;
                     }
-                    if(lettera=="z"){
+                    if (lettera == "z") {
                         let nZ;
-                        if(parola.startsWith("z")){
+                        if (parola.startsWith("z")) {
                             posizioniIniziali[i]++;
                         }
                         let regex = /(?<!d)z/g;
-                        let corrispondenze = parola.substring(1,parola.length).match(regex);
-                        nZ= corrispondenze ? corrispondenze.length : 0;
+                        let corrispondenze = parola.substring(1, parola.length).match(regex);
+                        nZ = corrispondenze ? corrispondenze.length : 0;
                         posizioniMedie[i] += nZ;
                     }
                 }
