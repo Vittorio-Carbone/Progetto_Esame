@@ -21,6 +21,7 @@ $(document).ready(function(){
         divLogin.fadeOut(450);
         setTimeout(() => {
             divRegistrazione.fadeIn(450);
+            $("#boolAcc").val("reg");
         }, 450);
     })
 
@@ -28,6 +29,7 @@ $(document).ready(function(){
         divRegistrazione.fadeOut(450);
         setTimeout(() => {
             divLogin.fadeIn(450);
+            $("#boolAcc").val("acc");
         }, 450);
     })
 

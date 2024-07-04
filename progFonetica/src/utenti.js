@@ -17,7 +17,7 @@ $(document).ready(function () {
     let myChart4
     let chartJS5 = false;
     let myChart5
-
+    
     $(".noInfo").hide();
 
     $(".inputPaz").on("keyup", function () {
@@ -431,7 +431,7 @@ $(document).ready(function () {
 
 
 
-                const prefissiN = ["un ", "in "];
+                const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
                 let indexN = -1;
                 let countN = 0;
                 for (let tras of jsonChar) {
@@ -730,7 +730,7 @@ $(document).ready(function () {
 
 
 
-                const prefissiN = ["un ", "in "];
+                const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
                 let indexN = -1;
                 let countN = 0;
                 for (let tras of jsonChar) {
@@ -924,7 +924,6 @@ $(document).ready(function () {
 
     $(".tasto").on("click", function () {
         let fonema = $(this).text();
-        console.log(fonema);
         let frase = $("#outputTrascritto").val();
         frase += fonema;
         $("#outputTrascritto").val(frase);
@@ -1004,7 +1003,7 @@ $(document).ready(function () {
         nConsMed[5] += countL;
 
 
-        const prefissiN = ["un ", "in "];
+        const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
         let indexN = -1;
         let countN = 0;
         for (let tras of jsonGruppi) {

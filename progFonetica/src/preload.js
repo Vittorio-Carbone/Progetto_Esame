@@ -4,7 +4,7 @@ const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
 const Chart = require('chart.js');
 
-
+let boolAcc = true;
 let users = [];
 let vettoreStampa1 = [];
 let vettoreStampa2 = [];
@@ -36,11 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btnSalvaPaz').addEventListener('click', function () {
         salvaPaziente();
     });
-
-
-
     document.getElementById('cancel').addEventListener('click', function () {
         hidePopup();
+    });
+
+    
+    
+    document.getElementById("boolAcc").value = "acc";
+    document.addEventListener("keyup", function(event) {
+        let controllo= document.getElementById('boolAcc').value 
+        if (event.key === "Enter" || event.keyCode === 13) {
+            if(boolAcc){
+                if(controllo === "acc"){
+                    accedi();
+                }
+                else if(controllo === "reg"){
+                    registrati();
+                }
+            }
+        }
     });
 
 
@@ -61,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         while (pazienti[0]) {
             pazienti[0].parentNode.removeChild(pazienti[0]);
         }
+        boolAcc=true;
     });
 
     document.getElementById("iconUser").addEventListener('click', () => {
@@ -363,12 +378,10 @@ function caricaTabella(paziente) {
             document.getElementById('confirm').replaceWith(clone);
 
             document.getElementById('confirm').addEventListener('click', function () {
-                console.log(users)
                 users[idUser]["pazienti"][_id]["reg"] = users[idUser]["pazienti"][_id]["reg"].filter((item) => item.id !== registrazione['id']);
                 users[idUser]["pazienti"][_id]["reg"].forEach((item, index) => {
                     item.id = index;
                 });
-                console.log(users)
                 caricaTabella(paziente);
                 // fs.writeFileSync(filePath, JSON.stringify(users));
                 // ipcRenderer.send('salvaJson', users);
@@ -1957,6 +1970,7 @@ function accedi() {
             for (let paziente of utente.pazienti) {
                 caricaUtenti(paziente);
             }
+            boolAcc = false;
             break;
         }
         if (!trovato) {
@@ -2015,6 +2029,7 @@ function registrati() {
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
             document.getElementById("nomeLogop").innerHTML = txtNome + " " + txtCognome;
+            boolAcc = false;
         }
         else {
             console.log("Username già esistente");
