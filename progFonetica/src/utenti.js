@@ -17,7 +17,7 @@ $(document).ready(function () {
     let myChart4
     let chartJS5 = false;
     let myChart5
-    
+
     $(".noInfo").hide();
 
     $(".inputPaz").on("keyup", function () {
@@ -426,12 +426,25 @@ $(document).ready(function () {
                         }
                     }
                 }
-                // console.log(countL)
+                
                 posMed[12] -= countL;
+                
 
+                let countS = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        let regex = /ls|rs|ps|ns/g;
+                        let matches = frase.match(regex);
+                        if (matches) {
+                            countS += matches.length;
+                        }
+                    }
+                }
+                posMed[14] -= countS;
 
-
-                const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
+                const prefissiN = ["un ", "in ", "bwon ", "zan ", "don ", "dan ", "kon ", "non "];
                 let indexN = -1;
                 let countN = 0;
                 for (let tras of jsonChar) {
@@ -728,9 +741,21 @@ $(document).ready(function () {
                 }
                 posizioni[5] += countL;
 
+                let countS = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    data = tras.data.split("/");
+                    if (parseInt(data[1]) === i) {
+                        let regex = /ls|rs|ps|ns/g;
+                        let matches = frase.match(regex);
+                        if (matches) {
+                            countS += matches.length;
+                        }
+                    }
+                }
+                posizioni[2] += countS;
 
-
-                const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
+                const prefissiN = ["un ", "in ", "bwon ", "zan ", "don ", "dan ", "kon ", "non "];
                 let indexN = -1;
                 let countN = 0;
                 for (let tras of jsonChar) {
@@ -1003,7 +1028,7 @@ $(document).ready(function () {
         nConsMed[5] += countL;
 
 
-        const prefissiN = ["un ", "in ","bwon ","zan ","don ","dan ","kon ","non "];
+        const prefissiN = ["un ", "in ", "bwon ", "zan ", "don ", "dan ", "kon ", "non "];
         let indexN = -1;
         let countN = 0;
         for (let tras of jsonGruppi) {
@@ -1024,6 +1049,22 @@ $(document).ready(function () {
             }
         }
         nConsMed[1] += countN;
+
+
+
+        let countS = 0;
+        for (let tras of jsonGruppi) {
+            let frase = tras.trascritto;
+            data = tras.data.split("/");
+            if (data[1] === nMese) {
+                let regex = /ls|rs|ps|ns/g;
+                let matches = frase.match(regex);
+                if (matches) {
+                    countS += matches.length;
+                }
+            }
+        }
+        nConsMed[2] += countS;
 
 
         let nCons = {
@@ -1098,39 +1139,7 @@ $(document).ready(function () {
             }
         }
 
-        // const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
-        // let index = -1;
-        // let countL = 0;
-        // for (let tras of json) {
-        //     let frase = tras.trascritto;
-        //     data = tras.data.split("/");
-        //     if (data[1] === i) {
-        //         for (let prefisso of prefissi) {
-        //             if (prefisso != "al ") {
-        //                 do {
-        //                     index = frase.indexOf(prefisso, index + 1);
-        //                     if (index != -1) {
-        //                         if (consonanti.includes(frase[index + prefisso.length])) {
-        //                             countL++;
-        //                         }
-        //                     }
-        //                 } while (index != -1);
-        //             }
-        //             if (prefisso == "al ") {
-        //                 do {
-        //                     index = frase.indexOf(prefisso, index + 1);
-        //                     if (index != -1 && frase[index - 1] != "d") {
-        //                         if (consonanti.includes(frase[index + prefisso.length])) {
-        //                             countL++;
-        //                         }
-        //                     }
-        //                 } while (index != -1);
-        //             }
-        //         }
-        //     }
-        // }
-        // gruppiMed[5] += countL;
-        // console.log(countL)
+        
 
         function contaLettere(frase, gruppo) {
             let count = 0;
