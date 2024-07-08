@@ -70,6 +70,7 @@ $(document).ready(function () {
                 formData.append('file', audioBlob, 'audio.wav');
                 formData.append('model', 'whisper-1');
                 formData.append('language', 'it');
+                formData.append('options', JSON.stringify({ no_corrections: true }));
 
                 try {
                     const response = await fetch(url, {
@@ -98,41 +99,4 @@ $(document).ready(function () {
     }
 
 
-    function setupSpeechRecognition() {
-        recognition = new webkitSpeechRecognition();
-        recognition.lang = "it-IT";
-        recognition.continuous = true;
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-
-        recognition.onresult = function (event) {
-            let transcript = event.results[0][0].transcript;
-            console.log(transcript);
-            $("#inputTrascrivere").val(transcript);
-            $("#startButton").prop("disabled", false);
-            $("#stopButton").prop("disabled", true);
-        };
-
-        recognition.onerror = function (event) {
-            console.error('Errore nel riconoscimento vocale:', event.error);
-        };
-
-        recognition.start();
-    }
-
-    $("#startButton").on("click", function () {
-        setupSpeechRecognition();
-        $("#startButton").prop("disabled", true);
-        $("#stopButton").prop("disabled", false);
-
-    });
-
-    $("#stopButton").on("click", function () {
-        setTimeout(() => {
-            recognition.stop();
-            $("#startButton").prop("disabled", false);
-            $("#stopButton").prop("disabled", true);
-        }, 1000);
-    });
 });

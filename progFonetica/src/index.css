@@ -609,6 +609,8 @@ tbody>tr:hover {
 #divMesi {
   display: flex;
   align-items: center;
+  text-align: center;
+  justify-content: center;
   margin-top: 20px;
   gap: 1rem;
   flex-wrap: wrap;
@@ -905,5 +907,54 @@ input[type="checkbox"] {
   &:hover{
     background-color: #e7e7e7;
     cursor: pointer;
+  }
+}
+
+
+.mesiSel{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 100px;
+  gap: 1rem;
+  max-width: 900px;
+  flex-wrap: wrap;
+}
+
+.mesiSelezionabili{
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #cccccc;
+  transition: all 0.3s;
+  &:hover{
+    background-color: #efefef;
+    cursor: pointer;
+    border: 1px solid #2f9ad8;
+    scale: 1.01;
+  }
+}
+.meseSelezionato{
+  background-color: #2f9ad8;
+  color: white;
+  border: 1px solid #2f9ad8;
+  &:hover{
+    background-color: #2f9ad8;
+    color: white;
+    border: 1px solid #2f9ad8;
+  }
+}
+.bottoneConfermaMesi{
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid #43baff;
+  background-color: #43baff;
+  color: white;
+  transition: all 0.3s;
+  font-size: 16pt;
+  &:hover{
+    background-color: white;
+    color: #43baff;
+    border: 1px solid #43baff;
   }
 }

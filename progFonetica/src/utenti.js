@@ -1,6 +1,8 @@
 
 
+
 $(document).ready(function () {
+    let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
     let colori = "";
     let divUtenti = $("#utenti");
     let divAddPaz = $("#formPaz").hide();
@@ -426,9 +428,9 @@ $(document).ready(function () {
                         }
                     }
                 }
-                
+
                 posMed[12] -= countL;
-                
+
 
                 let countS = 0;
                 for (let tras of jsonChar) {
@@ -671,6 +673,245 @@ $(document).ready(function () {
                 });
             }
 
+        }, 500);
+    });
+
+    $("#btnConfermaMesiSel").on("click", function () {
+        setTimeout(() => {
+            let jsonChar = JSON.parse($("#lblMesiSel").text());
+            let pazienti=jsonChar.paziente;
+            let mesi = jsonChar.mesi;
+            let n=mesi.length;
+            barLarge = 10;
+            if (n === 2) {
+                barLarge = 13;
+            }
+            if (n === 3) {
+                barLarge = 10;
+            }
+            if (n === 4) {
+                barLarge = 8;
+            }
+            if (n === 5) {
+                barLarge = 6;
+            }
+            if (n === 6) {
+                barLarge = 5;
+            }
+            if (n === 7) {
+                barLarge = 4;
+            }
+            if (n >= 8) {
+                barLarge = 3;
+            }
+            let maxAssoluto = 0;
+            let dataset1 = [];
+            let dataset2 = [];
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
+            let tras;
+            for(let mese of mesi){
+                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                for(let reg of pazienti.reg){
+                    let data=reg.data.split("/");
+                    if(parseInt(data[1])===mese){
+                        tras=reg.trascritto;
+                        let parole = tras.split(" ");
+                        for(let parola of parole){
+                            for (let [i, lettera] of letters.entries()) {
+                                if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z" && lettera != "ʃ" && lettera != "ʒ") {
+                                    if (parola.includes(lettera) && !parola.startsWith(lettera)) {
+                                        let nLettere = countLetters(parola, lettera);
+                                        // posizioniMedie[i]++;
+                                        posMed[i] += nLettere;
+                                    }
+                                    if (parola.startsWith(lettera) && parola.substring(1, parola.length).includes(lettera)) {
+                                        let count = countLetters(parola.substring(1, parola.length), lettera);
+                                        posMed[i] += count;
+                                    }
+                                    if (parola.startsWith(lettera)) {
+                                        posIn[i]++;
+                                    }
+                                }
+                                if (lettera == "ʃ") {
+                                    let nS;
+                                    let regex = /(?<!t)ʃ/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
+                                }
+                                if (lettera == "ʒ") {
+                                    let nS;
+                                    let regex = /(?<!d)ʒ/g;
+                                    let corrispondenze = parola.match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
+                                }
+                                if (lettera == "d") {
+                                    let nD;
+                                    if (parola.startsWith("d") && !parola.startsWith("dz") && !parola.startsWith("dʒ")) {
+                                        posIn[i]++;
+                                    }
+                                    let regex = /d(?![zʒ])/gi;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nD = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nD;
+                                }
+                                if (lettera == "t") {
+                                    let nT;
+                                    if (parola.startsWith("t") && !parola.startsWith("ts") && !parola.startsWith("tʃ")) {
+                                        posIn[i]++;
+                                    }
+                                    let regex = /t(?![sʃ])/gi;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nT = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nT;
+                                }
+                                if (lettera == "s") {
+                                    let nS;
+                                    if (parola.startsWith("s")) {
+                                        posIn[i]++;
+                                    }
+                                    let regex = /(?<!t)s/g;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nS = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nS;
+                                }
+                                if (lettera == "z") {
+                                    let nZ;
+                                    if (parola.startsWith("z")) {
+                                        posIn[i]++;
+                                    }
+                                    let regex = /(?<!d)z/g;
+                                    let corrispondenze = parola.substring(1, parola.length).match(regex);
+                                    nZ = corrispondenze ? corrispondenze.length : 0;
+                                    posMed[i] += nZ;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                const prefissi = ["il ", "nel ", "sul ", "dal ", "kol ", "al ", "del "];
+                let index = -1;
+                let countL = 0;
+                const consonanti = "bcdfghjklmnpqrstvwxyz";
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    let data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        for (let prefisso of prefissi) {
+                            if (prefisso != "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1) {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                            if (prefisso == "al ") {
+                                do {
+                                    index = frase.indexOf(prefisso, index + 1);
+                                    if (index != -1 && frase[index - 1] != "d") {
+                                        if (consonanti.includes(frase[index + prefisso.length])) {
+                                            countL++;
+                                        }
+                                    }
+                                } while (index != -1);
+                            }
+                        }
+                    }
+                }
+
+                posMed[12] -= countL;
+
+
+                let countS = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        let regex = /ls|rs|ps|ns/g;
+                        let matches = frase.match(regex);
+                        if (matches) {
+                            countS += matches.length;
+                        }
+                    }
+                }
+                posMed[14] -= countS;
+
+                const prefissiN = ["un ", "in ", "bwon ", "zan ", "don ", "dan ", "kon ", "non "];
+                let indexN = -1;
+                let countN = 0;
+                for (let tras of jsonChar) {
+                    let frase = tras.trascritto;
+                    let data = tras.data.split("/");
+                    if (parseInt(data[1]) === parseInt(i)) {
+                        for (let prefisso of prefissiN) {
+                            do {
+                                indexN = frase.indexOf(prefisso, indexN + 1);
+                                if (indexN != -1) {
+                                    if (consonanti.includes(frase[indexN + prefisso.length])) {
+                                        countN++;
+                                    }
+                                }
+                            } while (indexN != -1);
+
+                        }
+                    }
+                }
+                posMed[7] -= countN;
+
+                
+                let maxBet
+                if (Math.max(...posIn) > Math.max(...posMed)) {
+                    maxBet = Math.max(...posIn);
+                } else {
+                    maxBet = Math.max(...posMed);
+                }
+                if (maxBet > maxAssoluto) {
+                    maxAssoluto = maxBet;
+                }
+
+
+                let jsonG = calcolaGruppiConsMesi(i, jsonChar);
+                posIn[4] = posIn[4] - jsonG.gruppiIni[0];
+                posIn[7] = posIn[7] - jsonG.gruppiIni[1];
+                posIn[14] = posIn[14] - jsonG.gruppiIni[2];
+                posIn[15] = posIn[15] - jsonG.gruppiIni[3];
+                posIn[13] = posIn[13] - jsonG.gruppiIni[4];
+                posIn[12] = posIn[12] - jsonG.gruppiIni[5];
+                posMed[4] = posMed[4] - jsonG.gruppiMed[0];
+                posMed[7] = posMed[7] - jsonG.gruppiMed[1];
+                posMed[14] = posMed[14] - jsonG.gruppiMed[2];
+                posMed[15] = posMed[15] - jsonG.gruppiMed[3];
+                posMed[13] = posMed[13] - jsonG.gruppiMed[4];
+                posMed[12] = posMed[12] - jsonG.gruppiMed[5];
+
+
+
+
+            }
+            
+            function countLetters(str, letters) {
+                let count = 0;
+                if (letters.length === 1) {
+                    for (let i = 0; i < str.length; i++) {
+                        if (str[i] === letters) {
+                            count++;
+                        }
+                    }
+                } else if (letters.length === 2) {
+                    for (let i = 0; i < str.length - 1; i++) {
+                        if (str.substring(i, i + 2) === letters) {
+                            count++;
+                        }
+                    }
+                }
+                return count;
+            }
         }, 500);
     });
 
@@ -1062,6 +1303,18 @@ $(document).ready(function () {
                 if (matches) {
                     countS += matches.length;
                 }
+
+                // let parole = frase.split(" ");
+                // let lettere = "nlr";
+                // for (let [i, parola] of parole.entries()) {
+                //     if (i < parole.length - 1) {
+                //         let par = parole[i + 1]
+                //         console.log(par)
+                //         if (par[0] === "s" && lettere.includes(parola[parola.length - 1])) {
+                //             countS++;
+                //         }
+                //     }
+                // }
             }
         }
         nConsMed[2] += countS;
@@ -1139,7 +1392,7 @@ $(document).ready(function () {
             }
         }
 
-        
+
 
         function contaLettere(frase, gruppo) {
             let count = 0;

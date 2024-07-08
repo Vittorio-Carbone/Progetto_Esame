@@ -3,7 +3,7 @@ const path = require('path');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
 const Chart = require('chart.js');
-
+let mesiSelezionati = [];
 let boolAcc = true;
 let users = [];
 let vettoreStampa1 = [];
@@ -167,7 +167,39 @@ document.addEventListener('DOMContentLoaded', () => {
         let value = document.getElementById("cercaPazienti").value;
         cercaPaziente(value);
     });
+
+
+    const elementi = document.querySelectorAll(".mesiSelezionabili");
+    elementi.forEach(function(elemento) {
+        elemento.addEventListener("click", function(event) {
+            if(event.target.classList.contains("meseSelezionato")) {
+                event.target.classList.remove("meseSelezionato");
+                mesiSelezionati = mesiSelezionati.filter((mese) => parseInt(mese) !== parseInt(event.target.id));
+            }
+            else {
+                event.target.classList.add("meseSelezionato");
+                mesiSelezionati.push(parseInt(event.target.id));
+            }
+            mesiSelezionati.sort(function(a, b) {
+                return a - b;
+            });
+        });
+    });
+
+    document.getElementById("btnConfermaMesiSel").addEventListener("click", function() {
+        caricaChartMesiSel();
+    });
 });
+function caricaChartMesiSel(){
+    let _id = document.getElementById('idPaziente').value;
+    let paziente = users[idUser]['pazienti'][_id];
+    let json={
+        "paziente": paziente,
+        "mesi": mesiSelezionati
+    }
+    document.getElementById('lblMesiSel').innerHTML = JSON.stringify(json);
+}
+
 
 function caricaFormMesi(mese1, mese2) {
     let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]

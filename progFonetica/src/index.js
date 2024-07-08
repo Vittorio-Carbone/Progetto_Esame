@@ -81,29 +81,44 @@ ipcMain.on("salvaJson", (event, data) => {
 });
 
 
-ipcMain.on('print-to-pdf', async (event, data) => {
-  const pdfPath = path.join(app.getPath('desktop'), data+'.pdf');
+ipcMain.on('print-to-pdf', async (event) => {
   const options = {
-      marginsType: 0,
-      pageSize: 'A4',
-      printBackground: true,
-      landscape: true
+    title: 'Save PDF',
+    defaultPath: path.join(app.getPath('desktop'), 'untitled.pdf'),
+    filters: [
+      { name: 'PDF Files', extensions: ['pdf'] }
+    ]
+  };
+
+  const { canceled, filePath } = await dialog.showSaveDialog(mainWindow, options);
+
+  if (!canceled && filePath) {
+    printToPDF(filePath);
+  }
+});
+
+async function printToPDF(pdfPath) {
+  const options = {
+    marginsType: 0,
+    pageSize: 'A4',
+    printBackground: true,
+    landscape: true
   };
 
   try {
-      const data = await mainWindow.webContents.printToPDF(options);
-      fs.writeFile(pdfPath, data, (error) => {
-          if (error) throw error;
-          dialog.showMessageBox({
-              type: 'info',
-              title: 'PDF Generated',
-              message: `Il PDF è stato salvato in: ${pdfPath}`
-          });
+    const data = await mainWindow.webContents.printToPDF(options);
+    fs.writeFile(pdfPath, data, (error) => {
+      if (error) throw error;
+      dialog.showMessageBox({
+        type: 'info',
+        title: 'PDF Generated',
+        message: `Il PDF è stato salvato in: ${pdfPath}`
       });
+    });
   } catch (error) {
-      console.log(error);
+    console.log(error);
   }
-});
+}
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
