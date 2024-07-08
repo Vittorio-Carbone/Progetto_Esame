@@ -20,6 +20,53 @@ $(document).ready(function () {
     let chartJS5 = false;
     let myChart5
 
+    let occhioAperto = document.getElementById("occhioAperto");
+    let occhioChiuso = document.getElementById("occhioChiuso");
+    occhioChiuso.style.display = "none";
+
+    occhioAperto.addEventListener("click", function () {
+        occhioAperto.style.display = "none";
+        occhioChiuso.style.display = "contents";
+        for(let paziente of document.getElementsByClassName("nomePaz")){
+            paziente.style.display = "none";
+        }
+        for(let paziente of document.getElementsByClassName("nomePazN")){
+            paziente.style.display = "block";
+        }
+    });
+
+    occhioChiuso.addEventListener("click", function () {
+        occhioAperto.style.display = "contents";
+        occhioChiuso.style.display = "none";
+        for(let paziente of document.getElementsByClassName("nomePaz")){
+            paziente.style.display = "block";
+        }
+        for(let paziente of document.getElementsByClassName("nomePazN")){
+            paziente.style.display = "none";
+        }
+    });
+
+    let occhioAperto2 = document.getElementById("occhioAperto2");
+    let occhioChiuso2 = document.getElementById("occhioChiuso2");
+    occhioChiuso2.style.display = "none";
+
+    occhioAperto2.addEventListener("click", function () {
+        occhioAperto2.style.display = "none";
+        occhioChiuso2.style.display = "contents";
+        document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
+    });
+
+    occhioChiuso2.addEventListener("click", function () {
+        occhioAperto2.style.display = "contents";
+        occhioChiuso2.style.display = "none";
+        for(let paziente of document.getElementsByClassName("nomePaz")){
+            paziente.style.display = "block";
+        }
+        for(let paziente of document.getElementsByClassName("nomePazN")){
+            paziente.style.display = "none";
+        }
+    });
+
     $(".noInfo").hide();
 
     $(".inputPaz").on("keyup", function () {

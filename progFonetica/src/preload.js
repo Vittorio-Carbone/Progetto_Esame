@@ -1955,9 +1955,22 @@ function caricaUtenti(paziente) {
     divDiagnosiPaz.className = 'diagnosiPaz';
     divDiagnosiPaz.textContent = paziente['diagnosi'];
 
-    divPaziente.append(divNomePaz, divDataPaz, divDiagnosiPaz);
+    let divNomePazN = document.createElement('div');
+    divNomePazN.className = 'nomePazN';
+    divNomePazN.textContent = paziente['nome'][0];
+    for(let i = 1; i < paziente['nome'].length; i++){
+        divNomePazN.textContent += "*";
+    }
+    divNomePazN.textContent += ' ' + paziente['cognome'][0];
+    for(let i = 1; i < paziente['cognome'].length; i++){
+        divNomePazN.textContent += "*";
+    }
+
+    divPaziente.append(divNomePaz, divNomePazN, divDataPaz, divDiagnosiPaz);
 
     document.getElementById('utenti').append(divPaziente);
+
+    divNomePazN.style.display = 'none';
 
 
 }
@@ -2080,6 +2093,7 @@ function caricaSchedaUser() {
     let _id = document.getElementById('idPaziente').value;
     console.log(users[idUser]['pazienti'][_id]);
     let paziente = users[idUser]['pazienti'][_id];
+    
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;

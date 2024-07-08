@@ -111,6 +111,13 @@ audio {
   margin-bottom: 10px;
 }
 
+.nomePazN {
+  width: 100%;
+  font-size: 20pt;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .dataPaz {
   width: 100%;
   font-size: 12pt;
