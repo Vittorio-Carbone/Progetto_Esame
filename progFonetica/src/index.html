@@ -27,10 +27,10 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="vittorio"
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username"
             required>
           <div>
-            <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password" value="pass"
+            <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password" 
               required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
           </div>
         </form>
@@ -161,7 +161,7 @@
         </div>
       </div>
       <button id="btnEsciScheda">ESCI</button>
-      <span style="margin-left: 2rem;"> <i class="fa-solid fa-eye" id="occhioAperto2"></i> <i class="fa-solid fa-eye-slash" id="occhioChiuso2"></i> </span>
+      <span style="margin-left: 2rem; font-size: 19pt;" id="occhiScheda"> <i class="fa-solid fa-eye" id="occhioAperto2"></i> <i class="fa-solid fa-eye-slash" id="occhioChiuso2"></i> </span>
       <h2 id="schedaNome"></h2>
       <h2 id="schedaNomeN"></h2>
       <div class="spanUtente">
@@ -642,7 +642,7 @@
           </div>
           <span id="jsonGruppi2" style="display: none;"></span>
         </div>
-        <div class="no-break mesiSel">
+        <div class="no-break mesiSel" id="mesiSelezion">
           <div class="mesiSelezionabili" id="1">Gennaio</div>
           <div class="mesiSelezionabili" id="2">Febbraio</div>
           <div class="mesiSelezionabili" id="3">Marzo</div>
@@ -657,6 +657,9 @@
           <div class="mesiSelezionabili" id="12">Dicembre</div>
           <div style="width: 100%; text-align: center;"><button class="bottoneConfermaMesi" id="btnConfermaMesiSel">Conferma</button></div>
         </div>
+        <h2 style="font-size: 17pt;" id="titoloMesiSelezionabili"></h2>
+        <canvas id="chartMesiSel1"></canvas>
+        <canvas id="chartMesiSel2"></canvas>
         <label id="lblMesiSel" style="display: none;"></label>
         <div style="width: 100%;">
           <button id="generate-pdf">Scarica PDF</button>

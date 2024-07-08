@@ -2093,7 +2093,14 @@ function caricaSchedaUser() {
     let _id = document.getElementById('idPaziente').value;
     console.log(users[idUser]['pazienti'][_id]);
     let paziente = users[idUser]['pazienti'][_id];
-    
+    document.getElementById('schedaNomeN').innerHTML = paziente.nome[0];
+    for(let i = 1; i < paziente.nome.length; i++){
+        document.getElementById('schedaNomeN').textContent += "*";
+    }
+    document.getElementById('schedaNomeN').innerHTML +=" " +paziente.cognome[0];
+    for(let i = 1; i < paziente.cognome.length; i++){
+        document.getElementById('schedaNomeN').textContent += "*";
+    }
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
     document.getElementById('schedaNascita').innerHTML = paziente.dataNascita;
     document.getElementById('schedaDiagnosi').innerHTML = paziente.diagnosi;

@@ -19,6 +19,11 @@ $(document).ready(function () {
     let myChart4
     let chartJS5 = false;
     let myChart5
+    let chartJS6 = false;
+    let myChart6
+    let chartJS7 = false;
+    let myChart7
+    
 
     let occhioAperto = document.getElementById("occhioAperto");
     let occhioChiuso = document.getElementById("occhioChiuso");
@@ -48,23 +53,21 @@ $(document).ready(function () {
 
     let occhioAperto2 = document.getElementById("occhioAperto2");
     let occhioChiuso2 = document.getElementById("occhioChiuso2");
+    $("#schedaNomeN").hide();
     occhioChiuso2.style.display = "none";
 
     occhioAperto2.addEventListener("click", function () {
         occhioAperto2.style.display = "none";
         occhioChiuso2.style.display = "contents";
-        document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
+        $("#schedaNome").hide();
+        $("#schedaNomeN").show();
     });
 
     occhioChiuso2.addEventListener("click", function () {
         occhioAperto2.style.display = "contents";
         occhioChiuso2.style.display = "none";
-        for(let paziente of document.getElementsByClassName("nomePaz")){
-            paziente.style.display = "block";
-        }
-        for(let paziente of document.getElementsByClassName("nomePazN")){
-            paziente.style.display = "none";
-        }
+        $("#schedaNome").show();
+        $("#schedaNomeN").hide();
     });
 
     $(".noInfo").hide();
@@ -756,7 +759,9 @@ $(document).ready(function () {
             let dataset2 = [];
             let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
             let tras;
+            document.getElementById("titoloMesiSelezionabili").innerHTML="";
             for(let mese of mesi){
+                document.getElementById("titoloMesiSelezionabili").innerHTML+=mesiScritti[mese-1]+" - ";
                 let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 for(let reg of pazienti.reg){
@@ -843,10 +848,10 @@ $(document).ready(function () {
                 let index = -1;
                 let countL = 0;
                 const consonanti = "bcdfghjklmnpqrstvwxyz";
-                for (let tras of jsonChar) {
+                for (let tras of pazienti.reg) {
                     let frase = tras.trascritto;
                     let data = tras.data.split("/");
-                    if (parseInt(data[1]) === parseInt(i)) {
+                    if (parseInt(data[1]) === parseInt(mese)) {
                         for (let prefisso of prefissi) {
                             if (prefisso != "al ") {
                                 do {
@@ -876,10 +881,10 @@ $(document).ready(function () {
 
 
                 let countS = 0;
-                for (let tras of jsonChar) {
+                for (let tras of pazienti.reg) {
                     let frase = tras.trascritto;
                     data = tras.data.split("/");
-                    if (parseInt(data[1]) === parseInt(i)) {
+                    if (parseInt(data[1]) === parseInt(mese)) {
                         let regex = /ls|rs|ps|ns/g;
                         let matches = frase.match(regex);
                         if (matches) {
@@ -892,10 +897,10 @@ $(document).ready(function () {
                 const prefissiN = ["un ", "in ", "bwon ", "zan ", "don ", "dan ", "kon ", "non "];
                 let indexN = -1;
                 let countN = 0;
-                for (let tras of jsonChar) {
+                for (let tras of pazienti.reg) {
                     let frase = tras.trascritto;
                     let data = tras.data.split("/");
-                    if (parseInt(data[1]) === parseInt(i)) {
+                    if (parseInt(data[1]) === parseInt(mese)) {
                         for (let prefisso of prefissiN) {
                             do {
                                 indexN = frase.indexOf(prefisso, indexN + 1);
@@ -922,8 +927,7 @@ $(document).ready(function () {
                     maxAssoluto = maxBet;
                 }
 
-
-                let jsonG = calcolaGruppiConsMesi(i, jsonChar);
+                let jsonG = calcolaGruppiConsMesi(mese, pazienti.reg);
                 posIn[4] = posIn[4] - jsonG.gruppiIni[0];
                 posIn[7] = posIn[7] - jsonG.gruppiIni[1];
                 posIn[14] = posIn[14] - jsonG.gruppiIni[2];
@@ -939,8 +943,53 @@ $(document).ready(function () {
 
 
 
+                // console.log("Posizioni iniziali: "+posIn);
+                // console.log("Posizioni medie: "+posMed);
 
+
+
+
+                let midIndex = Math.ceil(posIn.length / 2);
+                let firstIn = posIn.slice(0, midIndex);
+                let secondIn = posIn.slice(midIndex);
+                let firstMed = posMed.slice(0, midIndex);
+                let secondMed = posMed.slice(midIndex);
+                let color1 = getRandomColor();
+                let color2 = getRandomColor();
+                let datasett = {
+                    label: "Pos. Iniziale " + mesiScritti[mese - 1],
+                    data: firstIn,
+                    backgroundColor: color1,
+                    borderColor: color1,
+                    borderWidth: 1
+                }
+                dataset1.push(datasett);
+                datasett = {
+                    label: "Pos. Mediana " + mesiScritti[mese - 1],
+                    data: firstMed,
+                    backgroundColor: color2,
+                    borderColor: color2,
+                    borderWidth: 1
+                }
+                dataset1.push(datasett);
+                datasett = {
+                    label: "Pos. Iniziale " + mesiScritti[mese - 1],
+                    data: secondIn,
+                    backgroundColor: color1,
+                    borderColor: color1,
+                    borderWidth: 1
+                }
+                dataset2.push(datasett);
+                datasett = {
+                    label: "Pos. Mediana " + mesiScritti[mese - 1],
+                    data: secondMed,
+                    backgroundColor: color2,
+                    borderColor: color2,
+                    borderWidth: 1
+                }
+                dataset2.push(datasett);
             }
+            document.getElementById("titoloMesiSelezionabili").innerHTML=document.getElementById("titoloMesiSelezionabili").innerHTML.substring(0,document.getElementById("titoloMesiSelezionabili").innerHTML.length-3);
             
             function countLetters(str, letters) {
                 let count = 0;
@@ -958,6 +1007,109 @@ $(document).ready(function () {
                     }
                 }
                 return count;
+            }
+
+            
+            let minInd = Math.ceil(letters.length / 2);
+            let firstLet = letters.slice(0, minInd);
+            let secondLet = letters.slice(minInd);
+
+            if (chartJS6) {
+
+                myChart6.data.datasets = dataset1
+                myChart6.options.scales.yAxes[0].ticks.max = maxAssoluto + 2;
+                myChart6.options.scales.xAxes[0].barThickness = Math.round(barLarge);
+
+                myChart6.update();
+            } else {
+                chartJS6 = true;
+                const data = {
+                    labels: firstLet,
+                    datasets: dataset1
+                };
+
+
+
+                const options = {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            barThickness: Math.round(barLarge)
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: maxAssoluto + 2
+                            }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                };
+
+                myChart6 = new Chart(document.getElementById("chartMesiSel1"), {
+                    type: "bar",
+                    data: data,
+                    options: options
+                });
+            }
+
+            secondLet = secondLet.map(elemento => {
+                return elemento.replace("r", "r o R");
+            });
+            if (chartJS7) {
+
+                myChart7.data.datasets = dataset2
+                myChart7.options.scales.yAxes[0].ticks.max = maxAssoluto + 2;
+                myChart7.options.scales.xAxes[0].barThickness = Math.round(barLarge);
+                myChart7.update();
+            } else {
+                chartJS7 = true;
+                const data = {
+                    labels: secondLet,
+                    datasets: dataset2
+                };
+
+
+
+                const options = {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            barThickness: Math.round(barLarge)
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: maxAssoluto + 2
+                            }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                };
+
+                myChart7 = new Chart(document.getElementById("chartMesiSel2"), {
+                    type: "bar",
+                    data: data,
+                    options: options
+                });
             }
         }, 500);
     });
@@ -1204,7 +1356,14 @@ $(document).ready(function () {
         if (chartJS5) {
             chartJS5 = false;
             myChart5.destroy();
-
+        }
+        if (chartJS6) {
+            chartJS6 = false;
+            myChart6.destroy();
+        }
+        if (chartJS7) {
+            chartJS7 = false;
+            myChart7.destroy();
         }
         document.getElementById("divFonMes").innerHTML = "";
         document.getElementById("mese1").selectedIndex = -1;

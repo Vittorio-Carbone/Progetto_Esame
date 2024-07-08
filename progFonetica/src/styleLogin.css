@@ -23,6 +23,12 @@ body {
 }
 
 @media print {
+    #occhiScheda{
+        display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
     .escludiPrint {
         display: none;
         position: absolute;
@@ -31,6 +37,12 @@ body {
     }
 
     #title {
+        display: none;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+    }
+    #mesiSelezion{
         display: none;
         position: absolute;
         left: -9999px;
@@ -113,6 +125,12 @@ body {
     #chartGruppi2 {
         margin-left: -17%;
 
+    }
+    #chartMesiSel1 {
+        margin-left: -17%;
+    }
+    #chartMesiSel2{
+        margin-left: -17%;
     }
 }
 
