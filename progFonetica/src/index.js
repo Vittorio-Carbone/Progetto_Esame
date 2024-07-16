@@ -20,6 +20,7 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({
     width: width,
     height: height,
+    icon: path.join(__dirname, 'img/icon.ico'),
     roundedCorners: true,
     // frame: true, // Rimuove il bordo della finestra (barra sopra)
     webPreferences: {

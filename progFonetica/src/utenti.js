@@ -2,6 +2,13 @@
 
 
 $(document).ready(function () {
+    $("#loginHome").hide();
+    setTimeout(() => {
+        $(".animation-wrapper").fadeOut(500);
+        $("#loginHome").fadeIn(1000);
+    }, 6000);
+
+
     let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
     let colori = "";
     let divUtenti = $("#utenti");

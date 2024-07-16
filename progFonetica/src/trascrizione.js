@@ -7,8 +7,8 @@ noAccentate = ['a', 'i', 'e', 'e', 'o', 'u'];
 // fonemi = ['ʎ:a', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃo', 'ʃa', 'ʃu', 'ʎ:i','ʃe', 'ʃi', 'tʃa', 'tʃo', 'tʃu', 'dʒa', 'dʒo', 'dʒu', 'ɲ:', 'tʃe',  'tʃi',  'dʒe', 'dʒi', 'a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k','k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', '', 'dʒ', 'i' ]
 scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
 fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
-scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi","cq", "q","i:","z'e"]
-fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui","k:" ,"k","ij","s'e"]
+scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi", "cq", "q", "i:", "z'e", "dz:ants:ara"]
+fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui", "k:", "k", "ij", "s'e", "dz:andz:ara"]
 scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge"]
 fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
 
@@ -139,48 +139,26 @@ $(document).ready(function () {
             }
             daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("§§", 'dz:'));
             daTra = daTra.replace("§§", 'dz:')
+
+
             // //Controllo della S
-            // if ( daTra.includes("st") || daTra.includes("sc")||
-            //     daTra.includes("sp") || daTra.includes("sf") || daTra.includes("sq")){
-            //     if (!daTra.startsWith("s")) {
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("st", 'zt'));
-            //         daTra = daTra.replace("st", 'zt')
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sc", 'zc'));
-            //         daTra = daTra.replace("sc", 'zc')
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sp", 'zp'));
-            //         daTra = daTra.replace("sp", 'zp')
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sf", 'zf'));
-            //         daTra = daTra.replace("sf", 'zf')
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("sq", 'zq'));
-            //         daTra = daTra.replace("sq", 'zq')
-
-            //     }
-            //     else {
-            //         daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("st", 'zt'));
-            //         daTra = "s" + daTra.substring(1, daTra.length).replace("st", 'zt')
-            //         daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sc", 'zc'));
-            //         daTra = "s" + daTra.substring(1, daTra.length).replace("sc", 'zc')
-            //         daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sp", 'zp'));
-            //         daTra = "s" + daTra.substring(1, daTra.length).replace("sp", 'zp')
-            //         daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sf", 'zf'));
-            //         daTra = "s" + daTra.substring(1, daTra.length).replace("sf", 'zf')
-            //         daTrascrivere = daTrascrivere.replace(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replace("sq", 'zq'));
-            //         daTra = "s" + daTra.substring(1, daTra.length).replace("sq", 'zq')
-            //     }
-            // }
-            // if (daTra.startsWith("s")) {
-            //     if(daTra.startsWith("sa")||daTra.startsWith("se")||daTra.startsWith("si")||daTra.startsWith("so")||daTra.startsWith("st")||daTra.startsWith("sk")||daTra.startsWith("sp")||daTra.startsWith("sf")||daTra.startsWith("sq")){
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 's'));
-            //         daTra = daTra.replace("s", 's')
-            //     }
-            //     if(daTra.startsWith("sd")||daTra.startsWith("sb")||daTra.startsWith("sg")||daTra.startsWith("sv")||daTra.startsWith("sm")||daTra.startsWith("sl")||daTra.startsWith("sn") || daTra.startsWith("sr")){
-            //         daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", 'z'));
-            //         daTra = daTra.replace("s", 'z')
-            //     }
-
-            // }
-
             if (daTra.includes("s")) {
+                let lettereConsonanti="nprlb";
+                if (daTra.substring(1, daTra.length).includes("s")) {
+                    let indices = [];
+                    let index = daTra.indexOf("s");
+                    while (index !== -1) {
+                        indices.push(index);
+                        index = daTra.indexOf("s", index + 1);
+                    }
+                    for (let ind of indices) {
+                       if(lettereConsonanti.includes(daTra[ind-1]))
+                       {
+                        daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", '^*^'));
+                        daTra = daTra.replace("s", '^*^')
+                       }
+                    }
+                }
                 if (daTra.startsWith("s")) {
                     daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/s(?!([tpcfqaeiouj:]))/g, 'z'));
                     daTra = daTra.replace(/g(?!([tpcfqaeiouj:]))/g, 'z')
@@ -188,7 +166,7 @@ $(document).ready(function () {
                 daTrascrivere = daTrascrivere.replaceAll(daTra.substring(1, daTra.length), daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z'));
                 daTra = daTra.substring(0, 1) + daTra.substring(1, daTra.length).replaceAll(/s(?!([tpcfq:]))/g, 'z')
 
-                if(daTrascrivere.includes("zw")){
+                if (daTrascrivere.includes("zw")) {
                     daTrascrivere = daTrascrivere.replace("zwa", "swa");
                     daTra = daTra.replace("zwa", 'swa')
                     daTrascrivere = daTrascrivere.replace("zwe", "swe");
@@ -200,12 +178,15 @@ $(document).ready(function () {
                     daTrascrivere = daTrascrivere.replace("zwu", "swu");
                     daTra = daTra.replace("zwu", 'swu')
                 }
-                
+
+
             }
+            daTrascrivere = daTrascrivere.replace(daTra, daTra.replace('^*^',"s"));
+            daTra = daTra.replace('^*^',"s")
             
             //controllo delle C
-            if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch")||
-            daTra.includes("cw") ) {
+            if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch") ||
+                daTra.includes("cw")) {
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("ca", "ka"));
                 daTra = daTra.replaceAll("ca", "ka")
                 daTrascrivere = daTrascrivere.replaceAll(daTra, daTra.replaceAll("co", "ko"));
@@ -226,7 +207,7 @@ $(document).ready(function () {
                 // daTrascrivere = daTrascrivere.replace(daTra, daTra.replace(/c(?!([hau]))/g, ''));
                 // daTra = daTra.replace(/c(?!([hau]))/g, '')
             }
-            }
+        }
 
         for (let i = 0; i < scrittaDopo.length; i++) {
             if (daTrascrivere.includes(scrittaDopo[i])) {
@@ -235,8 +216,8 @@ $(document).ready(function () {
         }
         daTrascrivere = daTrascrivere.replaceAll("::", ":");
         trascritto = daTrascrivere;
-        
-        
+
+
     }
     function isZAtMiddle(word) {
         var middleIndex = Math.floor(word.length / 2);

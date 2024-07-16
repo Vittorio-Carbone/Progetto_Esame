@@ -6,7 +6,7 @@
   "main": "src/index.js",
   "build": {
     "appId": "com.trascrizionefonetica.app",
-    "productName": "TrascrizioneFonetica",
+    "productName": "CountSpeech",
     "directories": {
       "output": "dist"
     },
@@ -19,7 +19,8 @@
       "target": "dmg"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "src/img/icon.ico"
     }
   },
   "scripts": {
