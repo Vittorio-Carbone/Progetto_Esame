@@ -574,6 +574,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -694,6 +738,50 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 29,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
                             "valutazione": 0
                         }
                     ]
@@ -816,6 +904,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -936,6 +1068,50 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 29,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
                             "valutazione": 0
                         }
                     ]
@@ -1058,6 +1234,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1178,6 +1398,50 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 29,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
                             "valutazione": 0
                         }
                     ]
@@ -1300,6 +1564,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1420,6 +1728,50 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 29,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
                             "valutazione": 0
                         }
                     ]
@@ -1542,6 +1894,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1662,6 +2058,50 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 29,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
                             "valutazione": 0
                         }
                     ]
@@ -1784,6 +2224,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1905,6 +2389,50 @@ function salvaPaziente() {
                         {
                             "nome": 29,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 30,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 31,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 32,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 33,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 34,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 35,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 36,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 37,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 38,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 39,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 40,
+                            "valutazione": 0
                         }
                     ]
                 }
@@ -1968,8 +2496,9 @@ function caricaUtenti(paziente) {
 
     divPaziente.append(divNomePaz, divNomePazN, divDataPaz, divDiagnosiPaz);
 
-    document.getElementById('utenti').append(divPaziente);
-
+    let divUtentiPazienti=document.getElementById('utenti');
+    let hr=divUtentiPazienti.querySelector('hr');
+    divUtentiPazienti.insertBefore(divPaziente, hr);
     divNomePazN.style.display = 'none';
 
 
@@ -2521,6 +3050,215 @@ function caricaForm() {
                 document.getElementById('cancellazione_fonema').checked = true;
             }
         }
+        if (comp.nome == 30) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="frasi_ad_un_argomento"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="frasi_ad_un_argomento"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="frasi_ad_un_argomento"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="frasi_ad_un_argomento"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 31) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="frasi_a_due_argomento"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="frasi_a_due_argomento"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="frasi_a_due_argomento"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="frasi_a_due_argomento"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 32) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="frasi_a_tre_argomento"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="frasi_a_tre_argomento"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="frasi_a_tre_argomento"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="frasi_a_tre_argomento"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 33) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="frasi_complesse"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="frasi_complesse"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="frasi_complesse"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="frasi_complesse"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 34) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="articoli"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="articoli"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="articoli"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="articoli"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 35) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="predicati"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="predicati"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="predicati"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="predicati"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 36) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="preposizioni_semplici"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="preposizioni_semplici"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="preposizioni_semplici"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="preposizioni_semplici"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 37) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="preposizioni_articolate"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="preposizioni_articolate"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="preposizioni_articolate"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="preposizioni_articolate"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 38) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="pronomi_riflessivi_clitici"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="pronomi_riflessivi_clitici"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="pronomi_riflessivi_clitici"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="pronomi_riflessivi_clitici"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 39) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="pronomi"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="pronomi"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="pronomi"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="pronomi"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
+        if (comp.nome == 40) {
+            let radioButtons = document.querySelectorAll('input[type="radio"][name="congiunzioni"]');
+
+            radioButtons.forEach(function (button) {
+                button.checked = false;
+            });
+            if (comp.valutazione == 1) {
+                let radio = document.querySelectorAll('input[name="congiunzioni"][value="corretto"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 2) {
+                let radio = document.querySelectorAll('input[name="congiunzioni"][value="attenzione"]');
+                radio[0].checked = true;
+            }
+            if (comp.valutazione == 3) {
+                let radio = document.querySelectorAll('input[name="congiunzioni"][value="critico"]');
+                radio[0].checked = true;
+            }
+        }
     }
     caricaGraficiGruppi()
 }
@@ -2564,6 +3302,8 @@ function buttonClicked(value, name) {
         valutazione = 3;
     }
 
+    
+    
     if (name === 'morfolgia_libera') {
         nome = 1;
     }
@@ -2609,8 +3349,43 @@ function buttonClicked(value, name) {
     if (name === 'valFinaleRBT2') {
         nome = 29;
     }
+    if (name === 'frasi_ad_un_argomento') {
+        nome = 30;
+    }
+    if (name === 'frasi_a_due_argomento') {
+        nome = 31;
+    }
+    if (name === 'frasi_a_tre_argomento') {
+        nome = 32;
+    }
+    if (name === 'frasi_complesse') {
+        nome = 33;
+    }
+    if (name === 'articoli') {
+        nome = 34;
+    }
+    if (name === 'predicati') {
+        nome = 35;
+    }
+    if (name === 'preposizioni_semplici') {
+        nome = 36;
+    }
+    if (name === 'preposizioni_articolate') {
+        nome = 37;
+    }
+    if (name === 'pronomi_riflessivi_clitici') {
+        nome = 38;
+    }
+    if (name === 'pronomi') {
+        nome = 39;
+    }
+    if (name === 'congiunzioni') {
+        nome = 40;
+    }
+
     let _id = document.getElementById('idPaziente').value;
     users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
+        console.log(item); 
         if (item.nome === nome) {
             item.valutazione = valutazione;
         }

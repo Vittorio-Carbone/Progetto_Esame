@@ -19,8 +19,7 @@
       "target": "dmg"
     },
     "win": {
-      "target": "nsis",
-      "icon": "src/img/icon.ico"
+      "target": "nsis"
     }
   },
   "scripts": {

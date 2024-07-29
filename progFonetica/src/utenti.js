@@ -3,10 +3,19 @@
 
 $(document).ready(function () {
     $("#loginHome").hide();
+    $("#paginaScadenza").hide();
     setTimeout(() => {
         $(".animation-wrapper").fadeOut(500);
-        $("#loginHome").fadeIn(1000);
-    }, 6000);
+        let dataOggi = new Date();
+        let dataConfronto = new Date('2025-01-01');
+
+        if (dataOggi < dataConfronto) {
+            $("#loginHome").fadeIn(1000);    
+        } else {
+            $("#paginaScadenza").fadeIn(1000);
+        }
+
+    }, 6500);
 
 
     let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
@@ -30,7 +39,7 @@ $(document).ready(function () {
     let myChart6
     let chartJS7 = false;
     let myChart7
-    
+
 
     let occhioAperto = document.getElementById("occhioAperto");
     let occhioChiuso = document.getElementById("occhioChiuso");
@@ -39,10 +48,10 @@ $(document).ready(function () {
     occhioAperto.addEventListener("click", function () {
         occhioAperto.style.display = "none";
         occhioChiuso.style.display = "contents";
-        for(let paziente of document.getElementsByClassName("nomePaz")){
+        for (let paziente of document.getElementsByClassName("nomePaz")) {
             paziente.style.display = "none";
         }
-        for(let paziente of document.getElementsByClassName("nomePazN")){
+        for (let paziente of document.getElementsByClassName("nomePazN")) {
             paziente.style.display = "block";
         }
     });
@@ -50,10 +59,10 @@ $(document).ready(function () {
     occhioChiuso.addEventListener("click", function () {
         occhioAperto.style.display = "contents";
         occhioChiuso.style.display = "none";
-        for(let paziente of document.getElementsByClassName("nomePaz")){
+        for (let paziente of document.getElementsByClassName("nomePaz")) {
             paziente.style.display = "block";
         }
-        for(let paziente of document.getElementsByClassName("nomePazN")){
+        for (let paziente of document.getElementsByClassName("nomePazN")) {
             paziente.style.display = "none";
         }
     });
@@ -172,6 +181,20 @@ $(document).ready(function () {
             let max = Math.max(maxMed, maxIniz);
             jsonChar.testo = jsonChar.testo.map(elemento => {
                 return elemento.replace("r", "r o R");
+            });
+            jsonChar.fonMed = jsonChar.fonMed.map(elemento => {
+                if (elemento < 0) {
+                    return 0;
+                } else {
+                    return elemento;
+                }
+            });
+            jsonChar.fonIniz = jsonChar.fonIniz.map(elemento => {
+                if (elemento < 0) {
+                    return 0;
+                } else {
+                    return elemento;
+                }
             });
             if (chartJS) {
                 myChart.data.datasets[1].data = jsonChar.fonMed;
@@ -562,6 +585,34 @@ $(document).ready(function () {
                 let secondIn = posIn.slice(midIndex);
                 let firstMed = posMed.slice(0, midIndex);
                 let secondMed = posMed.slice(midIndex);
+                firstIn = firstIn.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                secondIn = secondIn.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                firstMed = firstMed.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                secondMed = secondMed.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
                 let color1 = getRandomColor();
                 let color2 = getRandomColor();
                 let datasett = {
@@ -736,9 +787,9 @@ $(document).ready(function () {
     $("#btnConfermaMesiSel").on("click", function () {
         setTimeout(() => {
             let jsonChar = JSON.parse($("#lblMesiSel").text());
-            let pazienti=jsonChar.paziente;
+            let pazienti = jsonChar.paziente;
             let mesi = jsonChar.mesi;
-            let n=mesi.length;
+            let n = mesi.length;
             barLarge = 10;
             if (n === 2) {
                 barLarge = 13;
@@ -766,17 +817,17 @@ $(document).ready(function () {
             let dataset2 = [];
             let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
             let tras;
-            document.getElementById("titoloMesiSelezionabili").innerHTML="";
-            for(let mese of mesi){
-                document.getElementById("titoloMesiSelezionabili").innerHTML+=mesiScritti[mese-1]+" - ";
+            document.getElementById("titoloMesiSelezionabili").innerHTML = "";
+            for (let mese of mesi) {
+                document.getElementById("titoloMesiSelezionabili").innerHTML += mesiScritti[mese - 1] + " - ";
                 let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                for(let reg of pazienti.reg){
-                    let data=reg.data.split("/");
-                    if(parseInt(data[1])===mese){
-                        tras=reg.trascritto;
+                for (let reg of pazienti.reg) {
+                    let data = reg.data.split("/");
+                    if (parseInt(data[1]) === mese) {
+                        tras = reg.trascritto;
                         let parole = tras.split(" ");
-                        for(let parola of parole){
+                        for (let parola of parole) {
                             for (let [i, lettera] of letters.entries()) {
                                 if (lettera != "d" && lettera != "t" && lettera != "s" && lettera != "z" && lettera != "ʃ" && lettera != "ʒ") {
                                     if (parola.includes(lettera) && !parola.startsWith(lettera)) {
@@ -923,7 +974,7 @@ $(document).ready(function () {
                 }
                 posMed[7] -= countN;
 
-                
+
                 let maxBet
                 if (Math.max(...posIn) > Math.max(...posMed)) {
                     maxBet = Math.max(...posIn);
@@ -961,6 +1012,34 @@ $(document).ready(function () {
                 let secondIn = posIn.slice(midIndex);
                 let firstMed = posMed.slice(0, midIndex);
                 let secondMed = posMed.slice(midIndex);
+                firstIn = firstIn.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                secondIn = secondIn.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                firstMed = firstMed.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
+                secondMed = secondMed.map(elemento => {
+                    if (elemento < 0) {
+                        return 0;
+                    } else {
+                        return elemento;
+                    }
+                });
                 let color1 = getRandomColor();
                 let color2 = getRandomColor();
                 let datasett = {
@@ -996,8 +1075,8 @@ $(document).ready(function () {
                 }
                 dataset2.push(datasett);
             }
-            document.getElementById("titoloMesiSelezionabili").innerHTML=document.getElementById("titoloMesiSelezionabili").innerHTML.substring(0,document.getElementById("titoloMesiSelezionabili").innerHTML.length-3);
-            
+            document.getElementById("titoloMesiSelezionabili").innerHTML = document.getElementById("titoloMesiSelezionabili").innerHTML.substring(0, document.getElementById("titoloMesiSelezionabili").innerHTML.length - 3);
+
             function countLetters(str, letters) {
                 let count = 0;
                 if (letters.length === 1) {
@@ -1016,7 +1095,7 @@ $(document).ready(function () {
                 return count;
             }
 
-            
+
             let minInd = Math.ceil(letters.length / 2);
             let firstLet = letters.slice(0, minInd);
             let secondLet = letters.slice(minInd);
@@ -1401,11 +1480,25 @@ $(document).ready(function () {
 
 
 
-    $(".tasto").on("click", function () {
+    $(".tasto").on("click", function() {
         let fonema = $(this).text();
-        let frase = $("#outputTrascritto").val();
-        frase += fonema;
-        $("#outputTrascritto").val(frase);
+        let outputTrascritto = $("#outputTrascritto")[0]; 
+    
+        if (outputTrascritto.selectionStart || outputTrascritto.selectionStart === '0') {
+            let startPos = outputTrascritto.selectionStart;
+            let endPos = outputTrascritto.selectionEnd;
+            let testoPrima = outputTrascritto.value.substring(0, startPos);
+            let testoDopo = outputTrascritto.value.substring(endPos, outputTrascritto.value.length);
+    
+            outputTrascritto.value = testoPrima + fonema + testoDopo;
+    
+            outputTrascritto.selectionStart = startPos + fonema.length;
+            outputTrascritto.selectionEnd = startPos + fonema.length;
+        } else {
+            outputTrascritto.value += fonema;
+        }
+    
+        outputTrascritto.focus();
     });
 
 

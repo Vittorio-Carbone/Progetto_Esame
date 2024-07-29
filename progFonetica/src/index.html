@@ -21,31 +21,55 @@
 </head>
 
 <body class="poppins-regular">
+  <div id="paginaScadenza">
+    <div id="popupScadenza">
+      <h2>Il periodo di prova è scaduto.</h2>
+      <p>Se si desidera continuarne l'utilizzo contatta:</p>
+      <div class="contact-container">
+        <h2 class="nomiContatti" style="font-size: 22pt;">Dott.ssa Allamandri Valeria, logopedista:</h2>
+        <ul class="email-list" style="font-size: 17pt;">
+          <li><a href="mailto:valeria.allamandri@gmail.com">valeria.allamandri@gmail.com</a></li>
+        </ul>
+        <hr style="width: 75%; margin: 0px auto; border-color: rgb(177, 188, 198);">
+        <h2 class="nomiContatti" style="font-size: 18pt;">Programmatori:</h2>
+        <ul class="email-list" style="font-size: 14pt;">
+          <li><a href="mailto:vittoriocarbone.vc.vc@gmail.com">vittoriocarbone.vc.vc@gmail.com</a></li>
+          <li><a href="mailto:vittoriocarbone.vc.vc@gmail.com">loris.rosanoo@gmail.com</a></li>
+        </ul>
+      </div>
+      <div style="font-size: 15pt; margin-top: 10px; color: #024d9e;">
+        Chiediamo di compilare il form dopo l'utlizzo di CountSpeech. <br><br>
+        <a class="formLink"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScpl7f3-OUNzIqec7tdwd7OMUEqwekL6gjY2K_xzwG3PHWMFw/viewform?usp=sf_link "
+          target="_blank">Clicca qui per il form!</a>
+      </div>
+    </div>
+  </div>
   <div class="animation-wrapper">
     <div class="logo-container">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
+      <div class="wave"></div>
     </div>
     <div class="text-container">
-        <img src="img/icon.ico" alt="">
-        <h1>CountSpeech</h1><br>
-        <h3>Allemandri Valeria</h3>
-        <h3>Carbone Vittorio</h3>
-        <h3>Rosano Loris</h3>
+      <img src="img/icon.ico" alt="">
+      <h1>CountSpeech</h1><br>
+      <h3>Allamandri Valeria</h3>
+      <h3>Carbone Vittorio</h3>
+      <h3>Rosano Loris</h3>
     </div>
-</div>
+  </div>
   <div id="loginHome">
     <div id="divIntermedio">
       <div id="divLogin">
@@ -125,6 +149,29 @@
           <div class="dataPaz">12/12/2000</div>
               <div class="diagnosiPaz">Influenza</div>
             </div> -->
+      <hr style="margin-top: 50px;border-color: #cee6ff;">
+      <div class="contact-container" style="max-width: none;display: flex; gap: 1rem;">
+        <div>
+          <h2 class="nomiContatti" style="font-size: 18pt;">Dott.ssa Allamandri Valeria, logopedista:</h2>
+          <ul class="email-list" style="font-size: 17pt;">
+            <li><a href="mailto:valeria.allamandri@gmail.com">valeria.allamandri@gmail.com</a></li>
+          </ul>
+        </div>
+        <div style="width: 2px !important; background-color: #024d9e;"></div>
+        <div>
+          <h2 class="nomiContatti" style="font-size: 18pt;">Programmatori:</h2>
+          <ul class="email-list" style="font-size: 17pt;">
+            <li><a href="mailto:vittoriocarbone.vc.vc@gmail.com">vittoriocarbone.vc.vc@gmail.com</a></li>
+            <li><a href="mailto:vittoriocarbone.vc.vc@gmail.com">loris.rosanoo@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="font-size: 15pt; margin-top: -90px; color: #024d9e;">
+        Chiediamo di compilare il form dopo l'utlizzo di CountSpeech. <br><br>
+        <a class="formLink"
+          href="https://docs.google.com/forms/d/e/1FAIpQLScpl7f3-OUNzIqec7tdwd7OMUEqwekL6gjY2K_xzwG3PHWMFw/viewform?usp=sf_link "
+          target="_blank">Clicca qui per il form!</a>
+      </div><br><br><br><br><br><br>
     </div>
     <div id="utente" style="text-align: center;">
       <div class="closeButton" id="closePazTab"><i class="fa-solid fa-user" id="iconUser"></i><i
@@ -268,68 +315,153 @@
 
           <div class="form-container">
             <div class="component-header">
-              Componenti
+              Morfosintassi
             </div>
             <form>
-              <div class="form-row no-break">
-                <label>Morfolgia libera primo argomento</label>
-                <input type="radio" name="morfolgia_libera_2" value="corretto"> <span class="corretto">Presente</span>
-                <input type="radio" name="morfolgia_libera_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="morfolgia_libera_2" value="critico"> <span class="critico">Assente</span>
+              <div style="display: none;">
+
+                <div class="form-row no-break">
+                  <label>Morfolgia libera primo argomento</label>
+                  <input type="radio" name="morfolgia_libera_2" value="corretto"> <span class="corretto">Presente</span>
+                  <input type="radio" name="morfolgia_libera_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="morfolgia_libera_2" value="critico"> <span class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Primo argomento</label>
+                  <input type="radio" name="argomento_2" value="corretto"> <span class="corretto">Presente</span>
+                  <input type="radio" name="argomento_2" value="attenzione"> <span class="attenzione">Saltuario</span>
+                  <input type="radio" name="argomento_2" value="critico"> <span class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Morfolgia legata primo argomento</label>
+                  <input type="radio" name="morfolgia_legata_2" value="corretto"> <span class="corretto">Presente</span>
+                  <input type="radio" name="morfolgia_legata_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="morfolgia_legata_2" value="critico"> <span class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Predicato</label>
+                  <input type="radio" name="predicato_2" value="corretto"> <span class="corretto">Presente</span>
+                  <input type="radio" name="predicato_2" value="attenzione"> <span class="attenzione">Saltuario</span>
+                  <input type="radio" name="predicato_2" value="critico"> <span class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Morfolgia legata predicato</label>
+                  <input type="radio" name="morfolgia_legata_predicato_2" value="corretto"> <span
+                    class="corretto">Presente</span>
+                  <input type="radio" name="morfolgia_legata_predicato_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="morfolgia_legata_predicato_2" value="critico"> <span
+                    class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Morfolgia libera secondo argomento</label>
+                  <input type="radio" name="morfolgia_libera_predicato_2" value="corretto"> <span
+                    class="corretto">Presente</span>
+                  <input type="radio" name="morfolgia_libera_predicato_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="morfolgia_libera_predicato_2" value="critico"> <span
+                    class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Secondo argomento</label>
+                  <input type="radio" name="secondo_argomento_2" value="corretto"> <span
+                    class="corretto">Presente</span>
+                  <input type="radio" name="secondo_argomento_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="secondo_argomento_2" value="critico"> <span class="critico">Assente</span>
+                </div>
+                <div class="form-row no-break">
+                  <label>Morfolgia legata secondo argomento</label>
+                  <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="corretto"> <span
+                    class="corretto">Presente</span>
+                  <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="attenzione"> <span
+                    class="attenzione">Saltuario</span>
+                  <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="critico"> <span
+                    class="critico">Assente</span>
+                </div>
               </div>
+
+
               <div class="form-row no-break">
-                <label>Primo argomento</label>
-                <input type="radio" name="argomento_2" value="corretto"> <span class="corretto">Presente</span>
-                <input type="radio" name="argomento_2" value="attenzione"> <span class="attenzione">Saltuario</span>
-                <input type="radio" name="argomento_2" value="critico"> <span class="critico">Assente</span>
-              </div>
-              <div class="form-row no-break">
-                <label>Morfolgia legata primo argomento</label>
-                <input type="radio" name="morfolgia_legata_2" value="corretto"> <span class="corretto">Presente</span>
-                <input type="radio" name="morfolgia_legata_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="morfolgia_legata_2" value="critico"> <span class="critico">Assente</span>
-              </div>
-              <div class="form-row no-break">
-                <label>Predicato</label>
-                <input type="radio" name="predicato_2" value="corretto"> <span class="corretto">Presente</span>
-                <input type="radio" name="predicato_2" value="attenzione"> <span class="attenzione">Saltuario</span>
-                <input type="radio" name="predicato_2" value="critico"> <span class="critico">Assente</span>
-              </div>
-              <div class="form-row no-break">
-                <label>Morfolgia legata predicato</label>
-                <input type="radio" name="morfolgia_legata_predicato_2" value="corretto"> <span
+                <label>Frasi ad 1 argomento</label>
+                <input type="radio" name="frasi_ad_un_argomento" value="corretto"> <span
                   class="corretto">Presente</span>
-                <input type="radio" name="morfolgia_legata_predicato_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="morfolgia_legata_predicato_2" value="critico"> <span
+                <input type="radio" name="frasi_ad_un_argomento" value="attenzione"> <span
+                  class="attenzione">Saltuarie</span>
+                <input type="radio" name="frasi_ad_un_argomento" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Frasi a 2 argomenti</label>
+                <input type="radio" name="frasi_a_due_argomento" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="frasi_a_due_argomento" value="attenzione"> <span
+                  class="attenzione">Saltuarie</span>
+                <input type="radio" name="frasi_a_due_argomento" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Frasi a 3 argomenti</label>
+                <input type="radio" name="frasi_a_tre_argomento" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="frasi_a_tre_argomento" value="attenzione"> <span
+                  class="attenzione">Saltuarie</span>
+                <input type="radio" name="frasi_a_tre_argomento" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Frasi complesse</label>
+                <input type="radio" name="frasi_complesse" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="frasi_complesse" value="attenzione"> <span class="attenzione">Saltuarie</span>
+                <input type="radio" name="frasi_complesse" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Articoli</label>
+                <input type="radio" name="articoli" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="articoli" value="attenzione"> <span class="attenzione">Saltuari</span>
+                <input type="radio" name="articoli" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Predicati</label>
+                <input type="radio" name="predicati" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="predicati" value="attenzione"> <span class="attenzione">Saltuari</span>
+                <input type="radio" name="predicati" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Preposizioni semplici</label>
+                <input type="radio" name="preposizioni_semplici" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="preposizioni_semplici" value="attenzione"> <span
+                  class="attenzione">Saltuarie</span>
+                <input type="radio" name="preposizioni_semplici" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Preposizioni articolate</label>
+                <input type="radio" name="preposizioni_articolate" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="preposizioni_articolate" value="attenzione"> <span
+                  class="attenzione">Saltuarie</span>
+                <input type="radio" name="preposizioni_articolate" value="critico"> <span class="critico">Assente</span>
+              </div>
+              <div class="form-row no-break">
+                <label>Pronomi riflessivi o clitici (si lava, lo mangia...)</label>
+                <input type="radio" name="pronomi_riflessivi_clitici" value="corretto"> <span
+                  class="corretto">Presente</span>
+                <input type="radio" name="pronomi_riflessivi_clitici" value="attenzione"> <span
+                  class="attenzione">Saltuari</span>
+                <input type="radio" name="pronomi_riflessivi_clitici" value="critico"> <span
                   class="critico">Assente</span>
               </div>
               <div class="form-row no-break">
-                <label>Morfolgia libera secondo argomento</label>
-                <input type="radio" name="morfolgia_libera_predicato_2" value="corretto"> <span
-                  class="corretto">Presente</span>
-                <input type="radio" name="morfolgia_libera_predicato_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="morfolgia_libera_predicato_2" value="critico"> <span
-                  class="critico">Assente</span>
+                <label>Pronomi (io, tu, questo...)</label>
+                <input type="radio" name="pronomi" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="pronomi" value="attenzione"> <span class="attenzione">Saltuari</span>
+                <input type="radio" name="pronomi" value="critico"> <span class="critico">Assente</span>
               </div>
               <div class="form-row no-break">
-                <label>Secondo argomento</label>
-                <input type="radio" name="secondo_argomento_2" value="corretto"> <span class="corretto">Presente</span>
-                <input type="radio" name="secondo_argomento_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="secondo_argomento_2" value="critico"> <span class="critico">Assente</span>
-              </div>
-              <div class="form-row no-break">
-                <label>Morfolgia legata secondo argomento</label>
-                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="corretto"> <span
-                  class="corretto">Presente</span>
-                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="attenzione"> <span
-                  class="attenzione">Saltuario</span>
-                <input type="radio" name="morfolgia_legata_secondo_predicato_2" value="critico"> <span
-                  class="critico">Assente</span>
+                <label>Congiunzioni (ma, e, poi...)</label>
+                <input type="radio" name="congiunzioni" value="corretto"> <span class="corretto">Presente</span>
+                <input type="radio" name="congiunzioni" value="attenzione"> <span class="attenzione">Saltuarie</span>
+                <input type="radio" name="congiunzioni" value="critico"> <span class="critico">Assente</span>
               </div>
             </form>
           </div>
