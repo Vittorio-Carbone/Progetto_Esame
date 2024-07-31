@@ -15,8 +15,13 @@ $(document).ready(function () {
             $("#paginaScadenza").fadeIn(1000);
         }
 
-    }, 6500);
+    }, 100);
 
+
+
+    $("#confermaPopNew").click(function () {
+        $("#overlayNew").addClass("overlay-hidden");
+    });
 
     let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
     let colori = "";

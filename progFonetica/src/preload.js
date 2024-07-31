@@ -2541,6 +2541,11 @@ function accedi() {
             trovato = true;
             document.getElementById('logged').style.display = 'block';
             document.getElementById('loginHome').style.display = 'none';
+
+            let num = Math.floor(Math.random() * 4) + 1;
+            if (num ==1) {
+            document.getElementById("overlayNew").classList.remove('overlay-hidden');
+            }
             for (let paziente of utente.pazienti) {
                 caricaUtenti(paziente);
             }
