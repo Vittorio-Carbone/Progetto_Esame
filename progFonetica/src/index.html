@@ -76,10 +76,10 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" value="vittorio" required>
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username"  required>
           <div>
             <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
-            value="pass" required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
+             required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
           </div>
         </form>
         <div class="txtErrore" id="errAcc">Utente non trovato</div>
@@ -207,9 +207,13 @@
         </div>
         <div class="divTasti" id="tasti">
           <button class="tasto">ɲ:</button>
+          <button class="tasto">ŋ</button>
+          <button class="tasto">ɱ</button>
           <button class="tasto">ʎ:</button>
           <button class="tasto">ʃ</button>
           <button class="tasto">ʒ</button>
+          <button class="tasto">ɔ</button>
+          <button class="tasto">ɛ</button>
 
         </div>
       </div>
@@ -575,6 +579,7 @@
           <h1 style="font-size: 27pt; margin-bottom: 0px;">Inventario fonetico</h1>
           <div style="width: 90%;margin: 0px auto; text-align: center;" class="no-break">
             <span class="posizione">Posizione iniziale</span>
+            <div class="inventarioVocali" id="invVocaliInziale"></div>
             <div style="display: flex; gap: 0.5rem;">
               <div class="form-container" style="width: 60%;">
                 <div class="component-header">
@@ -657,6 +662,7 @@
           </div>
           <div style="width: 90%;margin: 0px auto; text-align: center;margin-top: 25px;" class="no-break">
             <span class="posizione">Posizione mediana</span>
+            <div class="inventarioVocali" id="invVocaliMediane"></div>
             <div style="display: flex; gap: 0.5rem;">
               <div class="form-container" style="width: 60%;">
                 <div class="component-header">

@@ -10,12 +10,12 @@ $(document).ready(function () {
         let dataConfronto = new Date('2025-01-01');
 
         if (dataOggi < dataConfronto) {
-            $("#loginHome").fadeIn(1000);    
+            $("#loginHome").fadeIn(1000);
         } else {
             $("#paginaScadenza").fadeIn(1000);
         }
 
-    }, 100);
+    }, 6000);
 
 
 
@@ -278,7 +278,7 @@ $(document).ready(function () {
             } else {
                 chartJS4 = true;
                 const data = {
-                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"],
+                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/", "/ɱ/", "/ŋ/"],
                     datasets: [{
                         label: "Gruppi consonantici presenti",
                         data: nCons,
@@ -391,13 +391,13 @@ $(document).ready(function () {
 
             let dataset1 = [];
             let dataset2 = [];
-            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
-            let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
+            let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             let tras;
             for (let i = n1; i <= n2; i++) {
-                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 for (let frasi of jsonChar) {
                     let nMese = frasi.data.split("/");
                     if (parseInt(nMese[1]) === i) {
@@ -820,13 +820,13 @@ $(document).ready(function () {
             let maxAssoluto = 0;
             let dataset1 = [];
             let dataset2 = [];
-            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
             let tras;
             document.getElementById("titoloMesiSelezionabili").innerHTML = "";
             for (let mese of mesi) {
                 document.getElementById("titoloMesiSelezionabili").innerHTML += mesiScritti[mese - 1] + " - ";
-                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 for (let reg of pazienti.reg) {
                     let data = reg.data.split("/");
                     if (parseInt(data[1]) === mese) {
@@ -1225,10 +1225,10 @@ $(document).ready(function () {
             }
 
             let dataset = [];
-            let letters = ["m", "n", "s", "z", "r", "l"]
+            let letters = ["m", "n", "s", "z", "r", "l", "ɱ", "ŋ"]
             let tras;
             for (let i = n1; i <= n2; i++) {
-                let posizioni = [0, 0, 0, 0, 0, 0];
+                let posizioni = [0, 0, 0, 0, 0, 0, 0, 0];
                 for (let frasi of jsonChar) {
                     let nMese = frasi.data.split("/");
                     if (parseInt(nMese[1]) === i) {
@@ -1236,6 +1236,7 @@ $(document).ready(function () {
                         for (let [i, lettera] of letters.entries()) {
                             let nLettere = contaLettere(tras, lettera);
                             posizioni[i] += nLettere;
+
                         }
                     }
                 }
@@ -1336,7 +1337,7 @@ $(document).ready(function () {
             } else {
                 chartJS5 = true;
                 const data = {
-                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/"],
+                    labels: ["/m/", "/n/", "/s/", "/z/", "/r/ o /R/", "/l/", "/ɱ/", "/ŋ/"],
                     datasets: dataset
                 };
 
@@ -1378,9 +1379,15 @@ $(document).ready(function () {
                 let count = 0;
                 const consonanti = "bcdfghjklmnpqrstvwxyz";
                 const vocali = "aeiou";
-                if (gruppo !== "r") {
+                if (gruppo !== "r" && gruppo != "ŋ" && gruppo != "ɱ") {
                     for (let i = 0; i < frase.length - 1; i++) {
                         if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
+                            count++;
+                        }
+                    }
+                } else if (gruppo == "ŋ" || gruppo == "ɱ") {
+                    for (let i = 0; i < frase.length; i++) {
+                        if (frase[i] === gruppo) {
                             count++;
                         }
                     }
@@ -1485,24 +1492,24 @@ $(document).ready(function () {
 
 
 
-    $(".tasto").on("click", function() {
+    $(".tasto").on("click", function () {
         let fonema = $(this).text();
-        let outputTrascritto = $("#outputTrascritto")[0]; 
-    
+        let outputTrascritto = $("#outputTrascritto")[0];
+
         if (outputTrascritto.selectionStart || outputTrascritto.selectionStart === '0') {
             let startPos = outputTrascritto.selectionStart;
             let endPos = outputTrascritto.selectionEnd;
             let testoPrima = outputTrascritto.value.substring(0, startPos);
             let testoDopo = outputTrascritto.value.substring(endPos, outputTrascritto.value.length);
-    
+
             outputTrascritto.value = testoPrima + fonema + testoDopo;
-    
+
             outputTrascritto.selectionStart = startPos + fonema.length;
             outputTrascritto.selectionEnd = startPos + fonema.length;
         } else {
             outputTrascritto.value += fonema;
         }
-    
+
         outputTrascritto.focus();
     });
 
@@ -1512,9 +1519,9 @@ $(document).ready(function () {
         let data = 0;
         let nMese = document.getElementById('numMese').value;
         let jsonGruppi = JSON.parse($("#jsonGruppi").text());
-        let gruppiCons = ["m", "n", "s", "z", "r", "l"]
-        let nConsIni = [0, 0, 0, 0, 0, 0];
-        let nConsMed = [0, 0, 0, 0, 0, 0];
+        let gruppiCons = ["m", "n", "s", "z", "r", "l", "ɱ", "ŋ"]
+        let nConsIni = [0, 0, 0, 0, 0, 0, 0, 0];
+        let nConsMed = [0, 0, 0, 0, 0, 0, 0, 0];
         let consonanti = "bcdfghjklmnpqrstvwxyz";
         for (let tras of jsonGruppi) {
             data = tras.data.split("/");
@@ -1641,7 +1648,7 @@ $(document).ready(function () {
             let count = 0;
             const consonanti = "bcdfghjklmnpqrstvwxyz";
             const vocali = "aeiou";
-            if (gruppo !== "r" && gruppo !== "l") {
+            if (gruppo !== "r" && gruppo !== "l" && gruppo != "ɱ" && gruppo != "ŋ") {
                 for (let i = 0; i < frase.length - 1; i++) {
                     if (gruppo === frase[i] && consonanti.includes(frase[i + 1])) {
                         count++;
@@ -1664,6 +1671,13 @@ $(document).ready(function () {
                 }
                 for (let i = 1; i < frase.length - 1; i++) {
                     if ((frase[i] === gruppo && consonanti.includes(frase[i + 1]))) {
+                        count++;
+                    }
+                }
+            }
+            if (gruppo == "ɱ" || gruppo == "ŋ") {
+                for (let i = 0; i < frase.length; i++) {
+                    if (frase[i] === gruppo) {
                         count++;
                     }
                 }

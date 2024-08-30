@@ -40,17 +40,17 @@ document.addEventListener('DOMContentLoaded', () => {
         hidePopup();
     });
 
-    
-    
+
+
     document.getElementById("boolAcc").value = "acc";
-    document.addEventListener("keyup", function(event) {
-        let controllo= document.getElementById('boolAcc').value 
+    document.addEventListener("keyup", function (event) {
+        let controllo = document.getElementById('boolAcc').value
         if (event.key === "Enter" || event.keyCode === 13) {
-            if(boolAcc){
-                if(controllo === "acc"){
+            if (boolAcc) {
+                if (controllo === "acc") {
                     accedi();
                 }
-                else if(controllo === "reg"){
+                else if (controllo === "reg") {
                     registrati();
                 }
             }
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         while (pazienti[0]) {
             pazienti[0].parentNode.removeChild(pazienti[0]);
         }
-        boolAcc=true;
+        boolAcc = true;
     });
 
     document.getElementById("iconUser").addEventListener('click', () => {
@@ -170,9 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     const elementi = document.querySelectorAll(".mesiSelezionabili");
-    elementi.forEach(function(elemento) {
-        elemento.addEventListener("click", function(event) {
-            if(event.target.classList.contains("meseSelezionato")) {
+    elementi.forEach(function (elemento) {
+        elemento.addEventListener("click", function (event) {
+            if (event.target.classList.contains("meseSelezionato")) {
                 event.target.classList.remove("meseSelezionato");
                 mesiSelezionati = mesiSelezionati.filter((mese) => parseInt(mese) !== parseInt(event.target.id));
             }
@@ -180,20 +180,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 event.target.classList.add("meseSelezionato");
                 mesiSelezionati.push(parseInt(event.target.id));
             }
-            mesiSelezionati.sort(function(a, b) {
+            mesiSelezionati.sort(function (a, b) {
                 return a - b;
             });
         });
     });
 
-    document.getElementById("btnConfermaMesiSel").addEventListener("click", function() {
+    document.getElementById("btnConfermaMesiSel").addEventListener("click", function () {
         caricaChartMesiSel();
     });
 });
-function caricaChartMesiSel(){
+function caricaChartMesiSel() {
     let _id = document.getElementById('idPaziente').value;
     let paziente = users[idUser]['pazienti'][_id];
-    let json={
+    let json = {
         "paziente": paziente,
         "mesi": mesiSelezionati
     }
@@ -2486,18 +2486,18 @@ function caricaUtenti(paziente) {
     let divNomePazN = document.createElement('div');
     divNomePazN.className = 'nomePazN';
     divNomePazN.textContent = paziente['nome'][0];
-    for(let i = 1; i < paziente['nome'].length; i++){
+    for (let i = 1; i < paziente['nome'].length; i++) {
         divNomePazN.textContent += "*";
     }
     divNomePazN.textContent += ' ' + paziente['cognome'][0];
-    for(let i = 1; i < paziente['cognome'].length; i++){
+    for (let i = 1; i < paziente['cognome'].length; i++) {
         divNomePazN.textContent += "*";
     }
 
     divPaziente.append(divNomePaz, divNomePazN, divDataPaz, divDiagnosiPaz);
 
-    let divUtentiPazienti=document.getElementById('utenti');
-    let hr=divUtentiPazienti.querySelector('hr');
+    let divUtentiPazienti = document.getElementById('utenti');
+    let hr = divUtentiPazienti.querySelector('hr');
     divUtentiPazienti.insertBefore(divPaziente, hr);
     divNomePazN.style.display = 'none';
 
@@ -2543,8 +2543,8 @@ function accedi() {
             document.getElementById('loginHome').style.display = 'none';
 
             let num = Math.floor(Math.random() * 4) + 1;
-            if (num ==1) {
-            document.getElementById("overlayNew").classList.remove('overlay-hidden');
+            if (num == 1) {
+                document.getElementById("overlayNew").classList.remove('overlay-hidden');
             }
             for (let paziente of utente.pazienti) {
                 caricaUtenti(paziente);
@@ -2628,11 +2628,11 @@ function caricaSchedaUser() {
     console.log(users[idUser]['pazienti'][_id]);
     let paziente = users[idUser]['pazienti'][_id];
     document.getElementById('schedaNomeN').innerHTML = paziente.nome[0];
-    for(let i = 1; i < paziente.nome.length; i++){
+    for (let i = 1; i < paziente.nome.length; i++) {
         document.getElementById('schedaNomeN').textContent += "*";
     }
-    document.getElementById('schedaNomeN').innerHTML +=" " +paziente.cognome[0];
-    for(let i = 1; i < paziente.cognome.length; i++){
+    document.getElementById('schedaNomeN').innerHTML += " " + paziente.cognome[0];
+    for (let i = 1; i < paziente.cognome.length; i++) {
         document.getElementById('schedaNomeN').textContent += "*";
     }
     document.getElementById('schedaNome').innerHTML = paziente.nome + " " + paziente.cognome;
@@ -3307,8 +3307,8 @@ function buttonClicked(value, name) {
         valutazione = 3;
     }
 
-    
-    
+
+
     if (name === 'morfolgia_libera') {
         nome = 1;
     }
@@ -3390,7 +3390,7 @@ function buttonClicked(value, name) {
 
     let _id = document.getElementById('idPaziente').value;
     users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
-        console.log(item); 
+        console.log(item);
         if (item.nome === nome) {
             item.valutazione = valutazione;
         }
@@ -3464,11 +3464,11 @@ function buttonChkClicked(id, value) {
 
 
 function caricaPosizioni(numMese) {
-    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"]
-    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/"]
+    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
+    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/", "/a/", "/e/", "/ɛ/", "/i/", "/o/", "/ɔ/", "/u/"];
 
-    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     const consonanti = "bcdfghjklmnpqrstvwxyz";
     let _id = document.getElementById('idPaziente').value;
     let tras;
@@ -3576,8 +3576,9 @@ function caricaPosizioni(numMese) {
     let letteraAdd
     let containerWrite
     svuotaCampiFon();
+    let vocaliContainer = ""
     for (let [i, lettera] of posizioniIniziali.entries()) {
-        if (lettera > 0) {
+        if (lettera > 0 && i < 24) {
             letteraAdd = write[i];
             let lc = letters[i];
             if (lc === "m" || lc === "n" || lc === "ɲ" || lc === "ŋ") {
@@ -3614,9 +3615,18 @@ function caricaPosizioni(numMese) {
             div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
+        if (lettera > 0 && i > 23) {
+            let lc = letters[i];
+            letteraAdd = write[i];
+            vocaliContainer=vocaliContainer+" "+letteraAdd;
+        }
     }
+    if (vocaliContainer!="") {
+        document.getElementById('invVocaliInziale').textContent = "Vocali in posizione iniziale: "+vocaliContainer;
+    }
+    vocaliContainer=""
     for (let [i, lettera] of posizioniMedie.entries()) {
-        if (lettera > 0) {
+        if (lettera > 0 && i < 24) {
             letteraAdd = write[i];
             let lc = letters[i];
             if (lc === "m" || lc === "n" || lc === "ɲ" || lc === "ŋ") {
@@ -3653,8 +3663,16 @@ function caricaPosizioni(numMese) {
             div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
-    }
+        if (lettera > 0 && i > 23) {
+            let lc = letters[i];
+            letteraAdd = write[i];
+            vocaliContainer=vocaliContainer+" "+letteraAdd;
+        }
 
+    }
+    if (vocaliContainer!="") {
+        document.getElementById('invVocaliMediane').textContent = "Vocali in posizione mediana: "+vocaliContainer;
+    }
 
 
     // CREAZIONE CHART

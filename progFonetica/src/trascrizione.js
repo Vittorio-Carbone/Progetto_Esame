@@ -9,8 +9,8 @@ scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce',
 fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
 scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi", "cq", "q", "i:", " z'e ", " dz:ants:ara ", " ts:ants:ara "," dz:ants:are ", " ts:ants:are "," dz:ja ", " dz:jo ", " mjo ", " mja ", " mai ", " vja ", " two ", " swo ", " swa ", " swe ", " jo "]
 fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui", "k:", "k", "ij", "s'e", " dz:andz:ara ", " dz:andz:ara "," dz:andz:are ", " dz:andz:are ", " zia ", " zio ", " mio ", " mia ", " mai ", " via ", " tuo ", " suo ", " sua ", " sue ", " io "]
-scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge"]
-fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e"]
+scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge", "n c", "n g", "n k", "nc", "ng", "nk", "n v", "n f", "nv", "nf"]
+fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e","ŋ c", "ŋ g", "ŋ k","ŋc", "ŋg", "ŋk", "ɱ v", "ɱ f","ɱv", "ɱf"]
 
 
 
@@ -41,6 +41,7 @@ $(document).ready(function () {
                 trascritto = trascritto.replaceAll(scrittaPrima[i], fonemiPrima[i]);
             }
         }
+        console.log(trascritto)
         doppie();
         trascrizioneFonemi();
         for (let j = 0; j < accentate.length; j++) {

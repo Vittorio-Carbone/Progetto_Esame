@@ -4,8 +4,7 @@ const filePath = path.join(__dirname, "utenti.json");
 const fs = require("fs");
 const { data } = require("jquery");
 
-// TO CREATE DIST USE npx electron-builder build --windows in a administrator terminal
-
+// TO CREATE DIST USE npx electron-builder build --windows IN AN ADMINISTRATOR CMD
 if (require("electron-squirrel-startup")) {
   app.quit();
 }
