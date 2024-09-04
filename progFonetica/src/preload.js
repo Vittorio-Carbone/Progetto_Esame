@@ -1,5 +1,6 @@
 const { contextBridge, ipcRenderer } = require('electron');
 const path = require('path');
+const { shell } = require('electron');
 const filePath = path.join(__dirname, 'utenti.json');
 const fs = require('fs');
 const Chart = require('chart.js');
@@ -13,6 +14,12 @@ let idUser;
 let month;
 let mesiScritti = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('external-linkDipi').addEventListener('click', (event) => {
+        event.preventDefault();  
+        shell.openExternal('https://www.dipionline.it/'); 
+    });
+
+
     document.getElementById('containerForm').style.display = 'none';
     // users = JSON.parse(fs.readFileSync(filePath, 'utf8'));
     users = JSON.parse(window.localStorage.getItem('users'));
@@ -3464,11 +3471,12 @@ function buttonChkClicked(id, value) {
 
 
 function caricaPosizioni(numMese) {
-    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
-    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/", "/a/", "/e/", "/ɛ/", "/i/", "/o/", "/ɔ/", "/u/"];
+    let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"];
+    let write = ["/j/", "/w/", "/p/", "/b/", "/m/", "/t/", "/d/", "/n/", "/k/", "/g/", "/f/", "/v/", "/l/", "/r/ o /ʀ/", "/s/", "/z/", "/ʃ/", "/dʒ/", "/ts/", "/dz/", "/ɲ/ o /ŋ/", "/ʎ/", "/tʃ/", "/ʒ/"];
 
-    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
     const consonanti = "bcdfghjklmnpqrstvwxyz";
     let _id = document.getElementById('idPaziente').value;
     let tras;
@@ -3615,16 +3623,10 @@ function caricaPosizioni(numMese) {
             div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
-        if (lettera > 0 && i > 23) {
-            let lc = letters[i];
-            letteraAdd = write[i];
-            vocaliContainer=vocaliContainer+" "+letteraAdd;
-        }
     }
-    if (vocaliContainer!="") {
-        document.getElementById('invVocaliInziale').textContent = "Vocali in posizione iniziale: "+vocaliContainer;
-    }
-    vocaliContainer=""
+
+    
+    vocaliContainer = ""
     for (let [i, lettera] of posizioniMedie.entries()) {
         if (lettera > 0 && i < 24) {
             letteraAdd = write[i];
@@ -3663,15 +3665,7 @@ function caricaPosizioni(numMese) {
             div.innerHTML = letteraAdd;
             containerWrite.append(div);
         }
-        if (lettera > 0 && i > 23) {
-            let lc = letters[i];
-            letteraAdd = write[i];
-            vocaliContainer=vocaliContainer+" "+letteraAdd;
-        }
 
-    }
-    if (vocaliContainer!="") {
-        document.getElementById('invVocaliMediane').textContent = "Vocali in posizione mediana: "+vocaliContainer;
     }
 
 

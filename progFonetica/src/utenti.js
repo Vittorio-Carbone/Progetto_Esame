@@ -44,6 +44,8 @@ $(document).ready(function () {
     let myChart6
     let chartJS7 = false;
     let myChart7
+    let chartJS8 = false;
+    let myChart8
 
 
     let occhioAperto = document.getElementById("occhioAperto");
@@ -165,9 +167,145 @@ $(document).ready(function () {
     $(".mese").click(function () {
 
         setTimeout(() => {
+            let mesiS = ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"];
+            let jsonGruppi = JSON.parse($("#jsonGruppi").text());
+            let vocali=["a","e","ɛ","i","o","ɔ","u"];
+            let write=["/a/","/e/","/ɛ/","/i/","/o/","/ɔ/","/u/"];
+            let posIn=[0,0,0,0,0,0,0];
+            let posMed=[0,0,0,0,0,0,0];
+            let numeroMese=1;
+
+            for(let mese of mesiS){
+                if (mese===$("#meseTrasc").text()){
+                    numeroMese=mesiS.indexOf(mese)+1;
+                }
+            }
+            for (let tras of jsonGruppi) {
+                let data = tras.data.split("/");
+                if (parseInt(data[1]) === numeroMese) {
+                    tras = tras.trascritto;
+                    let parole = tras.split(" ");
+                    for (let parola of parole) {
+                        for (let [i, vocal] of vocali.entries()) {
+                            if (parola.includes(vocal) && !parola.startsWith(vocal)) {
+                                let count = counterLetters(parola, vocal);
+                                posMed[i] += count;
+                            }
+                            if (parola.startsWith(vocal) && parola.substring(1, parola.length).includes(vocal)) {
+                                let count = counterLetters(parola.substring(1, parola.length), vocal);
+                                posMed[i] += count;
+                            }
+                            if (parola.startsWith(vocal)) {
+                                posIn[i]++;
+                            }
+                        }
+                    }
+                }
+            }
+            function counterLetters(str, letters) {
+                const consonanti = "bcdfghjklmnpqrstvwxyz";
+                let count = 0;
+                if (letters.length === 1) {
+                    for (let i = 0; i < str.length; i++) {
+                        if (str[i] === letters) {
+                            count++;
+                        }
+                    }
+                } else if (letters.length === 2) {
+                    for (let i = 0; i < str.length - 1; i++) {
+                        if (str.substring(i, i + 2) === letters) {
+                            count++;
+                        }
+                    }
+                }
+                return count;
+            }
+            let maxiMed = Math.max(...posMed);
+            let maxiIniz = Math.max(...posIn);
+            let maxVoc = Math.max(maxiMed, maxiIniz);
+            console.log(posIn);
+            console.log(posMed);
+            if (chartJS8) {
+                myChart8.data.datasets[1].data = posMed;
+                myChart8.data.datasets[0].data = posIn;
+                myChart8.options.scales.yAxes[0].ticks.max = maxVoc + 2;
+
+                myChart8.update();
+            } else {
+                chartJS8 = true;
+                const data = {
+                    labels: vocali,
+                    datasets: [{
+                        label: "Fonemi in posizione iniziale",
+                        data: posIn,
+                        backgroundColor: 'rgba(0, 0, 255, 0.3)',
+                        borderColor: "blue",
+                        borderWidth: 1
+                    }, {
+                        label: "Fonemi in posizione mediana",
+                        data: posMed,
+                        backgroundColor: 'rgba(255, 0, 0, 0.3)',
+                        borderColor: "red",
+                        borderWidth: 1
+                    }]
+                };
+
+
+
+                const options = {
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            barThickness: 15
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                max: maxVoc + 2
+                            }
+                        }],
+                        y: [{
+                            ticks: {
+                                callback: function (value) {
+                                    if (Number.isInteger(value)) {
+                                        return value;
+                                    }
+                                },
+                                stepSize: 1
+                            }
+                        }]
+                    }
+                };
+
+                myChart8 = new Chart(document.getElementById("myChart8"), {
+                    type: "bar",
+                    data: data,
+                    options: options
+                });
+            }
+
+            let vocaliContainer = ""
+            for(let [i,vocale] of vocali.entries()){
+                if(posIn[i]>0){
+                    vocaliContainer+=write[i]+" ";
+                }
+            }
+            if (vocaliContainer != "") {
+                document.getElementById('invVocaliInziale').textContent = "Vocali in posizione iniziale: " + vocaliContainer;
+            }
+            vocaliContainer = ""
+            for(let [i,vocale] of vocali.entries()){
+                if(posMed[i]>0){
+                    vocaliContainer+=write[i]+" ";
+                }
+            }
+            if (vocaliContainer != "") {
+                document.getElementById('invVocaliMediane').textContent = "Vocali in posizione mediana: " + vocaliContainer;
+            }
+
+
+            
             let jsonChar = JSON.parse($("#spanJson").text());
-            let maxMed = Math.max(...jsonChar.fonMed);
-            let maxIniz = Math.max(...jsonChar.fonIniz);
             // m 4
             // n 7
             // s 14
@@ -183,7 +321,11 @@ $(document).ready(function () {
             jsonChar.fonMed[12] = jsonChar.fonMed[12] - nConsonanti.nConsMed[5];
             jsonChar.fonIniz[14] = jsonChar.fonIniz[14] - nConsonanti.nConsIni[2];
 
+            let maxMed = Math.max(...jsonChar.fonMed);
+            let maxIniz = Math.max(...jsonChar.fonIniz);
             let max = Math.max(maxMed, maxIniz);
+            console.log(maxMed, maxIniz)
+            console.log(max)
             jsonChar.testo = jsonChar.testo.map(elemento => {
                 return elemento.replace("r", "r o R");
             });
@@ -391,13 +533,13 @@ $(document).ready(function () {
 
             let dataset1 = [];
             let dataset2 = [];
-            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
-            let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"];
+            let posizioniIniziali = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            let posizioniMedie = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             let tras;
             for (let i = n1; i <= n2; i++) {
-                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 for (let frasi of jsonChar) {
                     let nMese = frasi.data.split("/");
                     if (parseInt(nMese[1]) === i) {
@@ -820,13 +962,13 @@ $(document).ready(function () {
             let maxAssoluto = 0;
             let dataset1 = [];
             let dataset2 = [];
-            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ", "a", "e", "ɛ", "i", "o", "ɔ", "u"];
+            let letters = ["j", "w", "p", "b", "m", "t", "d", "n", "k", "g", "f", "v", "l", "r", "s", "z", "ʃ", "dʒ", "ts", "dz", "ɲ", "ʎ", "tʃ", "ʒ"];
             let tras;
             document.getElementById("titoloMesiSelezionabili").innerHTML = "";
             for (let mese of mesi) {
                 document.getElementById("titoloMesiSelezionabili").innerHTML += mesiScritti[mese - 1] + " - ";
-                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posIn = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                let posMed = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 for (let reg of pazienti.reg) {
                     let data = reg.data.split("/");
                     if (parseInt(data[1]) === mese) {
@@ -1439,6 +1581,10 @@ $(document).ready(function () {
         document.getElementById("containerForm").style.display = "none";
         document.getElementById("meseTrasc").style.display = "none";
         document.getElementById("trascrizioniMesi").style.display = "none";
+        if (chartJS) {
+            chartJS = false;
+            myChart.destroy();
+        }
         if (chartJS2) {
             chartJS2 = false;
             myChart2.destroy();
@@ -1462,6 +1608,10 @@ $(document).ready(function () {
         if (chartJS7) {
             chartJS7 = false;
             myChart7.destroy();
+        }
+        if (chartJS8) {
+            chartJS8 = false;
+            myChart8.destroy();
         }
         document.getElementById("divFonMes").innerHTML = "";
         document.getElementById("mese1").selectedIndex = -1;

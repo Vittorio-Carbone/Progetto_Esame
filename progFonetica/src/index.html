@@ -76,10 +76,10 @@
         <hr>
         <p id="pAccedi">Login</p>
         <form action="">
-          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username"  required>
+          <input type="text" class="txtForm" id="txtUsername" name="username" placeholder="Username" required>
           <div>
             <input type="password" class="txtForm" id="txtPassword" name="password" placeholder="Password"
-             required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
+            required><span id="spanEyeAccedi"><i class="fa-solid fa-eye" id="eyeAccedi"></i></span>
           </div>
         </form>
         <div class="txtErrore" id="errAcc">Utente non trovato</div>
@@ -213,8 +213,8 @@
           <button class="tasto">ʃ</button>
           <button class="tasto">ʒ</button>
           <button class="tasto">ɔ</button>
-          <button class="tasto">ɛ</button>
-
+          <button class="tasto">ɛ</button><br><br>
+          <div style="width: 100%;">Per eventuali dubbi visita: <a href="#" id="external-linkDipi">Dipi Online</a></div>
         </div>
       </div>
       <br><br><button id="btnScheda">Vai alla scheda del paziente</button>
@@ -748,6 +748,11 @@
           <div style="font-size: 25pt;margin-top: 50px; margin-left: 40px;">Fonemi</div>
           <canvas id="myChart" class="no-break"></canvas>
         </div>
+        <div id="titleChar2" class="no-break">
+          <div style="font-size: 25pt;margin-top: 50px; margin-left: 40px;">Vocali</div>
+          <canvas id="myChart8" class="no-break"></canvas>
+        </div>
+        
         <span id="spanJson" style="display: none;"></span>
 
         <div id="divCharMesi" class="no-break">
