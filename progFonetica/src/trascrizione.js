@@ -7,18 +7,19 @@ noAccentate = ['a', 'i', 'e', 'e', 'o', 'u'];
 // fonemi = ['ʎ:a', 'ʎ:o', 'ʎ:u', 'ʎ:e', 'ʃo', 'ʃa', 'ʃu', 'ʎ:i','ʃe', 'ʃi', 'tʃa', 'tʃo', 'tʃu', 'dʒa', 'dʒo', 'dʒu', 'ɲ:', 'tʃe',  'tʃi',  'dʒe', 'dʒi', 'a', 'i', 'j', 'e', 'o', 'u', 'w', 'p', 'b', 'm', 'n', 't', 'd', 'g', 'k','k', 'r', 'l', 'f', 'v', 's', 'z', 'ʣ', 'ʦ:', '', 'dʒ', 'i' ]
 scritta = ["glia", "glio", "gliu", "glie", 'scio', 'scia', 'sciu', "gli", 'sce', 'sci', 'cia', 'cio', 'ciu', 'gia', 'gio', "giu", "gn", "ce", "ci", "ge", "gi", 'j', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
 fonemi = ['ʎ:à', 'ʎ:ò', 'ʎ:ù', 'ʎ:è', 'ʃò', 'ʃà', 'ʃù', 'ʎ:ì', 'ʃè', 'ʃì', 'tʃà', 'tʃò', 'tʃù', 'dʒà', 'dʒò', 'dʒù', 'ɲ:', 'tʃè', 'tʃì', 'dʒè', 'dʒì', 'dʒ', 'a', 'e', 'o', 'p', 'b', 'm', 'n', 't', 'd', 'r', 'l', 'f', 'v']
-scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi", "cq", "q", "i:", " z'e ", " dz:ants:ara ", " ts:ants:ara "," dz:ants:are ", " ts:ants:are "," dz:ja ", " dz:jo ", " mjo ", " mja ", " mai ", " vja ", " two ", " swo ", " swa ", " swe ", " jo "]
-fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui", "k:", "k", "ij", "s'e", " dz:andz:ara ", " dz:andz:ara "," dz:andz:are ", " dz:andz:are ", " zia ", " zio ", " mio ", " mia ", " mai ", " via ", " tuo ", " suo ", " sua ", " sue ", " io "]
+scrittaDopo = ['y', '*', 'h', " lwi ", "lwi ", " lwi", "cq", "q", "i:", " z'e ", " dz:ants:ara ", " ts:ants:ara ", " dz:ants:are ", " ts:ants:are ", " dz:ja ", " dz:jo ", " mjo ", " mja ", " mai ", " vja ", " two ", " swo ", " swa ", " swe ", " jo ", " dwe ", " marja ", " sja ", " elja ", " lutʃà ", " via ", " vja ", " iɱvja ", " iɱvjo ", " italja ", " pjo "  ]
+fonemiDopo = ['i', 'j', '', " lui ", "lui ", " lui", "k:", "k", "ij", "s'e", " dzandzara ", " dzandzara ", " dzandzare ", " dzandzare ", " zia ", " zio ", " mio ", " mia ", " mai ", " via ", " tuo ", " suo ", " sua ", " sue ", " io ", " due ", " maria ", " sia ", " elia ", " lutʃia ", " via ", " via ", " iɱvia ", " iɱvio ", " italia ", " pio "]
 scrittaPrima = ["c'e", "cci", "ggi", "cch", "cca", "cco", "ccu", "cce", "ggh", "gga", "ggo", "ggu", "gge", "n c", "n g", "n k", "nc", "ng", "nk", "n v", "n f", "nv", "nf"]
-fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e","ŋ c", "ŋ g", "ŋ k","ŋc", "ŋg", "ŋk", "ɱ v", "ɱ f","ɱv", "ɱf"]
+fonemiPrima = ["tʃ:e", "tʃ:i", "dʒ:", "k:", "k:a", "k:o", "k:u", "tʃ:e", "g:", "g:a", "g:o", "g:u", "dʒ:e", "ŋ c", "ŋ g", "ŋ k", "ŋc", "ŋg", "ŋk", "ɱ v", "ɱ f", "ɱv", "ɱf"]
 
 
 
 $(document).ready(function () {
     $('#btnInvia').click(function () {
-        trascritto =" " + $("#inputTrascrivere").val()+" ";
+        trascritto = " " + $("#inputTrascrivere").val() + " ";
         console.log(trascritto)
         trascrivi();
+        ultimaTrascrizione();
         $("#outputTrascritto").val(trascritto);
 
     });
@@ -64,10 +65,12 @@ $(document).ready(function () {
         let primaParte = "";
         let secondaParte = "";
         for (let i = 0; i < trascritto.length; i++) {
-            if (trascritto[i] == trascritto[i + 1]) {
-                primaParte = trascritto.substring(0, i + 1);
-                secondaParte = trascritto.substring(i + 2, trascritto.length);
-                trascritto = primaParte + ":" + secondaParte;
+            if (trascritto[i] != " ") {
+                if (trascritto[i] == trascritto[i + 1]) {
+                    primaParte = trascritto.substring(0, i + 1);
+                    secondaParte = trascritto.substring(i + 2, trascritto.length);
+                    trascritto = primaParte + ":" + secondaParte;
+                }
             }
         }
     }
@@ -144,7 +147,7 @@ $(document).ready(function () {
 
             // //Controllo della S
             if (daTra.includes("s")) {
-                let lettereConsonanti="nprlb";
+                let lettereConsonanti = "nprlb";
                 if (daTra.substring(1, daTra.length).includes("s")) {
                     let indices = [];
                     let index = daTra.indexOf("s");
@@ -153,11 +156,10 @@ $(document).ready(function () {
                         index = daTra.indexOf("s", index + 1);
                     }
                     for (let ind of indices) {
-                       if(lettereConsonanti.includes(daTra[ind-1]))
-                       {
-                        daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", '^*^'));
-                        daTra = daTra.replace("s", '^*^')
-                       }
+                        if (lettereConsonanti.includes(daTra[ind - 1])) {
+                            daTrascrivere = daTrascrivere.replace(daTra, daTra.replace("s", '^*^'));
+                            daTra = daTra.replace("s", '^*^')
+                        }
                     }
                 }
                 if (daTra.startsWith("s")) {
@@ -182,9 +184,9 @@ $(document).ready(function () {
 
 
             }
-            daTrascrivere = daTrascrivere.replace(daTra, daTra.replace('^*^',"s"));
-            daTra = daTra.replace('^*^',"s")
-            
+            daTrascrivere = daTrascrivere.replace(daTra, daTra.replace('^*^', "s"));
+            daTra = daTra.replace('^*^', "s")
+
             //controllo delle C
             if (daTra.includes("cr") || daTra.includes("cl") || daTra.includes("ca") || daTra.includes("co") || daTra.includes("cu") || daTra.includes("ch") ||
                 daTra.includes("cw")) {
@@ -223,6 +225,110 @@ $(document).ready(function () {
     function isZAtMiddle(word) {
         var middleIndex = Math.floor(word.length / 2);
         return word.charAt(middleIndex) === 'z';
+    }
+
+
+
+    function ultimaTrascrizione() {
+        let index = 0;
+        let foundIndex;
+        let consonanti = "bcdfghjklmnpqrsvwxyz";
+        let vocali = "aeiou";
+
+        // CORREZIONI ŋ
+        do {
+            foundIndex = trascritto.indexOf("ŋ", index);
+            if (foundIndex != -1) {
+                if (trascritto[foundIndex + 1] == " ") {
+                    if (trascritto[foundIndex + 3] == "ʃ" || trascritto[foundIndex + 3] == "ʒ") {
+                        trascritto = trascritto.substring(0, foundIndex) + "n" + trascritto.substring(foundIndex + 1);
+                    }
+                } else {
+                    if (trascritto[foundIndex + 2] == "ʃ" || trascritto[foundIndex + 2] == "ʒ") {
+                        trascritto = trascritto.substring(0, foundIndex) + "n" + trascritto.substring(foundIndex + 1);
+                    }
+                }
+            }
+            if (foundIndex != -1) {
+                index = foundIndex + 1;
+            }
+        } while (foundIndex != -1);
+
+
+        index = 0;
+        foundIndex = 0;
+        // CORREZIONI ʃe
+        do {
+            foundIndex = trascritto.indexOf("ʃe", index);
+            if (foundIndex != -1) {
+                if (consonanti.includes(trascritto[foundIndex - 1])) {
+
+                } else {
+                    trascritto = trascritto.substring(0, foundIndex) + "ʃ:" + trascritto.substring(foundIndex + 1);
+                }
+            }
+            if (foundIndex != -1) {
+                index = foundIndex + 1;
+            }
+        } while (foundIndex != -1);
+
+
+        index = 0;
+        foundIndex = 0;
+        // CORREZIONI ʃi
+        do {
+            foundIndex = trascritto.indexOf("ʃi", index);
+            if (foundIndex != -1) {
+                if (consonanti.includes(trascritto[foundIndex - 1])) {
+
+                } else {
+                    trascritto = trascritto.substring(0, foundIndex) + "ʃ:" + trascritto.substring(foundIndex + 1);
+                }
+            }
+            if (foundIndex != -1) {
+                index = foundIndex + 1;
+            }
+        } while (foundIndex != -1);
+
+
+        index = 0;
+        foundIndex = 0;
+        // CORREZIONI ʎ:
+        do {
+            foundIndex = trascritto.indexOf("ʎ:", index);
+            if (foundIndex != -1) {
+                if (consonanti.includes(trascritto[foundIndex - 1])) {
+                    trascritto = trascritto.substring(0, foundIndex) + "ʎ" + trascritto.substring(foundIndex + 2);
+                } else {
+
+                }
+            }
+            if (foundIndex != -1) {
+                index = foundIndex + 1;
+            }
+        } while (foundIndex != -1);
+
+
+        index = 0;
+        foundIndex = 0;
+        // CORREZIONI ts:
+        do {
+            foundIndex = trascritto.indexOf("ts:", index);
+            if (foundIndex != -1) {
+                if (consonanti.includes(trascritto[foundIndex - 1])) {
+                    trascritto = trascritto.substring(0, foundIndex) + "ts" + trascritto.substring(foundIndex + 3);
+                } else {
+
+                }
+            }
+            if (foundIndex != -1) {
+                index = foundIndex + 1;
+            }
+        } while (foundIndex != -1);
+
+
+        trascritto = trascritto.replaceAll(" lutʃ:ia ", "lutʃia");
+
     }
 
 

@@ -13,6 +13,7 @@ $(document).ready(function () {
             $("#loginHome").fadeIn(1000);
         } else {
             $("#paginaScadenza").fadeIn(1000);
+            $("#paginaScadenza").css("display", "flex");
         }
 
     }, 6000);

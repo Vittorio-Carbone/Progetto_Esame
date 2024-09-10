@@ -87,7 +87,12 @@ $(document).ready(function () {
 
                     const data = await response.json();
                     console.log('Trascrizione:', data);
-                    $("#inputTrascrivere").val(data.text);
+                    if(!data.text.includes("Amara.org") && !data.text.includes("a cura di QTSS")){
+                        $("#inputTrascrivere").val(data.text);
+                    }else{
+                        console.log(data.text);
+                        $("#inputTrascrivere").val("Non è possibile trascrivere questo audio");
+                    }
                 } catch (error) {
                     console.error('Errore durante la trascrizione:', error);
                 }

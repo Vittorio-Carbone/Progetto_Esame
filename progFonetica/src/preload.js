@@ -2540,7 +2540,7 @@ function accedi() {
         }, 5000);
     }
     for (let utente of users) {
-        if (utente.username == txtUsername && utente.password == txtPassword) {
+        if (utente.username.toLowerCase == txtUsername.toLowerCase && utente.password == txtPassword) {
             document.getElementById("nomeLogop").innerHTML = utente.nome + " " + utente.cognome;
             idUser = utente.id;
             console.log("Utente trovato");
