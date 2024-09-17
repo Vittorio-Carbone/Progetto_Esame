@@ -232,7 +232,7 @@ $(document).ready(function () {
     function ultimaTrascrizione() {
         let index = 0;
         let foundIndex;
-        let consonanti = "bcdfghjklmnpqrsvwxyz";
+        let consonanti = "bcdfghjklmnpqrstvwxyz ";
         let vocali = "aeiou";
 
         // CORREZIONI ŋ
@@ -254,13 +254,15 @@ $(document).ready(function () {
             }
         } while (foundIndex != -1);
 
+        
+        
 
         index = 0;
         foundIndex = 0;
         // CORREZIONI ʃe
         do {
             foundIndex = trascritto.indexOf("ʃe", index);
-            if (foundIndex != -1) {
+            if (foundIndex != -1 && foundIndex != 1) {
                 if (consonanti.includes(trascritto[foundIndex - 1])) {
 
                 } else {
@@ -278,7 +280,8 @@ $(document).ready(function () {
         // CORREZIONI ʃi
         do {
             foundIndex = trascritto.indexOf("ʃi", index);
-            if (foundIndex != -1) {
+            console.log(foundIndex)
+            if (foundIndex != -1 && foundIndex != 1) {
                 if (consonanti.includes(trascritto[foundIndex - 1])) {
 
                 } else {

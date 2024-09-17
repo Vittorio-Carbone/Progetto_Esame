@@ -73,26 +73,27 @@ $(document).ready(function () {
                 formData.append('options', JSON.stringify({ no_corrections: true }));
 
                 try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: {
-                            'Authorization': `Bearer ${key}`
-                        },
-                        body: formData
-                    });
+                    console.log('TRASCRIZIONE DISATTIVATA');
+                    // const response = await fetch(url, {
+                    //     method: 'POST',
+                    //     headers: {
+                    //         'Authorization': `Bearer ${key}`
+                    //     },
+                    //     body: formData
+                    // });
 
-                    if (!response.ok) {
-                        throw new Error(`Errore di rete: ${response.status}`);
-                    }
+                    // if (!response.ok) {
+                    //     throw new Error(`Errore di rete: ${response.status}`);
+                    // }
 
-                    const data = await response.json();
-                    console.log('Trascrizione:', data);
-                    if(!data.text.includes("Amara.org") && !data.text.includes("a cura di QTSS")){
-                        $("#inputTrascrivere").val(data.text);
-                    }else{
-                        console.log(data.text);
-                        $("#inputTrascrivere").val("Non è possibile trascrivere questo audio");
-                    }
+                    // const data = await response.json();
+                    // console.log('Trascrizione:', data);
+                    // if(!data.text.includes("Amara.org") && !data.text.includes("a cura di QTSS")){
+                    //     $("#inputTrascrivere").val(data.text);
+                    // }else{
+                    //     console.log(data.text);
+                    //     $("#inputTrascrivere").val("Non è possibile trascrivere questo audio");
+                    // }
                 } catch (error) {
                     console.error('Errore durante la trascrizione:', error);
                 }
