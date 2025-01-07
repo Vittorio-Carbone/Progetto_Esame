@@ -7,7 +7,7 @@ $(document).ready(function () {
     setTimeout(() => {
         $(".animation-wrapper").fadeOut(500);
         let dataOggi = new Date();
-        let dataConfronto = new Date('2025-01-01');
+        let dataConfronto = new Date('2025-04-30');
 
         if (dataOggi < dataConfronto) {
             $("#loginHome").fadeIn(1000);

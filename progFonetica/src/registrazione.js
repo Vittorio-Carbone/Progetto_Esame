@@ -57,6 +57,18 @@ $(document).ready(function () {
         }
     }
 
+    $("#btnScaricaRegistrazione").on("click", function () {
+        if (audioURL) {
+            const downloadLink = document.createElement("a");
+            downloadLink.href = audioURL;
+            downloadLink.download = "registrazione.wav"; 
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        } else {
+            alert("Nessuna registrazione disponibile per il download!");
+        }
+    });
 
     async function sendAudioToTranscriptionAPI(audioBlob) {
         let key;
