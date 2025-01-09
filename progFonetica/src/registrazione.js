@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let btnRegistra = $("#btnRegistra");
     let tracciaAudio = $("#tracciaAudio").hide();
+    let btnScaricaRegistrazione = $("#btnScaricaRegistrazione").hide();
     let audioChunks = []; // Memorizza i chunk audio registrati
     let audioURL;
     let recognition;
@@ -12,6 +13,7 @@ $(document).ready(function () {
             $("#outputTrascritto").val(" ");
             $("#inputTrascrivere").val(" ");
             tracciaAudio.hide();
+            btnScaricaRegistrazione.hide();
         }
         else {
             $("#btnRegistra").text("Registra");
@@ -49,6 +51,7 @@ $(document).ready(function () {
                 audioURL = URL.createObjectURL(audioBlob);
                 tracciaAudio.prop("src", audioURL);
                 tracciaAudio.show();
+                btnScaricaRegistrazione.show();
                 console.log("Blob audio:", audioBlob);
                 console.log("URL audio:", audioURL);
                 audioChunks = [];

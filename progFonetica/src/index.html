@@ -192,9 +192,9 @@
       <button id="btnRegistra" class="btnSalva" style="margin: 12px 0px;">Registra</button>
       <div id="#audio" style="margin: 12px 0px;">
         <audio id="tracciaAudio" src="" controls style="max-width: 800px;width: 100%;" preload="auto"></audio>
+        <br>
+        <button id="btnScaricaRegistrazione" class="btnSalva" style="margin: 12px 0px;">Scarica Registrazione</button>
       </div>
-      <br>
-      <button id="btnScaricaRegistrazione" class="btnSalva" style="margin: 12px 0px;">Scarica Registrazione</button>
       <div id="home">
         <textarea type="text" class="inputTxt" id="inputTrascrivere"></textarea><br><br>
         <button id="btnInvia" class="btnSalva">Trascrivi</button> <br><br>
@@ -216,13 +216,13 @@
           <button class="tasto">ɱ</button>
           <button class="tasto">ʒ</button>
           <button class="tasto">ɔ</button>
+          <button class="tasto">ɛ</button>
           <button class="tasto">r</button>
           <button class="tasto">ʋ</button>
           <button class="tasto">ð</button>
           <button class="tasto">ʁ</button>
           <button class="tasto">:</button>
-          <button class="tasto">’</button>
-          <button class="tasto">ɛ</button><br><br>
+          <button class="tasto">’</button><br><br>
           <div style="width: 100%;">Per eventuali dubbi visita: <a href="#" id="external-linkDipi">Dipi Online</a></div>
         </div>
       </div>
@@ -529,8 +529,16 @@
                   <label for="anteriorizzazione">Anteriorizzazione</label>
                 </div>
                 <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="posteriorizzazione">
+                  <label for="posteriorizzazione">Posteriorizzazione</label>
+                </div>
+                <div class="containerChk">
                   <input class="chkboxForm" type="checkbox" id="desonorizzazione">
                   <label for="desonorizzazione">Desonorizzazione</label>
+                </div>
+                <div class="containerChk">
+                  <input class="chkboxForm" type="checkbox" id="sonorizzazione">
+                  <label for="sonorizzazione">Sonorizzazione</label>
                 </div>
               </div>
             </form>

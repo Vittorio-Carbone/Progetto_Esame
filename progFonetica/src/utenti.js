@@ -127,6 +127,7 @@ $(document).ready(function () {
 
     $(document).on("click", ".paziente", function () {
         $("#tracciaAudio").hide()
+        $("#btnScaricaRegistrazione").hide()
         divUtenti.slideUp(1000);
         setTimeout(function () {
             divUtente.slideDown(670);

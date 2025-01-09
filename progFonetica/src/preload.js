@@ -625,6 +625,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -789,6 +797,14 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 40,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
                             "valutazione": 0
                         }
                     ]
@@ -955,6 +971,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1119,6 +1143,14 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 40,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
                             "valutazione": 0
                         }
                     ]
@@ -1285,6 +1317,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1449,6 +1489,14 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 40,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
                             "valutazione": 0
                         }
                     ]
@@ -1615,6 +1663,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -1779,6 +1835,14 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 40,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
                             "valutazione": 0
                         }
                     ]
@@ -1945,6 +2009,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -2109,6 +2181,14 @@ function salvaPaziente() {
                         },
                         {
                             "nome": 40,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
                             "valutazione": 0
                         }
                     ]
@@ -2275,6 +2355,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        {
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        {
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 },
@@ -2440,6 +2528,14 @@ function salvaPaziente() {
                         {
                             "nome": 40,
                             "valutazione": 0
+                        },
+                        { // variabile posteriorizzazione
+                            "nome": 41,
+                            "valutazione": 0
+                        },
+                        { 
+                            "nome": 42,
+                            "valutazione": 0
                         }
                     ]
                 }
@@ -2532,7 +2628,7 @@ function accedi() {
     let txtUsername = document.getElementById('txtUsername').value;
     let txtPassword = document.getElementById('txtPassword').value;
     let trovato = false;
-    console.log(users)
+    // console.log(users)
     if (users.length == 0) {
         document.getElementById('errAcc').style.display = 'block';
         setTimeout(function () {
@@ -2540,7 +2636,7 @@ function accedi() {
         }, 5000);
     }
     for (let utente of users) {
-        if (utente.username.toLowerCase == txtUsername.toLowerCase && utente.password == txtPassword) {
+        if (utente.username.toLowerCase() == txtUsername.toLowerCase() && utente.password == txtPassword) {
             document.getElementById("nomeLogop").innerHTML = utente.nome + " " + utente.cognome;
             idUser = utente.id;
             console.log("Utente trovato");
@@ -2559,13 +2655,13 @@ function accedi() {
             boolAcc = false;
             break;
         }
-        if (!trovato) {
-            console.log("Utente non trovato");
-            document.getElementById('errAcc').style.display = 'block';
-            setTimeout(function () {
-                document.getElementById('errAcc').style.display = 'none';
-            }, 5000);
-        }
+    }
+    if (!trovato) {
+        console.log("Utente non trovato");
+        document.getElementById('errAcc').style.display = 'block';
+        setTimeout(function () {
+            document.getElementById('errAcc').style.display = 'none';
+        }, 5000);
     }
 }
 function registrati() {
@@ -3062,6 +3158,22 @@ function caricaForm() {
                 document.getElementById('cancellazione_fonema').checked = true;
             }
         }
+        if (comp.nome == 41) {
+            if (comp.valutazione == 0) {
+                document.getElementById('posteriorizzazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('posteriorizzazione').checked = true;
+            }
+        }
+        if (comp.nome == 42) {
+            if (comp.valutazione == 0) {
+                document.getElementById('sonorizzazione').checked = false;
+            }
+            if (comp.valutazione == 1) {
+                document.getElementById('sonorizzazione').checked = true;
+            }
+        }
         if (comp.nome == 30) {
             let radioButtons = document.querySelectorAll('input[type="radio"][name="frasi_ad_un_argomento"]');
 
@@ -3458,6 +3570,12 @@ function buttonChkClicked(id, value) {
     }
     if (id === 'cancellazione_fonema') {
         nome = 27;
+    }
+    if (id === 'posteriorizzazione') {
+        nome = 41;
+    }
+    if (id === 'sonorizzazione') {
+        nome = 42;
     }
     let _id = document.getElementById('idPaziente').value;
     users[idUser]["pazienti"][_id]["mesi"][nMese]["componenti"].map((item) => {
